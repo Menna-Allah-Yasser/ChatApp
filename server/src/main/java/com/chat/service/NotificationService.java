@@ -1,4 +1,4 @@
-package org.chat.service;
+package com.chat.service;
 
 public class NotificationService {
 }

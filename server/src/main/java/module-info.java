@@ -1,9 +1,11 @@
-module org.example.server {
+module org.chat.server {
 
     requires java.sql;
     requires java.rmi;
-    requires com.example.client.controller;
+    //requires com.chat.client.controller;
 
+
+    requires com.chat.sharedResources;
     requires commons.dbcp2;
     requires java.management;
 }

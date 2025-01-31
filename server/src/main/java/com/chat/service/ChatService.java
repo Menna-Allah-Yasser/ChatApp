@@ -1,8 +1,9 @@
-package org.chat.service;
+package com.chat.service;
 
+import com.chat.entity.Chat;
+import com.chat.repository.ChatRepository;
 import org.chat.db.DBConnectionManager;
-import org.chat.entity.Chat;
-import org.chat.repository.ChatRepository;
+
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;

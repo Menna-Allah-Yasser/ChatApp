@@ -2,7 +2,7 @@ package com.chat.repository;
 
 
 
-import org.chat.entity.Chat;
+import com.chat.entity.Chat;
 import java.rmi.Remote;
 import java.util.List;
 

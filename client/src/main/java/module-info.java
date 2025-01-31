@@ -1,11 +1,11 @@
-module com.example.client {
+module com.chat.client {
     requires javafx.controls;
     requires javafx.fxml;
 
     requires org.controlsfx.controls;
 
-    opens com.example.client to javafx.fxml;
-    exports com.example.client;
-    exports com.example.client.controller;
-    opens com.example.client.controller to javafx.fxml;
+    opens com.chat.client to javafx.fxml;
+    exports com.chat.client;
+    exports com.chat.client.controller;
+    opens com.chat.client.controller to javafx.fxml;
 }

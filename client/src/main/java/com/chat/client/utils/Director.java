@@ -1,6 +1,6 @@
-package com.example.client.utils;
+package com.chat.client.utils;
 
-import com.example.client.ClientStarter;
+import com.chat.client.ClientStarter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
