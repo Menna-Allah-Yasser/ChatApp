@@ -1,7 +1,8 @@
 package org.example.repository;
 
-import com.chat.chatapp.entity.Chat;
 
+
+import org.example.entity.Chat;
 import java.rmi.Remote;
 import java.util.List;
 

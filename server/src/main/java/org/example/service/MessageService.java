@@ -16,7 +16,7 @@ public class MessageService extends UnicastRemoteObject implements MessageReposi
     private String query;
     private final Connection connection = DBConnectionManager.getConnection();
 
-    public MessageService() throws RemoteException {
+    public MessageService() throws RemoteException, SQLException {
     }
 
     @Override

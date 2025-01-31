@@ -1,5 +1,6 @@
 package org.example.db;
 
+
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import java.io.FileInputStream;
@@ -32,7 +33,14 @@ public class DBConnectionManager {
 
     }
 
-    public static Connection getConnection() throws SQLException {
-        return dataSource.getConnection();
+    public static Connection getConnection()  {
+        Connection connection = null;
+        try {
+            connection = dataSource.getConnection();
+            connection.setAutoCommit(false);
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return connection;
     }
 }

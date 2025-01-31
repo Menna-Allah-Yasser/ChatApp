@@ -1,11 +1,12 @@
 package org.example.service;
 
+import org.example.db.DBConnectionManager;
 import org.example.entity.Chat;
+import org.example.repository.ChatRepository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class ChatService extends UnicastRemoteObject implements ChatRepository {
     private String query;
     private Connection connection = DBConnectionManager.getConnection();
 
-    public ChatService() throws RemoteException {
+    public ChatService() throws RemoteException{
     }
     @Override
     public boolean addNewChat(Chat chat) {
@@ -83,7 +84,7 @@ public class ChatService extends UnicastRemoteObject implements ChatRepository {
     }
 
     public static void main(String[] args) {
-       /* Chat chat = new Chat("MEN");
+      /*  Chat chat = new Chat("iti");
         ChatService chatService = new ChatService();
         System.out.println(chatService.addNewChat(chat));*/
 

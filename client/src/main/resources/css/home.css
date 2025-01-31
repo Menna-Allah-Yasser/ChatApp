@@ -1,0 +1,128 @@
+/* Root pane background color */
+.root {
+    -fx-background-color: #FFFFFF; /* Adjust to match your bar's background color */
+}
+
+/* Styles for the side icons */
+.image-view {
+    -fx-padding: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 3, 0, 1, 1);
+}
+
+/* Titles like "Messages" */
+.title {
+    -fx-background-color: transarant;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-padding: 15 0 0 15;
+}
+
+/* Search field with an icon */
+.search-field {
+    -fx-background-color: #f6f6f6;
+    /*-fx-border-color: #CCCCCC;*/
+    -fx-border-radius: 50;
+    -fx-padding: 8;
+    -fx-faint-focus-color: transparent;
+    -fx-margin:200, 5, 200, 5;
+    -fx-background-insets: 0;
+    -fx-background-image: url("../images/search.png") ;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: right center ;
+    -fx-background-size: 15px 15px;
+}
+
+/* Category labels styled as circles */
+.category-label {
+    -fx-background-color: #F0F0F0; /* Match the bar's background color */
+    -fx-text-fill: #000000;
+    -fx-font-size: 10px;
+    -fx-alignment: center;
+    -fx-padding: 10 , 5, 5 , 5;
+    -fx-background-radius: 50%; /* Makes them circular */
+    -fx-min-width: 50px;
+    -fx-min-height: 30px;
+    /*-fx-max-width: 40px;*/
+   /* -fx-max-height: 40px;*/
+}
+
+.All-label{
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%,#c0c0e4 ,  #6f6d98 );
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.1, 2, 2);
+}
+
+/* Left-side list view styling */
+.message-list {
+    -fx-padding: 10;
+    -fx-border-color: #E0E0E0;
+    -fx-border-radius: 5;
+    -fx-background-color: #FFFFFF;
+    -fx-vgrow: ALWAYS;
+}
+
+/* Right-side chat contact name */
+.contact-name {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+/* Chat list styling */
+.chat-list {
+    /*-fx-padding: 10;*/
+    -fx-border-color: #E0E0E0;
+    -fx-border-radius: 5;
+    -fx-background-color: #f6ecec;
+}
+
+
+
+.message-input {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #F8F8F8;
+    -fx-border-radius: 5;
+    -fx-padding: 10;
+    -fx-prompt-text-fill: #888888;
+}
+
+/*
+!* Container for buttons (to be added programmatically or via FXML) *!
+.message-input-container {
+    -fx-alignment: center-right;
+    -fx-spacing: 5;
+    -fx-padding: 0;
+    -fx-background-color: transparent;
+}
+
+!* Buttons inside the message input *!
+.message-input-button {
+    -fx-background-color: #E0E0E0; !* Neutral background for the buttons *!
+    -fx-border-color: #CCCCCC;
+    -fx-border-radius: 3;
+    -fx-padding: 5;
+    -fx-min-width: 25px; !* Adjust button size *!
+    -fx-min-height: 25px;
+    -fx-cursor: hand; !* Makes the pointer appear *!
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 2, 0, 1, 1);
+}
+
+!* Button hover effect *!
+.message-input-button:hover {
+    -fx-background-color: #D0D0D0;
+    -fx-border-color: #BBBBBB;
+}
+*/
+
+
+.vbox {
+    -fx-background-color: #f0f0f0; /* Light gray background */
+    -fx-padding: 20; /* Padding around the VBox */
+    -fx-spacing: 15; /* Space between ImageViews */
+    -fx-border-color: #d3d3d3; /* Border color */
+    -fx-border-width: 1px;
+    -fx-border-radius: 12px;
+    -fx-background-radius:0 ,0 , 10 , 10px;
+    -fx-alignment: top; /* Center align VBox contents */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.1, 2, 2);
+}

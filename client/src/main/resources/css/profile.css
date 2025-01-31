@@ -1,0 +1,105 @@
+/* Left Sidebar (VBox) */
+.vbox {
+    -fx-background-color: #f0f0f0; /* Light gray background */
+    -fx-padding: 20; /* Padding around the VBox */
+    -fx-spacing: 15; /* Space between ImageViews */
+    -fx-border-color: #d3d3d3; /* Border color */
+    -fx-border-width: 1px;
+    -fx-border-radius: 12px;
+    -fx-background-radius:0 ,0 , 10 , 10px;
+    -fx-alignment: top; /* Center align VBox contents */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.1, 2, 2);
+}
+
+#main{
+    -fx-background-color: #ffffff;
+}
+
+#pane {
+   /* -fx-background-radius: 0 0 15 15;*/
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%,#c0c0e4 ,  #6f6d98 );
+}
+
+/* General ImageView Styling */
+.image-view {
+    -fx-fit-height: 25px; /* Standard height */
+    -fx-fit-width: 25px; /* Standard width */
+    -fx-alignment: center; /* Center align ImageView */
+    -fx-border-color: transparent;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-opacity: 0.9;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0.1, 1, 1);
+}
+
+#profileImg {
+    -fx-fit-height: 50px; /* Adjust height for profile image */
+    -fx-fit-width: 50px; /* Adjust width for profile image */
+    -fx-background-radius: 5px; /* Make it circular */
+    -fx-opacity: 1; /* Full opacity */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.1, 1, 1); /* Stronger shadow for profile image */
+}
+
+.image-view:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0.5, 0, 4);
+    -fx-opacity: 1.0;
+}
+
+/* Add margins for each specific ImageView */
+#logo {
+    -fx-margin: 10 0 10 0;
+}
+#profileLogo {
+    -fx-margin: 10 0 10 0;
+    -fx-fill: #bc83ee;
+}
+#chatLogo {
+    -fx-margin: 10 0 10 0;
+    -fx-fill: #bc83ee;
+}
+#notificationLogo {
+    -fx-margin: 10 0 10 0;
+    -fx-fill: #bc83ee;
+}
+#addFriendsLogo {
+    -fx-margin: 10 0 10 0;
+    -fx-fill: #bc83ee;
+}
+
+/* Styles for TextFields */
+.text-field , #genderMenu , #modeMenu {
+    -fx-background-color: #f6f6f6;
+  /*  -fx-border-color: #e1dbdb;*/
+    -fx-border-radius: 50;
+    -fx-padding: 10; /* Padding inside the TextField */
+    -fx-font-size: 14px; /* Font size */
+    /*-fx-focus-color: #5b9bd5;*/ /* Focus border color */
+    -fx-faint-focus-color: transparent; /* Remove faint focus color */
+    -fx-margin: 10; /* Margin around the TextField */
+}
+
+#dobTxt{
+    -fx-background-color: #f6f6f6;
+    -fx-border-radius: 50;
+}
+
+/* Styles for Label */
+.label {
+    -fx-font-size: 12px; /* Font size for labels */
+    -fx-text-fill: #333; /* Darker text color */
+    -fx-font-weight: bold; /* Make text bold */
+    -fx-padding: 0 0 5 5; /* Padding below the label */
+}
+
+/* Add hover effect */
+.text-field:hover {
+    -fx-background-color: #f0f0f0; /* Slightly darker on hover */
+}
+
+.text-field:focused {
+    -fx-effect: dropshadow(gaussian, rgba(232, 243, 253, 0.7), 10, 0, 0, 0); /* Glow effect */}
+
+/* Styles for VBox */
+.vbox {
+    -fx-spacing: 10; /* Space between children */
+}
