@@ -71,5 +71,6 @@
     <modules>
         <module>server</module>
         <module>client</module>
+        <module>sharedResources</module>
     </modules>
 </project>
