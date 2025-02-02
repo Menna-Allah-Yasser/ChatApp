@@ -38,12 +38,14 @@ public class HomeController {
     private ImageView profileImg;
 
     @FXML
+    private ImageView chat;
+
+    @FXML
+    private ImageView exit;
+
+    @FXML
     public void initialize() {
 
-        profileImg.setOnMouseClicked((event)->{
-           Node node=  Director.loadView("profile.fxml");
-           mainPane.setCenter(node);
-        });
     }
 
 

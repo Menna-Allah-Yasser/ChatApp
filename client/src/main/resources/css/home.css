@@ -11,7 +11,7 @@
 
 /* Titles like "Messages" */
 .title {
-    -fx-background-color: transarant;
+    -fx-background-color: transparent;
     -fx-font-size: 18px;
     -fx-font-weight: bold;
     -fx-text-fill: #333333;

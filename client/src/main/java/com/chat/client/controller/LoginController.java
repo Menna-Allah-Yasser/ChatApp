@@ -37,7 +37,8 @@ public class LoginController {
         //check authoration
 
         //send id to home
-        ClientStarter.setRoot("home");
+        ClientStarter.setRoot("Bar");
+
     }
 
 

@@ -24,7 +24,7 @@ public class ClientStarter extends Application {
         final Pane root = new Pane(); // root container
 
 
-        Pane controller = loadFXML("login");
+        Pane controller = (Pane)loadFXML("login");
         controller.setPrefWidth(initWidth);
         controller.setPrefHeight(initHeight);
         root.getChildren().add(controller);
@@ -65,10 +65,12 @@ public class ClientStarter extends Application {
         scene.setRoot(loadFXML(fxml));
     }
 
-    private static Pane loadFXML(String fxml) throws IOException {
+    private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ClientStarter.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
+
+
 
     public static void main(String[] args) {
         launch();
