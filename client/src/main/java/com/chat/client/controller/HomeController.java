@@ -38,11 +38,19 @@ public class HomeController {
     private ImageView profileImg;
 
     @FXML
+    private ImageView addContactBtn;
+
+    @FXML
     public void initialize() {
 
         profileImg.setOnMouseClicked((event)->{
-           Node node=  Director.loadView("profile.fxml");
+           Node node =  Director.loadView("profile.fxml");
            mainPane.setCenter(node);
+        });
+
+        addContactBtn.setOnMouseClicked((event)->{
+            Node node =  Director.loadView("addContact.fxml");
+            mainPane.setCenter(node);
         });
     }
 
