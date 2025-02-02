@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="396.0" prefWidth="667.0" style="-fx-background-color: #263238;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chatapp.CHATController">
+  <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="218.0" minWidth="2.0" prefWidth="2.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="443.0" minWidth="10.0" prefWidth="443.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="93.0" minHeight="10.0" prefHeight="59.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="310.0" minHeight="10.0" prefHeight="286.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="125.0" minHeight="0.0" prefHeight="46.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <children>
+            <ImageView fx:id="profileImg" fitHeight="72.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets left="30.0" right="21.0" top="31.0" />
+               </VBox.margin></ImageView>
+            <Label fx:id="userName" text="Label">
+               <VBox.margin>
+                  <Insets left="35.0" />
+               </VBox.margin></Label>
+         </children>
+      </VBox>
+      <ListView fx:id="list" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <TextField fx:id="message" onAction="#appendMessage" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+   </children>
+</GridPane>

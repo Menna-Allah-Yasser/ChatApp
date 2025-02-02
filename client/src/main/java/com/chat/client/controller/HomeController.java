@@ -38,14 +38,30 @@ public class HomeController {
     private ImageView profileImg;
 
     @FXML
+<<<<<<< HEAD
     private ImageView chat;
 
     @FXML
     private ImageView exit;
+=======
+    private ImageView addContactBtn;
+>>>>>>> 2f1c9059748755473ee66f2c000c6650acaf64a9
 
     @FXML
     public void initialize() {
 
+<<<<<<< HEAD
+=======
+        profileImg.setOnMouseClicked((event)->{
+           Node node =  Director.loadView("profile");
+           mainPane.setCenter(node);
+        });
+
+        addContactBtn.setOnMouseClicked((event)->{
+            Node node =  Director.loadView("addContact");
+            mainPane.setCenter(node);
+        });
+>>>>>>> 2f1c9059748755473ee66f2c000c6650acaf64a9
     }
 
 

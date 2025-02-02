@@ -1,6 +1,7 @@
 package com.chat.client.controller;
 
 import com.chat.client.ClientStarter;
+import com.chat.client.utils.Director;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -286,8 +287,9 @@ public class SignUpController {
 
 
       try {
-          ClientStarter.setRoot("login");
-      } catch (IOException e) {
+          //ClientStarter.setRoot("login");
+        Director.loadView(event, "login");
+      } catch (Exception e) {
           throw new RuntimeException(e);
       }
 

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -16,7 +22,74 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<<<<<<< HEAD
 <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../../../css/home.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chat.client.controller.HomeController">
+=======
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../../../css/home.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chat.client.controller.HomeController">
+    <left>
+        <VBox minHeight="400.0" minWidth="35.0" prefHeight="500.0" prefWidth="35.0" stylesheets="@../../../css/profile.css" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView id="logo" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" styleClass="image-view">
+                    <image>
+                        <Image url="@../../../images/logo.png" />
+                    </image>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </ImageView>
+                <ImageView id="profileLogo" fx:id="profileImg" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" styleClass="image-view">
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                    <image>
+                        <Image url="@../../../images/profileImg.png" />
+                    </image>
+                </ImageView>
+                <Separator prefWidth="200.0">
+                    <opaqueInsets>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </opaqueInsets>
+                </Separator>
+                <ImageView id="chatLogo" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" styleClass="image-view">
+                    <image>
+                        <Image url="@../../../images/chat.png" />
+                    </image>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </ImageView>
+                <ImageView id="notificationLogo" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" styleClass="image-view">
+                    <image>
+                        <Image url="@../../../images/notification.png" />
+                    </image>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </ImageView>
+                <ImageView id="addFriendsLogo" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" styleClass="image-view">
+                    <image>
+                        <Image url="@../../../images/requests.png" />
+                    </image>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </ImageView>
+            <ImageView id="addContact" fx:id="addContactBtn" fitHeight="26.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/requests.png" />
+               </image>
+            </ImageView>
+            </children>
+            <BorderPane.margin>
+                <Insets top="-100.0" />
+            </BorderPane.margin>
+            <styleClass>
+                <String fx:value="vbox" />
+                <String fx:value="image-view" />
+            </styleClass>
+        </VBox>
+    </left>
+>>>>>>> 2f1c9059748755473ee66f2c000c6650acaf64a9
     <center>
       <BorderPane fx:id="mainPane">
          <center>
@@ -175,23 +248,25 @@
                               </HBox>
                               <ListView editable="true" prefHeight="299.0" prefWidth="327.0" styleClass="chat-list" GridPane.rowIndex="1" />
                          <HBox prefHeight="20.0" prefWidth="327.0" spacing="5" style="-fx-background-color: WHITE;" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES">
-                                 <TextField prefHeight="40.0" prefWidth="675.0" promptText="Type your message..." styleClass="message-input" />
-                           <ImageView fitHeight="22.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                              <image>
-                                 <Image url="@../../../images/attach-file.png" />
-                              </image>
-                              <HBox.margin>
-                                 <Insets bottom="15.0" top="10.0" />
-                              </HBox.margin>
-                           </ImageView>
-                           <ImageView fitHeight="22.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                              <image>
-                                 <Image url="@../../../images/send.png" />
-                              </image>
-                              <HBox.margin>
-                                 <Insets bottom="15.0" right="5.0" top="10.0" />
-                              </HBox.margin>
-                           </ImageView>
+                            <children>
+                                    <TextField prefHeight="40.0" prefWidth="675.0" promptText="Type your message..." styleClass="message-input" />
+                              <ImageView fitHeight="22.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../images/attach-file.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" top="10.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="22.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../images/send.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" right="5.0" top="10.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                            </children>
                            <GridPane.margin>
                               <Insets top="10.0" />
                            </GridPane.margin>
