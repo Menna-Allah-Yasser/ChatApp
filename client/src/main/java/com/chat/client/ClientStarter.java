@@ -24,7 +24,7 @@ public class ClientStarter extends Application {
         final Pane root = new Pane(); // root container
 
 
-        Pane controller = loadFXML("login");
+        Pane controller = loadFXML("home");
         controller.setPrefWidth(initWidth);
         controller.setPrefHeight(initHeight);
         root.getChildren().add(controller);
