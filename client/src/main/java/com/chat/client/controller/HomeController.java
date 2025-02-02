@@ -1,9 +1,13 @@
 package com.chat.client.controller;
 
+import com.chat.client.utils.Director;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
@@ -28,8 +32,20 @@ public class HomeController {
     private GridPane chatPane;
 
     @FXML
+    private BorderPane mainPane;
+
+    @FXML
+    private ImageView profileImg;
+
+    @FXML
     public void initialize() {
 
+        profileImg.setOnMouseClicked((event)->{
+           Node node=  Director.loadView("profile.fxml");
+           mainPane.setCenter(node);
+        });
     }
+
+
 
 }

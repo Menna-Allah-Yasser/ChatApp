@@ -12,7 +12,7 @@ import java.io.IOException;
 public class Director {
     static Class<?> mainClass = ClientStarter.class;
 
-    static Node loadView(String fxmlUrl) {
+   public  static Node loadView(String fxmlUrl) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(mainClass.getResource(fxmlUrl));
             return fxmlLoader.load();
@@ -21,7 +21,7 @@ public class Director {
         }
     }
 
-        static void loadView(ActionEvent event, String fxmlUrl) {
+       public  static void loadView(ActionEvent event, String fxmlUrl) {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(mainClass.getResource(fxmlUrl));
                 Scene scene = new Scene(fxmlLoader.load());
