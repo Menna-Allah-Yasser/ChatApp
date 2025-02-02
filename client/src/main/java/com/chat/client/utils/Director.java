@@ -20,7 +20,7 @@ public class Director {
     public static Node loadView(String fxmlUrl) {
 
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(mainClass.getResource(fxmlUrl));
+            FXMLLoader fxmlLoader = new FXMLLoader(mainClass.getResource(fxmlUrl+".fxml"));
             return fxmlLoader.load();
         } catch (IOException e) {
             throw new RuntimeException("Unable to load FXML: " + fxmlUrl);

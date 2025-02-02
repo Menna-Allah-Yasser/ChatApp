@@ -44,12 +44,12 @@ public class HomeController {
     public void initialize() {
 
         profileImg.setOnMouseClicked((event)->{
-           Node node =  Director.loadView("profile.fxml");
+           Node node =  Director.loadView("profile");
            mainPane.setCenter(node);
         });
 
         addContactBtn.setOnMouseClicked((event)->{
-            Node node =  Director.loadView("addContact.fxml");
+            Node node =  Director.loadView("addContact");
             mainPane.setCenter(node);
         });
     }
