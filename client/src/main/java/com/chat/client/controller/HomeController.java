@@ -18,25 +18,12 @@ import java.io.IOException;
 
 public class HomeController {
 
-
     @FXML
     public void initialize() {
 
 
     }
-    @FXML
-    public void notificationClicked()
-    {
-        Node node=  Director.loadView("notification");
-        mainPane.setCenter(node);
-    }
-    @FXML
-    protected void onFriendRequestClick()
-    {
-        Node node=  Director.loadView("friendreq");
-        mainPane.setCenter(node);
 
-    }
 
 
 

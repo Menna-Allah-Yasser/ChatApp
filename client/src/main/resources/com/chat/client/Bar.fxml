@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chat.client.controller.BarController">
    <children>
       <BorderPane fx:id="centerPane" layoutX="4.0" layoutY="104.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -17,7 +16,7 @@
           <left>
               <VBox minHeight="400.0" minWidth="35.0" prefHeight="500.0" prefWidth="35.0" stylesheets="@../../../css/profile.css" BorderPane.alignment="CENTER">
                   <children>
-                      <ImageView id="logo" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" styleClass="image-view">
+                      <ImageView id="logo" fx:id="logo" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#onLogoClicked" pickOnBounds="true" preserveRatio="true" styleClass="image-view">
                           <image>
                               <Image url="@../../../images/logo.png" />
                           </image>
@@ -25,7 +24,7 @@
                               <Insets />
                           </VBox.margin>
                       </ImageView>
-                      <ImageView id="profileLogo" fx:id="profileImg" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" styleClass="image-view">
+                      <ImageView id="profileLogo" fx:id="profileImg" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#onProfileClicked" pickOnBounds="true" preserveRatio="true" styleClass="image-view">
                           <VBox.margin>
                               <Insets />
                           </VBox.margin>
@@ -38,7 +37,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                           </opaqueInsets>
                       </Separator>
-                      <ImageView id="chatLogo" fx:id="chat" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" styleClass="image-view">
+                      <ImageView id="chatLogo" fx:id="chat" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#onChatClick" pickOnBounds="true" preserveRatio="true" styleClass="image-view">
                           <image>
                               <Image url="@../../../images/chat.png" />
                           </image>
@@ -46,7 +45,7 @@
                               <Insets />
                           </VBox.margin>
                       </ImageView>
-                      <ImageView id="notificationLogo" fx:id="notification" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" styleClass="image-view">
+                      <ImageView id="notificationLogo" fx:id="notification" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#notificationClicked" pickOnBounds="true" preserveRatio="true" styleClass="image-view">
                           <image>
                               <Image url="@../../../images/notification.png" />
                           </image>
@@ -54,7 +53,7 @@
                               <Insets />
                           </VBox.margin>
                       </ImageView>
-                      <ImageView id="addFriendsLogo" fx:id="request" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" styleClass="image-view">
+                      <ImageView id="addFriendsLogo" fx:id="friendRequest" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#onFriendRequestClick" pickOnBounds="true" preserveRatio="true" styleClass="image-view">
                           <image>
                               <Image url="@../../../images/requests.png" />
                           </image>
@@ -62,17 +61,17 @@
                               <Insets />
                           </VBox.margin>
                       </ImageView>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="addContact" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#onaddContactClick" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../images/img_1.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="addGroup" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#onnewGroupClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../images/add_group.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="exit" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../images/exit.png" />
                      </image>

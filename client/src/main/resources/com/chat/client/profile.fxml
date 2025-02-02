@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -16,7 +14,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -156,76 +153,18 @@
          </BorderPane.margin>
       </GridPane>
    </center>
-   <left>
-      <VBox minHeight="400.0" minWidth="35.0" prefHeight="500.0" prefWidth="35.0" stylesheets="@../../../css/profile.css" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView id="logo" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" styleClass="image-view">
-               <image>
-                  <Image url="@../../../images/logo.png" />
-               </image>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </ImageView>
-            <ImageView id="profileLogo" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" styleClass="image-view">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <image>
-                  <Image url="@../../../images/profileImg.png" />
-               </image>
-            </ImageView>
-            <Separator prefWidth="200.0">
-               <opaqueInsets>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </opaqueInsets>
-            </Separator>
-            <ImageView id="chatLogo" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" styleClass="image-view">
-               <image>
-                  <Image url="@../../../images/chat.png" />
-               </image>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </ImageView>
-            <ImageView id="notificationLogo" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" styleClass="image-view">
-               <image>
-                  <Image url="@../../../images/notification.png" />
-               </image>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </ImageView>
-            <ImageView id="addFriendsLogo" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" styleClass="image-view">
-               <image>
-                  <Image url="@../../../images/requests.png" />
-               </image>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </ImageView>
-         </children>
-         <BorderPane.margin>
-            <Insets top="-100.0" />
-         </BorderPane.margin>
-         <styleClass>
-            <String fx:value="vbox" />
-            <String fx:value="image-view" />
-         </styleClass>
-      </VBox>
-   </left>
    <top>
       <VBox BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets left="60.0" />
          </BorderPane.margin>
          <children>
-            <Pane id="pane" prefHeight="74.0" prefWidth="565.0">
+            <Pane id="pane" prefHeight="74.0" prefWidth="615.0">
                <VBox.margin>
-                  <Insets left="-25.0" />
+                  <Insets left="-60.0" />
                </VBox.margin>
                <children>
-                  <TextField editable="false" layoutX="113.0" layoutY="40.0" style="-fx-background-color: transparant;" text="Menna Allah">
+                  <TextField editable="false" layoutX="88.0" layoutY="40.0" style="-fx-background-color: transparant;" text="Menna Allah">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -235,7 +174,6 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </TextField>
-                  <StackPane prefHeight="20.0" prefWidth="50.0" />
                   <ImageView id="profileImg" fitWidth="67.0" layoutX="38.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../images/profileImg.png" />
