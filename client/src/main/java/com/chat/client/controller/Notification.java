@@ -3,7 +3,7 @@ package com.chat.client.controller;
 public class Notification {
     private  String sender="khaled shaban";
     private  String message="sent you a message";
-    private  String avatarPath="avatar1.png";
+    private  String avatarPath= "/images/avatar1.png";
     private  boolean isUnread=true;
 
     public Notification(String sender, String message, String avatarPath, boolean isUnread) {

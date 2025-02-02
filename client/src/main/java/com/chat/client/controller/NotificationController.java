@@ -46,18 +46,7 @@ public class NotificationController implements Initializable {
     @FXML
     protected void onFriendRequestClick()
     {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("friendreq.fxml"));
 
-        try {
-            Parent p=loader.load();
-            System.out.println(loader);
-            FriendRequestController c1=loader.getController();
-            System.out.println(c1);
-            c1.setStage(stage);
-            stage.setScene(new Scene(p));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
 
     }

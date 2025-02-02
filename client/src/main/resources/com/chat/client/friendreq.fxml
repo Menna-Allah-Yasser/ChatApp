@@ -9,21 +9,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="441.0" prefWidth="605.0" style="-fx-background-color: #47CC93;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chat.chatapp.controller.FriendRequestController">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="441.0" prefWidth="605.0" style="-fx-background-color: #47CC93;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chat.client.controller.FriendRequestController">
    <left>
-      <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="441.0" prefWidth="26.0" style="-fx-background-color: FAFAFA;" BorderPane.alignment="TOP_CENTER">
+      <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.0" prefHeight="441.0" prefWidth="26.0" style="-fx-background-color: FAFAFA;" BorderPane.alignment="TOP_CENTER">
          <children>
             <ImageView fx:id="logo" fitHeight="31.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <VBox.margin>
                   <Insets bottom="10.0" top="15.0" />
                </VBox.margin>
                <image>
-                  <Image url="@../../../../images/logo.png" />
+                  <Image url="@../../../images/logo.png" />
                </image>
             </ImageView>
             <ImageView fx:id="profpic" fitHeight="31.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../images/profileImg.png" />
+                  <Image url="@../../../images/profileImg.png" />
                </image>
                <VBox.margin>
                   <Insets bottom="10.0" />
@@ -32,7 +32,7 @@
             <Separator prefWidth="200.0" />
             <ImageView fx:id="notification" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../images/notificationIcon.png" />
+                  <Image url="@../../../images/notificationIcon.png" />
                </image>
                <VBox.margin>
                   <Insets bottom="5.0" top="10.0" />
@@ -40,7 +40,7 @@
             </ImageView>
             <ImageView fx:id="chats" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../images/chatIcon.png" />
+                  <Image url="@../../../images/chatIcon.png" />
                </image>
                <VBox.margin>
                   <Insets bottom="5.0" />
@@ -48,7 +48,7 @@
             </ImageView>
             <ImageView fx:id="friendreq" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../images/friendReqIcon.png" />
+                  <Image url="@../../../images/friendReqIcon.png" />
                </image>
                <VBox.margin>
                   <Insets bottom="5.0" />
@@ -61,7 +61,7 @@
             </Pane>
             <ImageView fx:id="logout" fitHeight="23.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../images/logout.png" />
+                  <Image url="@../../../images/logout.png" />
                </image>
                <VBox.margin>
                   <Insets bottom="20.0" />
