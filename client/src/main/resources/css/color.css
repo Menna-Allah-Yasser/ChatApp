@@ -1,0 +1,81 @@
+.text-bold {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #7B76F1;
+   
+}
+.custom-text-field {
+    -fx-background-color: transparent;
+    -fx-border-color: #7B76F1; /* اللون الأساسي */
+    -fx-border-width: 2px;
+    -fx-prompt-text-fill: #7B76F1; /* لون النص التوضيحي */
+    -fx-text-fill: #7B76F1; /* لون النص */
+    -fx-focus-color: transparent; /* إزالة اللون الافتراضي عند التركيز */
+}
+.white-circle {
+    -fx-shape: "M 0,50 a 50,50 0 1,1 100,0 a 50,50 0 1,1 -100,0"; /* SVG path for a circle */
+    -fx-background-color: white; /* لون الخلفية */
+    -fx-border-radius: 50px; /* زوايا مستديرة */
+    -fx-border-color: #7B76F1; /* لون الحواف */
+    -fx-border-width: 2px; /* سمك الحواف */
+    -fx-font-size: 12px; /* حجم الخط */
+    -fx-text-fill: #7B76F1; /* لون النص */
+    -fx-font-weight: bold; /* النص عريض */
+    -fx-pref-width: 30px; /* عرض العنصر */
+    -fx-pref-height: 30px; /* ارتفاع العنصر */
+    -fx-alignment: center; /* محاذاة النص في المنتصف */
+   
+    -fx-font-weight: bold;
+}
+.custom-button {
+    -fx-background-color: #7B76F1; /* اللون الأساسي */
+    -fx-text-fill: white; /* لون النص */
+ 
+    -fx-font-weight: bold; /* نص عريض */
+    -fx-padding: 10 20; /* مسافة داخلية */
+    -fx-border-radius: 20; /* زوايا مستديرة */
+    -fx-background-radius: 20; /* تطابق الزوايا */
+    -fx-border-color: #5E58D5; /* لون الحواف */
+    -fx-border-width: 2; /* سمك الحواف */
+    -fx-effect: dropshadow(gaussian, rgba(123, 118, 241, 0.5), 10, 0.5, 0, 0); /* توهج خفيف */
+    -fx-cursor: hand; /* تغيير المؤشر عند الوقوف */
+    -fx-transition: 0.3s; /* تأثير التغيير التدريجي */
+}
+
+.custom-button:hover {
+    -fx-background-color: #9D96F5; /* لون عند الوقوف */
+    -fx-border-color: #7B76F1; /* تغيير لون الحواف */
+    -fx-effect: dropshadow(gaussian, rgba(157, 150, 245, 0.8), 15, 0.7, 0, 0); /* زيادة التوهج */
+    -fx-scale-x: 1.1; /* تكبير خفيف */
+    -fx-scale-y: 1.1; /* تكبير خفيف */
+}
+
+.custom-button:pressed {
+    -fx-background-color: #5E58D5; /* لون أغمق عند الضغط */
+    -fx-effect: none; /* إزالة التوهج */
+    -fx-translate-y: 2px; /* تحريك الزر لأسفل */
+}
+/* style.css */
+/* لتصميم الـ HBox */
+.hbox-style {
+    -fx-background-color: #7B76F1; /* لون الخلفية */
+    -fx-background-radius: 15; /* الحواف المستديرة */
+
+    -fx-alignment: center-left; /* محاذاة المحتوى */
+}
+
+/* لتصميم النص داخل HBox */
+.hbox-style .label {
+    -fx-text-fill: white; /* لون النص */
+    -fx-font-weight: bold; /* خط عريض */
+    -fx-font-size: 14px; /* حجم الخط */
+}
+
+/* لتصميم الـ CheckBox */
+.check-box {
+    -fx-border-color: #7B76F1; /* لون الحدود */
+    -fx-border-width: 2; /* عرض الحدود */
+    -fx-border-radius: 5; /* حواف مستديرة */
+    -fx-padding: 5; /* مساحة داخلية */
+}
+

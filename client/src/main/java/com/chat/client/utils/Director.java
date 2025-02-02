@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -12,14 +13,20 @@ import java.io.IOException;
 public class Director {
     static Class<?> mainClass = ClientStarter.class;
 
-   public  static Node loadView(String fxmlUrl) {
+
+
+
+    // Method to load FXML into a Node (for general usage)
+    public static Node loadView(String fxmlUrl) {
+
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(mainClass.getResource(fxmlUrl));
+            FXMLLoader fxmlLoader = new FXMLLoader(mainClass.getResource(fxmlUrl + ".fxml"));
             return fxmlLoader.load();
         } catch (IOException e) {
             throw new RuntimeException("Unable to load FXML: " + fxmlUrl);
         }
     }
+
 
        public  static void loadView(ActionEvent event, String fxmlUrl) {
             try {
@@ -30,7 +37,7 @@ public class Director {
             } catch (IOException e) {
                 throw new RuntimeException("Unable to load");
             }
-        }
 
 
+    }
 }
