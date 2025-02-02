@@ -27,6 +27,8 @@ public class BarController {
         System.out.println("___________________________");
         System.out.println(node);
        centerPane.setCenter(node);
+
+
     }
 
 
