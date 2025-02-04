@@ -16,5 +16,11 @@ public interface ChatRepository extends Remote {
 
     boolean isValidChatId(int id);
 
+    List<Chat> getFamilyChats(int user_id);
+    List<Chat> getWorkChats(int user_id);
+    List<Chat> getFavChats(int user_id);
+
+
+
 
 }

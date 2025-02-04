@@ -86,6 +86,15 @@
     -fx-prompt-text-fill: #888888;
 }
 
+#chatList {
+    -fx-background-color: white; /* Background color of the list */
+    -fx-border-color: transparent; /* Make the border transparent */
+    -fx-border-width: 1px; /* Set border width */
+    -fx-padding: 10px; /* Padding inside the ListView */
+    -fx-pref-height: 370px; /* Preferred height */
+    -fx-pref-width: 605px; /* Preferred width */
+}
+
 /*
 !* Container for buttons (to be added programmatically or via FXML) *!
 .message-input-container {

@@ -12,7 +12,7 @@ public interface MessageRepository extends Remote {
 
     boolean deleteMessage(int id);
 
-    List<Message> getChatMessages(int chat_id);
+    List<Message> getChatMessages(int chat_id); // add limit
 
     List<Message> getUserMessages(int user_id);
 

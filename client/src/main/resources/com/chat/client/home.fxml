@@ -57,7 +57,7 @@
                               <Insets left="10.0" />
                            </padding>
                               </HBox>
-                              <ListView editable="true" styleClass="message-list" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS" />
+                              <ListView id="chatList" editable="true" styleClass="message-list" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS" />
                         <Label prefHeight="15.0" prefWidth="97.0" styleClass="title" text="Messages" />
                         <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
                            <children>

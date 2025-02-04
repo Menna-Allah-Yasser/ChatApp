@@ -1,101 +1,151 @@
-/* Root style for the entire application */
+/*!* Root style for the entire application *!*/
+/*.root {*/
+/*    -fx-font-family: "Segoe UI", sans-serif;*/
+/*    -fx-font-size: 14px;*/
+/*}*/
+
+/*!* BorderPane styling *!*/
+/*BorderPane {*/
+/*    -fx-background-color: #6A1B9A; !* Deep purple background *!*/
+/*}*/
+
+/*!* Left VBox (sidebar) styling *!*/
+/*VBox {*/
+/*    -fx-background-color: #FAFAFA; !* Light gray background for the sidebar *!*/
+/*    -fx-padding: 10px;*/
+/*    -fx-spacing: 10px;*/
+/*}*/
+
+/*!* ImageView (icons) styling *!*/
+/*ImageView {*/
+/*    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 2);*/
+/*}*/
+
+/*ImageView:hover {*/
+/*    -fx-cursor: hand;*/
+/*    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0, 0, 3);*/
+/*}*/
+
+/*!* Separator styling *!*/
+/*Separator {*/
+/*    -fx-background-color: #CCCCCC; !* Light gray separator *!*/
+/*    -fx-padding: 5px 0;*/
+/*}*/
+
+/*!* Center VBox (notification area) styling *!*/
+/*#center VBox {*/
+/*    -fx-background-color: #FFFEFE; !* White background for the notification area *!*/
+/*    -fx-border-radius: 10px;*/
+/*    -fx-background-radius: 10px;*/
+/*    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 5);*/
+/*    -fx-padding: 20px;*/
+/*}*/
+
+/*!* Label styling for the "Notifications" title *!*/
+/*Label {*/
+/*    -fx-text-fill: #6A1B9A; !* Deep purple text color *!*/
+/*    -fx-font-size: 24px;*/
+/*    -fx-font-weight: bold;*/
+/*}*/
+
+/*!* ListView styling *!*/
+/*ListView {*/
+/*    -fx-background-color: transparent;*/
+/*    -fx-border-color: #DDDDDD; !* Light gray border *!*/
+/*    -fx-border-width: 1px;*/
+/*    -fx-border-radius: 5px;*/
+/*    -fx-background-radius: 5px;*/
+/*    -fx-padding: 10px;*/
+/*}*/
+
+/*!* ListView cells styling *!*/
+/*.list-cell {*/
+/*    -fx-background-color: #FFFFFF; !* White background for list items *!*/
+/*    -fx-border-color: #EEEEEE; !* Light gray border for list items *!*/
+/*    -fx-border-width: 0 0 1px 0;*/
+/*    -fx-padding: 10px;*/
+/*}*/
+
+/*.list-cell:filled:hover {*/
+/*    -fx-background-color: #F5F5F5; !* Light gray hover effect *!*/
+/*    -fx-cursor: hand;*/
+/*}*/
+
+/*.list-cell:filled:selected {*/
+/*    -fx-background-color: #6A1B9A; !* Deep purple background for selected items *!*/
+/*    -fx-text-fill: white; !* White text for selected items *!*/
+/*}*/
+
+/*!* ScrollBar styling (for ListView) *!*/
+/*.scroll-bar:horizontal, .scroll-bar:vertical {*/
+/*    -fx-background-color: transparent;*/
+/*}*/
+
+/*.scroll-bar:horizontal .thumb, .scroll-bar:vertical .thumb {*/
+/*    -fx-background-color: #CCCCCC; !* Light gray scrollbar thumb *!*/
+/*    -fx-background-radius: 5px;*/
+/*}*/
+
+/*.scroll-bar:horizontal .thumb:hover, .scroll-bar:vertical .thumb:hover {*/
+/*    -fx-background-color: #999999; !* Darker gray on hover *!*/
+/*}*/
+
+/*!* Logout button styling *!*/
+/*#logout {*/
+/*    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 2);*/
+/*}*/
+
+/*#logout:hover {*/
+/*    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0, 0, 3);*/
+/*    -fx-cursor: hand;*/
+/*}*/
+
+
+/* notification.css */
+
+/* Apply a gradient background */
 .root {
-    -fx-font-family: "Segoe UI", sans-serif;
-    -fx-font-size: 14px;
+    -fx-background-color: linear-gradient(to bottom right, #c0c0e4, #6f6d98);
 }
 
-/* BorderPane styling */
-BorderPane {
-    -fx-background-color: #6A1B9A; /* Deep purple background */
+/* Styling for Labels */
+.label {
+    -fx-font-family: 'Arial Rounded MT Bold';
+    -fx-font-size: 24px;
+    -fx-text-fill: #555555;
 }
 
-/* Left VBox (sidebar) styling */
-VBox {
-    -fx-background-color: #FAFAFA; /* Light gray background for the sidebar */
+/* Styling ListView */
+.list-view {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: transparent;
+    -fx-border-radius: 5px;
     -fx-padding: 10px;
-    -fx-spacing: 10px;
+    -fx-font-family: 'Segoe UI';
+    -fx-font-size: 16px;
+    -fx-text-fill: #333;
 }
 
-/* ImageView (icons) styling */
-ImageView {
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 2);
+.list-view .list-cell {
+    -fx-background-color: #FFFEFE;
+    -fx-padding: 8px;
+    -fx-border-color: #DDDDDD;
+    -fx-border-width: 0 0 1px 0;
 }
 
-ImageView:hover {
-    -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0, 0, 3);
+/* Hover effect for ListView cells */
+.list-view .list-cell:hover {
+    -fx-background-color: #E8F5E9;
 }
 
-/* Separator styling */
-Separator {
-    -fx-background-color: #CCCCCC; /* Light gray separator */
-    -fx-padding: 5px 0;
-}
-
-/* Center VBox (notification area) styling */
-#center VBox {
-    -fx-background-color: #FFFEFE; /* White background for the notification area */
-    -fx-border-radius: 10px;
-    -fx-background-radius: 10px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 5);
+/* VBox customization */
+.vbox {
+    -fx-background-color: #FFFEFE;
+    -fx-border-radius: 8px;
     -fx-padding: 20px;
 }
 
-/* Label styling for the "Notifications" title */
-Label {
-    -fx-text-fill: #6A1B9A; /* Deep purple text color */
-    -fx-font-size: 24px;
-    -fx-font-weight: bold;
-}
-
-/* ListView styling */
-ListView {
+/* Center Pane Margins */
+.pane {
     -fx-background-color: transparent;
-    -fx-border-color: #DDDDDD; /* Light gray border */
-    -fx-border-width: 1px;
-    -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
-    -fx-padding: 10px;
-}
-
-/* ListView cells styling */
-.list-cell {
-    -fx-background-color: #FFFFFF; /* White background for list items */
-    -fx-border-color: #EEEEEE; /* Light gray border for list items */
-    -fx-border-width: 0 0 1px 0;
-    -fx-padding: 10px;
-}
-
-.list-cell:filled:hover {
-    -fx-background-color: #F5F5F5; /* Light gray hover effect */
-    -fx-cursor: hand;
-}
-
-.list-cell:filled:selected {
-    -fx-background-color: #6A1B9A; /* Deep purple background for selected items */
-    -fx-text-fill: white; /* White text for selected items */
-}
-
-/* ScrollBar styling (for ListView) */
-.scroll-bar:horizontal, .scroll-bar:vertical {
-    -fx-background-color: transparent;
-}
-
-.scroll-bar:horizontal .thumb, .scroll-bar:vertical .thumb {
-    -fx-background-color: #CCCCCC; /* Light gray scrollbar thumb */
-    -fx-background-radius: 5px;
-}
-
-.scroll-bar:horizontal .thumb:hover, .scroll-bar:vertical .thumb:hover {
-    -fx-background-color: #999999; /* Darker gray on hover */
-}
-
-/* Logout button styling */
-#logout {
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 2);
-}
-
-#logout:hover {
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0, 0, 3);
-    -fx-cursor: hand;
 }
