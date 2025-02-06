@@ -10,16 +10,18 @@ import java.util.List;
 
 public class ParticipantService implements ParticipantRepository {
     @Override
-    public Participant geParticpant(int id) {
+    public Participant geParticpant(int id, int chat_id) {
         Participant p = null;
         try (Connection conn = DBConnectionManager.getConnection();
-             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM particpant WHERE particpant_id=?");) {
+             PreparedStatement stmt = conn
+                     .prepareStatement("SELECT * FROM particpant WHERE particpant_id=? and chat_id=?")) {
 
             stmt.setInt(1, id);
+            stmt.setInt(2, chat_id);
             ResultSet rs = stmt.executeQuery();
             if (rs.next())
 
-                p = new Participant(rs.getInt("particpant_id"), rs.getInt("chat_id"),
+                p = new Participant(rs.getInt("chat_id"), rs.getInt("particpant_id"),
                         Participant.State.valueOf(rs.getString("state")),
                         Participant.Category.valueOf(rs.getString("category")));
             rs.close();
@@ -39,10 +41,11 @@ public class ParticipantService implements ParticipantRepository {
 
             ResultSet rs = stmt.executeQuery();
             while (rs.next())
-                arr.add(new Participant(rs.getInt("particpant_id"), rs.getInt("chat_id"),
+                arr.add(new Participant(rs.getInt("chat_id"), rs.getInt("particpant_id"),
                         Participant.State.valueOf(rs.getString("state")),
                         Participant.Category.valueOf(rs.getString("category"))));
             rs.close();
+            return arr;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -69,14 +72,14 @@ public class ParticipantService implements ParticipantRepository {
     public void updateParticpant(Participant p) {
         try (Connection conn = DBConnectionManager.getConnection();
              PreparedStatement stmt = conn.prepareStatement(
-                     "UPDATE particpant SET chat_id=?,state=?,category=? WHERE particpant_id=?");) {
+                     "UPDATE particpant SET state=?,category=? WHERE particpant_id=? and chat_id=?");) {
 
-            stmt.setInt(1, p.getChatId());
-            stmt.setInt(4, p.getParticpantId());
-            stmt.setString(2, p.getState().name());
-            stmt.setString(3, p.getCategory().name());
+            stmt.setInt(4, p.getChatId());
+            stmt.setInt(3, p.getParticpantId());
+            stmt.setString(1, p.getState().name());
+            stmt.setString(2, p.getCategory().name());
             stmt.executeUpdate();
-            System.out.println("updated");
+            System.out.println(stmt);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -85,9 +88,11 @@ public class ParticipantService implements ParticipantRepository {
     @Override
     public void deleteParticpant(Participant p) {
         try (Connection conn = DBConnectionManager.getConnection();
-             PreparedStatement stmt = conn.prepareStatement("DELETE FROM particpant WHERE id=?");) {
+             PreparedStatement stmt = conn
+                     .prepareStatement("DELETE FROM particpant WHERE particpant_id=? and chat_id=?");) {
 
             stmt.setInt(1, p.getParticpantId());
+            stmt.setInt(2, p.getChatId());
             stmt.executeUpdate();
             System.out.println("deleted");
         } catch (SQLException e) {
@@ -103,14 +108,14 @@ public class ParticipantService implements ParticipantRepository {
     }
 
     @Override
-    public List<Integer> getChatsIdUsingUserIdAndCategory(int user_id, String category) {
+    public List<Integer> getChatsIdUsingUserIdAndCategory(int user_id, Participant.Category category) {
         ArrayList<Integer> res = null;
         try (Connection c = DBConnectionManager.getConnection();
              PreparedStatement stmt = c
                      .prepareStatement("select chat_id from particpant where particpant_id=? and category=?;")) {
             res = new ArrayList<>();
             stmt.setInt(1, user_id);
-            stmt.setString(2, category);
+            stmt.setString(2, category.name());
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 res.add(rs.getInt(1));
@@ -135,7 +140,6 @@ public class ParticipantService implements ParticipantRepository {
                 stmt.setString(3, part.getState().name());
                 stmt.setString(4, part.getCategory().name());
                 stmt.executeUpdate();
-
             }
 
         } catch (Exception e) {
@@ -144,4 +148,5 @@ public class ParticipantService implements ParticipantRepository {
         return true;
 
     }
+
 }
