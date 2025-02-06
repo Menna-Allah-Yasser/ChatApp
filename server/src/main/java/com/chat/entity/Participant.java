@@ -34,6 +34,15 @@ public class Participant implements Serializable {
         return particpantId;
     }
 
+
+    public void setParticpantId(int particpantId) {
+        this.particpantId = particpantId;
+    }
+
+    public void setChatId(int chatId) {
+        this.chatId = chatId;
+    }
+
     public void setState(State state) {
         this.state = state;
     }
@@ -46,8 +55,19 @@ public class Participant implements Serializable {
         WORK, FAMILY, FRIEND;
     }
 
+
     public enum State {
         BLOCKED, AVAILABLE;
+
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return "Participant [ID=" + particpantId + ", chat : " + chatId + ", category" + category + "]";
+    }
+
+    public enum State {
+        BOLCKED, AVAILABLE;
+
     }
 
 }

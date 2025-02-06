@@ -1,12 +1,10 @@
-package com.chat.dao.repository;
+package com.chat.service.repository;
 
-import java.util.ArrayList;
-import java.util.List;
 import com.chat.entity.User;
 
-import java.rmi.RemoteException;
+import java.util.ArrayList;
 
-public interface UserRepository {
+public interface UserServerRepository {
 
 
     public User findUserByPhoneNumber(String phoneNumber)   ;
@@ -28,5 +26,10 @@ public interface UserRepository {
 
     public void updateOnline(int userId ,Boolean isOnline) ;
 
-    public void updateUserImage(int userID,  byte[] img);
+    public  ArrayList<User> getFriendsUser(int id);
+
+    public void updateUserImage(int userID, byte[] img);
+
+
+
 }
