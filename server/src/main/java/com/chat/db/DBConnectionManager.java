@@ -1,4 +1,4 @@
-package org.chat.db;
+package com.chat.db;
 
 
 import org.apache.commons.dbcp2.BasicDataSource;
