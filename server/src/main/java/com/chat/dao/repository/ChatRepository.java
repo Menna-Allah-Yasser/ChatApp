@@ -18,7 +18,8 @@ public interface ChatRepository extends Remote {
 
    /* List<Chat> getFamilyChats(int user_id);
     List<Chat> getWorkChats(int user_id);
-    List<Chat> getFavChats(int user_id);*/
+    List<Chat> getFavChats(int user_id);
+    List<Chat> getAllChatsById(int user_id);*/
 
 
 
