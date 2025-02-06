@@ -2,7 +2,7 @@ package com.chat.dao.impl;
 
 import com.chat.entity.Chat;
 import com.chat.dao.repository.ChatRepository;
-import org.chat.db.DBConnectionManager;
+import com.chat.db.*;
 
 
 import java.rmi.RemoteException;
