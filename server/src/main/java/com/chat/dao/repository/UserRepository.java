@@ -27,4 +27,6 @@ public interface UserRepository {
     public  boolean authenticateUser(String phoneNumber, String password) ;
 
     public void updateOnline(int userId ,Boolean isOnline) ;
+
+    public void updateUserImage(int userID,  byte[] img);
 }

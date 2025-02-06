@@ -102,7 +102,7 @@ public class UserService  implements UserRepository {
                 "count_of_login = ?, " +
                 "mode = ?, " +
                 "is_chatbot_enabled = ?, " +
-                "Username = ?, " +
+                "name = ?, " +
                 "linkedin_url = ?, " +
                 "facebook_url = ?, " +
                 "twitter_url = ?, " +
@@ -148,7 +148,7 @@ public class UserService  implements UserRepository {
     public void addNewUser(User userDTO) {
         String query = "INSERT INTO user (" +
                 "phone_number, email, picture, gender, country, bio, dob, password, count_of_login, mode, " +
-                "is_chatbot_enabled, userName, linkedin_url, facebook_url, twitter_url, is_online) " +
+                "is_chatbot_enabled, name, linkedin_url, facebook_url, twitter_url, is_online) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -229,6 +229,11 @@ public class UserService  implements UserRepository {
         updateUserField("is_online", isOnline, userId);
     }
 
+    @Override
+    public void updateUserImage(int userID, byte[] img) {
+        updateUserField("picture", img, userID);
+    }
+
     public User createDtoObject(ResultSet resultSet)
     {
 
@@ -253,7 +258,7 @@ public class UserService  implements UserRepository {
                 userDTO.setCountOfLogin(resultSet.getInt("count_of_login"));
                 userDTO.setMode(resultSet.getString("mode"));
                 userDTO.setIsChatbotEnabled(resultSet.getBoolean("is_chatbot_enabled"));
-                userDTO.setName(resultSet.getString("Username"));
+                userDTO.setName(resultSet.getString("name"));
                 userDTO.setLinkedinUrl(resultSet.getString("linkedin_url"));
                 userDTO.setFacebookUrl(resultSet.getString("facebook_url"));
                 userDTO.setTwitterUrl(resultSet.getString("twitter_url"));

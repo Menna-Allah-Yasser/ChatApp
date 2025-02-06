@@ -7,13 +7,27 @@ import com.chat.entity.User;
 import com.chat.service.repository.UserServerRepository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserServerImpl implements UserServerRepository {
 
     UserService userService;
 
-    InvitationService invitationService ;
 
+    private static UserServerImpl instance;
+    InvitationServerImpl invitationServer;
+
+    private UserServerImpl() {
+        this.userService = new UserService();
+        this.invitationServer = new InvitationServerImpl();
+    }
+
+    public static synchronized UserServerImpl getInstance() {
+        if (instance == null) {
+            instance = new UserServerImpl();
+        }
+        return instance;
+    }
 
     @Override
     public User findUserByPhoneNumber(String phoneNumber) {
@@ -77,6 +91,15 @@ public class UserServerImpl implements UserServerRepository {
 
     @Override
     public ArrayList<User> getFriendsUser(int id) {
+
+      List<Integer> usersid=  invitationServer.getUserFriends(id);
+
+      userService.getAllUsers((ArrayList<Integer>) usersid);
         return null;
+    }
+
+    @Override
+    public void updateUserImage(int userID, byte[] img) {
+        userService.updateUserImage(userID,img);
     }
 }
