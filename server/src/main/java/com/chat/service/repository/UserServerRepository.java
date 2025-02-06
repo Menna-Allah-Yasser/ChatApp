@@ -28,6 +28,8 @@ public interface UserServerRepository {
 
     public  ArrayList<User> getFriendsUser(int id);
 
+    public void updateUserImage(int userID, byte[] img);
+
 
 
 }
