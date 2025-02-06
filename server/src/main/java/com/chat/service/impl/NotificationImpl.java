@@ -9,6 +9,14 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class NotificationImpl implements NotificationRepository {
+    private NotificationImpl(){}
+    private static NotificationImpl notificationImpl=null;
+    public static NotificationImpl getNotificationImpl()
+    {
+        if(notificationImpl!=null)return notificationImpl;
+        else notificationImpl=new NotificationImpl();
+        return notificationImpl;
+    }
     @Override
     public Notification createNotification( String desc, Timestamp time, int senderId, boolean isMessage, int chat_id) {
         Notification notification=new Notification(desc,time,senderId,isMessage,chat_id);
