@@ -13,11 +13,13 @@ public interface InvitationRepository {
 
     boolean deleteInvitation(int senderId, int receiverId);
 
-    public List<Invitation> getAllInvitationsByStatus(int receiver_id, InvStatus status);
+    List<Invitation> getAllInvitationsByStatus(int receiver_id, InvStatus status);
 
     boolean addListOfInvitation(List<Invitation> invitations);
 
     List<Invitation> getAllInvitationsByReceiverId(int receiver_id);
+
+    List<Integer> getFriends(int userId);
 
     boolean updateStatus(Invitation newInv);
 }
