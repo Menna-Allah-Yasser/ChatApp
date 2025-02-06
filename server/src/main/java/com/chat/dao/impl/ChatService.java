@@ -2,7 +2,7 @@ package com.chat.dao.impl;
 
 import com.chat.entity.Chat;
 import com.chat.dao.repository.ChatRepository;
-import org.chat.db.DBConnectionManager;
+import com.chat.db.DBConnectionManager;
 
 
 import java.rmi.RemoteException;
@@ -11,13 +11,11 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChatService extends UnicastRemoteObject implements ChatRepository {
+public class ChatService implements ChatRepository {
 
     private String query;
     private Connection connection = DBConnectionManager.getConnection();
 
-    public ChatService() throws RemoteException{
-    }
     @Override
     public boolean addNewChat(Chat chat) {
         query = "INSERT INTO CHAT (NAME) VALUES (?)";
@@ -84,7 +82,49 @@ public class ChatService extends UnicastRemoteObject implements ChatRepository {
         return false;
     }
 
+    @Override
+    public Chat getChatById(int chatId) {
+
+        query = "SELECT * FROM Chat WHERE chat_id=?";
+        Chat chat = null;
+
+        try( PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1 , chatId);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()){
+                chat = new Chat(rs.getString(2));
+                chat.setId(rs.getInt(1));
+            }
+            connection.commit();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return chat;
+
+    }
+
+    @Override
+    public List<Chat> getChatsById(List<Integer> chat_ids) {
+        List<Chat> chats = new ArrayList<>();
+        for(int i : chat_ids){
+            chats.add(getChatById(i));
+        }
+        return chats;
+    }
+
     public static void main(String[] args) {
+
+        ChatService chatService = new ChatService();
+
+        List<Integer> ids = new ArrayList<>();
+        ids.add(1);
+        ids.add(3);
+        //System.out.println(chatService.getChats());
+        //System.out.println(chatService.getChatById(1));
+        System.out.println(chatService.getChatsById(ids));
+
+
       /*  Chat chat = new Chat("iti");
         ChatService chatService = new ChatService();
         System.out.println(chatService.addNewChat(chat));*/
