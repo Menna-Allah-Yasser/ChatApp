@@ -87,6 +87,9 @@ public class InvitationService implements InvitationRepository {
                 invitation.setStatus(InvStatus.valueOf(rs.getString("status")));
                 invitations.add(invitation);
             }
+            // sender_id recevier status
+            // 1           2       accept
+            // 2           3       accept
             return invitations;
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());

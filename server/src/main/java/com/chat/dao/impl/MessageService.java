@@ -1,5 +1,6 @@
 package com.chat.dao.impl;
 
+import com.chat.db.DBConnectionManager;
 import com.chat.entity.Message;
 import com.chat.dao.repository.MessageRepository;
 import com.chat.db.DBConnectionManager;
@@ -14,6 +15,7 @@ import java.util.List;
 public class MessageService extends UnicastRemoteObject implements MessageRepository {
 
     private String query;
+    private DBConnectionManager DBConnectionManager;
     private final Connection connection = DBConnectionManager.getConnection();
 
     public MessageService() throws RemoteException, SQLException {
