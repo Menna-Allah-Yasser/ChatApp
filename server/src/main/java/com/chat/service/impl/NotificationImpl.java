@@ -10,10 +10,10 @@ import java.util.ArrayList;
 
 public class NotificationImpl implements NotificationRepository {
     @Override
-    public Notification createNotification(int Id, String desc, Timestamp time, int senderId, boolean isMessage, int chat_id) {
-        Notification notification=new Notification(Id,desc,time,senderId,isMessage,chat_id);
+    public Notification createNotification( String desc, Timestamp time, int senderId, boolean isMessage, int chat_id) {
+        Notification notification=new Notification(desc,time,senderId,isMessage,chat_id);
         NotificationService notificationService=new NotificationService();
-        notificationService.createNotification(notification);
+        notification.setId(notificationService.createNotification(notification));
         return notification;
     }
 

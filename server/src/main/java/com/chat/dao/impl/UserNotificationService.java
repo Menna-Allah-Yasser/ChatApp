@@ -45,18 +45,18 @@ public class UserNotificationService implements UserNotificationRepository {
 
     @Override
     public boolean createUserNottification(int user_id, int Notification_id) {
-
+        System.out.println(Notification_id);
         try (Connection conn = DBConnectionManager.getConnection();
              PreparedStatement stmt = conn.prepareStatement("INSERT INTO user_notifcation VALUES (?,?,?)");) {
             stmt.setInt(1, user_id);
             stmt.setInt(2, Notification_id);
-            stmt.setString(4, Notification.status.UNREAD.name());
+            stmt.setString(3, Notification.status.UNREAD.name());
 
             if (stmt.executeUpdate() != 0)
                 return false;
             System.out.println("added");
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return true;
 

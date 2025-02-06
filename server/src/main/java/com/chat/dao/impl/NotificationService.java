@@ -14,7 +14,7 @@ public class NotificationService implements NotificationRepository {
     public int createNotification(Notification notification) {
         try (Connection con = DBConnectionManager.getConnection();
              PreparedStatement stmt = con.prepareStatement(
-                     "INSERT INTO notifcation (describtion,time,senderId,isMessage,chatId) VALUES (?,?,?,?)",
+                     "INSERT INTO notifcation (describtion,time,senderId,isMessage,chatId) VALUES (?,?,?,?,?)",
                      Statement.RETURN_GENERATED_KEYS);
              PreparedStatement stmt3 = con.prepareStatement(
                      "SELECT sender_id FROM invitation where receiver_id=? and status ='ACCEPT'\n" + //
@@ -29,7 +29,11 @@ public class NotificationService implements NotificationRepository {
             stmt.setInt(5, notification.getChat_id());
 
             int id = stmt.executeUpdate();
-
+            ResultSet rrs = stmt.getGeneratedKeys();
+            rrs.next();
+            id = rrs.getInt(1);
+            rrs.close();
+            System.out.println(id);
             if (notification.getIsMessage()) {
                 stmt4.setInt(1, notification.getChat_id());
                 stmt4.setInt(2, notification.getSenderId());
@@ -85,4 +89,5 @@ public class NotificationService implements NotificationRepository {
         }
         return nots;
     }
+
 }

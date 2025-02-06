@@ -27,6 +27,15 @@ public class Notification implements Serializable {
 
     }
 
+    public Notification(String desc, Timestamp time, int senderId, boolean isMessage, int chat_id) {
+        this.time = time;
+        this.desc = desc;
+        this.isMessage = isMessage;
+        this.senderId = senderId;
+        this.chat_id = chat_id;
+
+    }
+
     public int getChat_id() {
         return chat_id;
     }
