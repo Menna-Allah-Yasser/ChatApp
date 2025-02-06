@@ -13,6 +13,8 @@ public class UserServerImpl implements UserServerRepository {
     UserService userService;
 
     InvitationService invitationService ;
+
+
     @Override
     public User findUserByPhoneNumber(String phoneNumber) {
         return userService.findUserByPhoneNumber(phoneNumber);

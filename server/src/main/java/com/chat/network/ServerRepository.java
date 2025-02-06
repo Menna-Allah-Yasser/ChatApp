@@ -1,6 +1,8 @@
 package com.chat.network;
 
 import com.chat.entity.*;
+
+import java.util.HashMap;
 import java.util.List;
 
 public interface ServerRepository {
@@ -19,21 +21,21 @@ public interface ServerRepository {
 
     public void sendMessagetoGroup(int sender_id , int recevier_id , Message Message);
 
-    public void sendNotification(int sender_id , int recevier_id , Notification notificatio, String type);
+    public void sendNotification(int sender_id , int recevier_id , Notification notification, String type);
 
-    public void sendInvitation(List<User> users);
+    public void sendInvitation(int user_id, List<User> users);
 
-    public void createGroup();
+    public void createGroup(String Name , List<Integer> id);
 
     public List<User> getAllFrirnds();
 
     public List<Invitation> getAllInvitation();
 
-    public List<Chat> getAllChats(int id);
+    public HashMap<Chat,List<Message>>  getAllChats(int id);
 
     public List<Notification> getAllNotifications();
 
-    public List<Chat> getAllGroupChats();
+
 
 
 }
