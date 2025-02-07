@@ -45,6 +45,18 @@ public class InvitationServerImpl implements InvitationServerRepository {
     }
 
     @Override
+    public boolean acceptFriendRequest(Invitation request) {
+        Invitation inv = new Invitation(request.getSenderId(), request.getReceiverId(), InvStatus.ACCEPT);
+        return invitationService.updateStatus(inv);
+    }
+
+    @Override
+    public boolean rejectFriendRequest(Invitation request) {
+        Invitation inv = new Invitation(request.getSenderId(), request.getReceiverId(), InvStatus.REJECT);
+        return invitationService.updateStatus(inv);
+    }
+
+    @Override
     public boolean sendFriendRequest(int senderId, List<User> users) {
         List<Invitation> requests = new ArrayList<>();
         List<Invitation> receivedInvitations = invitationService.getAllInvitationsByStatus(senderId, InvStatus.WAIT);

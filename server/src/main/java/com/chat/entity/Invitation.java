@@ -14,6 +14,12 @@ public class Invitation {
         this.status = status;
     }
 
+    public Invitation(int senderId, int receiverId) {
+        this.senderId = senderId;
+        this.receiverId = receiverId;
+        this.status = InvStatus.WAIT;
+    }
+
     public int getSenderId() {
         return senderId;
     }

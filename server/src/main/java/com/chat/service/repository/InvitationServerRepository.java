@@ -11,4 +11,6 @@ public interface InvitationServerRepository {
     public boolean updateFriendsRequestStatus(Invitation request);
     public boolean sendFriendRequest(int senderId, List<User> users);
     public boolean sendFriendRequest(List<Invitation> invitations);
+    public boolean acceptFriendRequest(Invitation request);
+    public boolean rejectFriendRequest(Invitation request);
 }
