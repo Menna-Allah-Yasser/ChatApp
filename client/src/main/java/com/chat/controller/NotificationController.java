@@ -1,5 +1,9 @@
 package com.chat.controller;
 
+import com.chat.entity.Notification;
+import com.chat.network.ServerConnection;
+import com.chat.network.ServerRepository;
+import com.chat.utils.SessionManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,13 +22,14 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 public class NotificationController implements Initializable {
 
     @FXML
-    private ListView<Object> list;
-    ObservableList<Object>nlist= FXCollections.observableArrayList();
+    private ListView<Notification> list;
+    ObservableList<Notification>nlist= FXCollections.observableArrayList();
 
     private Stage stage;
     public void setStage(Stage stage)
@@ -54,11 +59,14 @@ public class NotificationController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        for(int i=0;i<10;i++)nlist.add(new Notification());
-
-        for(int i=0;i<10;i++)nlist.add(new Notification(false));
+        ServerRepository server= ServerConnection.getServer();
+        try {
+            nlist.setAll(server.getAllNotifications(SessionManager.getLoggedInUser()));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
         list.setItems(nlist);
-        list.setCellFactory(param -> new ListCell<Object>() {
+        list.setCellFactory(param -> new ListCell<Notification>() {
             private final HBox content;
             private final ImageView avatar;
             private final VBox textContainer;
@@ -85,7 +93,7 @@ public class NotificationController implements Initializable {
             }
 
             @Override
-            protected void updateItem(Object item, boolean empty) {
+            protected void updateItem(Notification item, boolean empty) {
                 super.updateItem(item, empty);
                 if (empty || item == null) {
                     setText(null);
@@ -94,12 +102,16 @@ public class NotificationController implements Initializable {
                  else if (item instanceof Notification) {
                     // This is a notification
                     Notification notification = (Notification) item;
-                    senderLabel.setText(notification.getSender());
-                    messageLabel.setText(notification.getMessage());
+                    try {
+                        senderLabel.setText(server.getUser(notification.getSenderId()).getName());
+                    } catch (RemoteException e) {
+                        throw new RuntimeException(e);
+                    }
+                    messageLabel.setText(notification.getDesc());
                     avatar.setImage(new Image(getClass().getResourceAsStream(notification.getAvatarPath())));
 
-                    if (notification.isUnread()) {
-                        //content.setStyle("-fx-background-color: #E8E8E8; -fx-padding: 10px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
+                    if (notification.getStat()==Notification.status.UNREAD) {
+                        content.setStyle("-fx-background-color: #E8E8E8; -fx-padding: 10px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
                     } else {
                         content.setStyle("-fx-background-color: #FFFFFF; -fx-padding: 10px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
                     }
