@@ -6,20 +6,15 @@ import com.chat.dao.repository.MessageRepository;
 import com.chat.db.DBConnectionManager;
 
 
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MessageService extends UnicastRemoteObject implements MessageRepository {
+public class MessageService implements MessageRepository {
 
     private String query;
     private DBConnectionManager DBConnectionManager;
     private final Connection connection = DBConnectionManager.getConnection();
-
-    public MessageService() throws RemoteException, SQLException {
-    }
 
     @Override
     public List<Message> getMessages() {
@@ -52,7 +47,6 @@ public class MessageService extends UnicastRemoteObject implements MessageReposi
     @Override
     public boolean addMessage(Message message) {
 
-
         int rowAffected = 0;
         query = "INSERT INTO Message (description, time, file_url, file_type, chat_id, user_id) VALUES (?,?,?,?,?,?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)){
@@ -71,6 +65,8 @@ public class MessageService extends UnicastRemoteObject implements MessageReposi
         }
         return rowAffected > 0;
     }
+
+
 
     @Override
     public boolean deleteMessage(int id) {

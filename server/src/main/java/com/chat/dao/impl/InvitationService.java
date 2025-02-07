@@ -31,6 +31,30 @@ public class InvitationService implements InvitationRepository {
     }
 
     @Override
+    public List<Integer> getFriends(int userId) {
+        String query = "SELECT sender_id FROM invitation WHERE receiver_id = ? AND status = 'ACCEPT' " +
+                "UNION " +
+                "SELECT receiver_id FROM invitation WHERE sender_id = ? AND status = 'ACCEPT'";
+
+        List<Integer> friends = new ArrayList<>();
+
+        try (Connection conn = DBConnectionManager.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setInt(1, userId);
+            pstmt.setInt(2, userId);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                friends.add(rs.getInt(1));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error while fetching friends", e);
+        }
+        return friends;
+    }
+
+
+    @Override
     public boolean deleteInvitation(int senderId, int receiverId) {
         String query = "DELETE FROM invitation WHERE sender_id = ? AND receiver_id = ?";
 
@@ -77,7 +101,7 @@ public class InvitationService implements InvitationRepository {
         String query = "INSERT INTO invitation (sender_id, receiver_id, status) VALUES(?, ?, ?)";
 
         try (Connection conn = DBConnectionManager.getConnection()) {
-            conn.setAutoCommit(false);  // Start transaction
+            conn.setAutoCommit(false);
 
             try (PreparedStatement pstmt = conn.prepareStatement(query)) {
                 for (Invitation invitation : invitations) {
@@ -87,11 +111,11 @@ public class InvitationService implements InvitationRepository {
                     pstmt.addBatch();
                 }
                 int[] numOfRowsEffected = pstmt.executeBatch();
-                conn.commit();  // Commit the transaction
+                conn.commit();
 
                 return numOfRowsEffected.length == invitations.size();
             } catch (SQLException e) {
-                conn.rollback();  // Rollback on error
+                conn.rollback();
                 throw new RuntimeException("Error while adding invitations: " + e.getMessage(), e);
             }
         } catch (SQLException e) {
