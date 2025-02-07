@@ -20,12 +20,9 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
     private  static  ServerRepository server ;
 
     private  UserServerImpl userServer ;
-
    private NotificationImpl notificationServer;
 
-
     private ServerImpl() throws RemoteException {
-
     }
 
     public static ServerRepository getServer() {
@@ -42,37 +39,22 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
         return clients;
     }
 
-
     @Override
     public void login(int id, ClientRepository callback) throws RemoteException {
-
         userServer= UserServerImpl.getUserService();
         notificationServer= NotificationImpl.getNotificationImpl();
         userServer.getUserService().updateOnline(id, true);
-
         clients.put(id , callback);
-
         List<User> friends =  userServer.getUserService().getFriendsUser(id);
         Notification notification = notificationServer.createNotification("went onLine", Timestamp.valueOf(LocalDateTime.now()),id, false ,0);
         for (User friend :friends)
       {
           if (clients.containsKey(friend.getUserId()))
           {
-
                ClientRepository clientRepository =clients.get(friend.getUserId());
-
                clientRepository.getNotification(notification);
-
-
           }
-
-
-
       }
-
-
-
-
     }
 
     @Override
@@ -81,9 +63,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
         userServer= UserServerImpl.getUserService();
         notificationServer= NotificationImpl.getNotificationImpl();
         userServer.getUserService().updateOnline(id, false);
-
         clients.remove(id);
-
         List<User> friends =  userServer.getUserService().getFriendsUser(id);
         Notification notification = notificationServer.createNotification("went offLine", Timestamp.valueOf(LocalDateTime.now()),id, false ,0);
         for (User friend :friends)
@@ -91,19 +71,9 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
             if (clients.containsKey(friend.getUserId()))
             {
                 ClientRepository clientRepository =clients.get(friend.getUserId());
-
                 clientRepository.getNotification(notification);
-
-
             }
-
-
-
         }
-
-
-
-
     }
 
     @Override
@@ -167,6 +137,11 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
         userServer= UserServerImpl.getUserService();
 
         return userServer.getFriendsUser(userId);
+    }
+
+    @Override
+    public List<Integer> getAllFriends(int userId) throws RemoteException {
+        return InvitationServerImpl.getInvitationServerImp().getUserFriends(userId);
     }
 
     @Override
@@ -237,6 +212,5 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
         NotificationImpl notificationImpl=NotificationImpl.getNotificationImpl();
         return notificationImpl.getAllNotification(userId);
     }
-
 
 }
