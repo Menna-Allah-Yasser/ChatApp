@@ -1,6 +1,7 @@
 package com.chat.network;
 
 import com.chat.entity.*;
+import com.chat.service.impl.InvitationServerImpl;
 import com.chat.service.impl.NotificationImpl;
 import com.chat.service.impl.UserServerImpl;
 
@@ -24,7 +25,6 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
 
 
     private ServerImpl() throws RemoteException {
-
 
     }
 
@@ -120,24 +120,14 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
 
     @Override
     public void updateStatus(int userId, String status) throws RemoteException {
-
-
         userServer= UserServerImpl.getUserService();
-
         userServer.updateStatus(userId ,status);
-
-
-
     }
 
     @Override
     public void updateChatbotEnabled(int userId, Boolean status) throws RemoteException {
-
         userServer= UserServerImpl.getUserService();
-
         userServer.updateChatbotEnabled(userId,status);
-
-
     }
 
     @Override
@@ -148,11 +138,8 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
 
     @Override
     public void updateOnline(int userId, Boolean isOnline) throws RemoteException {
-
         userServer= UserServerImpl.getUserService();
         userServer.updateOnline(userId, isOnline);
-
-
     }
 
     @Override
@@ -178,13 +165,13 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
     }
 
     @Override
-    public List<User> getAllFrirnds(int userId) throws RemoteException {
-        return null;
+    public List<Integer> getAllFriends(int userId) throws RemoteException {
+        return InvitationServerImpl.getInvitationServerImp().getUserFriends(userId);
     }
 
     @Override
     public List<Invitation> getAllInvitation(int userId) throws RemoteException {
-        return null;
+        return InvitationServerImpl.getInvitationServerImp().getUserFriendRequests(userId);
     }
 
     @Override
@@ -201,12 +188,12 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
 
     @Override
     public Boolean sendFriendRequest(List<Invitation> addRequests) throws RemoteException {
-        return null;
+        return InvitationServerImpl.getInvitationServerImp().sendFriendRequest(addRequests);
     }
 
     @Override
-    public Boolean updateFriendsRequestStatus(Invitation Invitation) throws RemoteException {
-        return null;
+    public Boolean updateFriendsRequestStatus(Invitation invitation) throws RemoteException {
+        return InvitationServerImpl.getInvitationServerImp().updateFriendsRequestStatus(invitation);
     }
 
     @Override
@@ -236,7 +223,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
 
     @Override
     public void sendInvitation(int user_id, List<User> users) throws RemoteException {
-
+        InvitationServerImpl.getInvitationServerImp().sendFriendRequest(user_id, users);
     }
 
     @Override
