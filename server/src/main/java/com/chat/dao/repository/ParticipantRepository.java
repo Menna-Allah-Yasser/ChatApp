@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface ParticipantRepository {
+
     public Participant geParticpant(int id, int chat_id);
 
     public ArrayList<Participant> geParticpantByChat(int id);
@@ -23,7 +24,5 @@ public interface ParticipantRepository {
     boolean addListOfParticipant(List<Participant> participants);
 
     List<Integer> getAllChatsById(int user_id);
-
-
 
 }

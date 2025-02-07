@@ -4,6 +4,13 @@ module com.chat.client {
 
     requires org.controlsfx.controls;
 
+    requires java.rmi;
+
+ 
+  
+    requires java.sql;
+
+
     opens com.chat.client to javafx.fxml;
     exports com.chat.client;
     exports com.chat.client.controller;

@@ -25,8 +25,8 @@ public interface ServerRepository  extends Remote {
 
     public void updateOnline(int userId ,Boolean isOnline) throws RemoteException;
 
-    public boolean updateUserInfo(User user)throws RemoteException;
-    public boolean updateUserImage(int userID, String phone, byte[] img) throws RemoteException;
+    public void updateUserInfo(User user)throws RemoteException;
+    public void updateUserImage(int userID, byte[] img) throws RemoteException;
   //  public boolean updateUserPassword(int userID, String password) throws RemoteException ;
 
 
@@ -40,7 +40,7 @@ public interface ServerRepository  extends Remote {
 
     public List<Message> getChatMessages(int chatID) throws RemoteException ;
 
-    public List<User> getAllFrirnds(int userId) throws RemoteException;
+    public List<Integer> getAllFriends(int userId) throws RemoteException;
 
     public List<Invitation> getAllInvitation(int userId) throws RemoteException;
 
@@ -65,7 +65,7 @@ public interface ServerRepository  extends Remote {
 
     public List<Announcement> getAllAnnouncememts() throws RemoteException;
 
-    public List<Notification> getAllNotifications()throws RemoteException;
+    public List<Notification> getAllNotifications(int userId)throws RemoteException;
 
 
 

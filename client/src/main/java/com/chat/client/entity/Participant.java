@@ -1,4 +1,4 @@
-package com.chat.entity;
+package com.chat.client.entity;
 
 import java.io.Serializable;
 
@@ -34,6 +34,7 @@ public class Participant implements Serializable {
         return particpantId;
     }
 
+
     public void setParticpantId(int particpantId) {
         this.particpantId = particpantId;
     }
@@ -55,10 +56,8 @@ public class Participant implements Serializable {
     }
 
 
-
     public enum State {
         BLOCKED, AVAILABLE;
-    }
 
     @Override
     public String toString() {
@@ -66,5 +65,9 @@ public class Participant implements Serializable {
         return "Participant [ID=" + particpantId + ", chat : " + chatId + ", category" + category + "]";
     }
 
+    public enum State {
+        BOLCKED, AVAILABLE;
+
+    }
 
 }
