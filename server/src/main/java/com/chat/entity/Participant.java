@@ -34,7 +34,6 @@ public class Participant implements Serializable {
         return particpantId;
     }
 
-
     public void setParticpantId(int particpantId) {
         this.particpantId = particpantId;
     }
@@ -55,10 +54,6 @@ public class Participant implements Serializable {
         WORK, FAMILY, FRIEND;
     }
 
-
-    public enum State {
-        BLOCKED, AVAILABLE;
-
     @Override
     public String toString() {
         // TODO Auto-generated method stub
@@ -67,7 +62,6 @@ public class Participant implements Serializable {
 
     public enum State {
         BOLCKED, AVAILABLE;
-
     }
 
 }
