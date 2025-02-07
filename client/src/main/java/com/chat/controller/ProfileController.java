@@ -40,7 +40,7 @@ public class ProfileController {
        //serverRepository.updateUserImage(SessionManager.getLoggedInUser() , );
         User user = null;
         try {
-            user = serverRepository.getUser(1);
+            user = serverRepository.getUser(21);
         } catch (RemoteException e) {
             System.out.println(e.getMessage());
         }

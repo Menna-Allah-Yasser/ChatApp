@@ -39,9 +39,9 @@ public class NotificationImpl implements NotificationRepository {
     }
     public static void main(String[] args) {
         NotificationImpl n=NotificationImpl.getNotificationImpl();
-         Notification notification = n.createNotification("sent message", new Timestamp(System.currentTimeMillis()), 21, true, 4);
-        System.out.println(n.getAllNotification(27));
-        n.UpdateNotificationState(65,27);
-        System.out.println(n.getAllNotification(27));
+         Notification notification = n.createNotification("is online", new Timestamp(System.currentTimeMillis()), 21, false, 4);
+        System.out.println(n.getAllNotification(22));
+        n.UpdateNotificationState(69,22);
+        System.out.println(n.getAllNotification(22));
     }
 }
