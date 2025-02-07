@@ -221,5 +221,27 @@ public class ParticipantService implements ParticipantRepository {
     }
 }
 
+  @Override
+    public List<Integer> getAllChatsById(int user_id) {
+
+        ArrayList<Integer> res = null;
+        try (Connection c = DBConnectionManager.getConnection();
+             PreparedStatement stmt = c
+                     .prepareStatement("select chat_id from particpant where particpant_id=?")) {
+            res = new ArrayList<>();
+            stmt.setInt(1, user_id);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                res.add(rs.getInt(1));
+
+            }
+
+        } catch (Exception e) {
+            System.out.println("problem in getAllChatsById");
+
+        }
+        return res;
+    }
+
 }
 
