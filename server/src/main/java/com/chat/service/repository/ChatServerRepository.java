@@ -9,4 +9,6 @@ import java.util.Map;
 public interface ChatServerRepository {
 
      Map<Chat, List<Message>> getChatsWithMessagesByUserId(int user_id);
+
+     List<Chat> getUserChatsByUserId(int user_id);
 }

@@ -1,4 +1,4 @@
-package com.chat.entity;
+package com.chat.client.entity;
 
 
 public class Invitation {
@@ -12,12 +12,6 @@ public class Invitation {
         this.senderId = senderId;
         this.receiverId = receiverId;
         this.status = status;
-    }
-
-    public Invitation(int senderId, int receiverId) {
-        this.senderId = senderId;
-        this.receiverId = receiverId;
-        this.status = InvStatus.WAIT;
     }
 
     public int getSenderId() {

@@ -1,7 +1,6 @@
 package com.chat.service.impl;
 
 
-import com.chat.dao.impl.InvitationService;
 import com.chat.dao.impl.UserService;
 import com.chat.entity.User;
 import com.chat.service.repository.UserServerRepository;
