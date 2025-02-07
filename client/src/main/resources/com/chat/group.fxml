@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../css/color.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chat.controller.GroupController">
+   <children>
+      <HBox layoutX="73.0" layoutY="29.0" prefHeight="52.0" prefWidth="727.0">
+         <children>
+            <Label styleClass="text-bold" text="Group Name">
+               <HBox.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </HBox.margin>
+            </Label>
+            <TextField fx:id="groupName" prefHeight="25.0" prefWidth="541.0" promptText="add the group name" styleClass="custom-text-field">
+               <HBox.margin>
+                  <Insets top="12.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+      </HBox>
+      <ScrollPane layoutX="81.0" layoutY="124.0" prefHeight="333.0" prefWidth="759.0">
+         <content>
+            <ListView fx:id="userListView" prefHeight="329.0" prefWidth="760.0" />
+         </content>
+      </ScrollPane>
+      <Button fx:id="cancelButton" layoutX="290.0" layoutY="480.0" mnemonicParsing="false" onAction="#cancelAction" prefHeight="41.0" prefWidth="97.0" styleClass="custom-button" text="Cancel" />
+      <Button fx:id="createButton" layoutX="550.0" layoutY="480.0" mnemonicParsing="false" onAction="#onCtreateAction" prefHeight="41.0" prefWidth="97.0" styleClass="custom-button" text="Create" />
+      <StackPane layoutX="92.0" layoutY="55.0" prefHeight="83.0" prefWidth="203.0">
+         <children>
+            <ImageView fitHeight="20.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/search.png" />
+               </image>
+               <StackPane.margin>
+                  <Insets right="180.0" />
+               </StackPane.margin>
+            </ImageView>
+            <TextField fx:id="searchTextField" onInputMethodTextChanged="#filterListAction" prefHeight="25.0" prefWidth="171.0" promptText="enter the name of your friend" styleClass="custom-text-field">
+               <padding>
+                  <Insets left="16.0" right="16.0" />
+               </padding></TextField>
+         </children>
+      </StackPane>
+   </children>
+</Pane>

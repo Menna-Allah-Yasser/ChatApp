@@ -40,4 +40,9 @@ public class ServerConnection {
             System.out.println("Server Already Disconnected");
         }
     }
+
+    public static void main(String[] args) {
+        ServerConnection connection = new ServerConnection();
+        connection.startConnection();
+    }
 }
