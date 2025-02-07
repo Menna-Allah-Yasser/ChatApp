@@ -58,6 +58,7 @@ public class Participant implements Serializable {
 
     public enum State {
         BLOCKED, AVAILABLE;
+    }
 
     @Override
     public String toString() {
@@ -65,9 +66,5 @@ public class Participant implements Serializable {
         return "Participant [ID=" + particpantId + ", chat : " + chatId + ", category" + category + "]";
     }
 
-    public enum State {
-        BOLCKED, AVAILABLE;
-
-    }
 
 }
