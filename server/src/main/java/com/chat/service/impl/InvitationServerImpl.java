@@ -12,8 +12,18 @@ import java.util.List;
 import java.util.Map;
 
 public class InvitationServerImpl implements InvitationServerRepository {
-    InvitationService invitationService;
 
+    private static InvitationServerImpl invitationServer=null;
+    InvitationService invitationService;
+    private InvitationServerImpl(){}
+    public static InvitationServerImpl getInvitationServerImpl()
+    {
+        if(invitationServer==null)
+        {
+            invitationServer=new InvitationServerImpl();
+        }
+        return invitationServer;
+    }
     @Override
     public List<Invitation> getUserFriendRequests(int userID) {
         return invitationService.getAllInvitationsByStatus(userID, InvStatus.WAIT);
