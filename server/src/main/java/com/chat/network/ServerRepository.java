@@ -65,7 +65,7 @@ public interface ServerRepository  extends Remote {
 
     public List<Announcement> getAllAnnouncememts() throws RemoteException;
 
-    public List<Notification> getAllNotifications()throws RemoteException;
+    public List<Notification> getAllNotifications(int userId)throws RemoteException;
 
 
 

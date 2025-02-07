@@ -1,6 +1,7 @@
 package com.chat.network;
 
 import com.chat.entity.*;
+import com.chat.service.impl.InvitationServerImpl;
 import com.chat.service.impl.NotificationImpl;
 import com.chat.service.impl.UserServerImpl;
 
@@ -53,12 +54,11 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
         clients.put(id , callback);
 
         List<User> friends =  userServer.getUserService().getFriendsUser(id);
-
-      for (User friend :friends)
+        Notification notification = notificationServer.createNotification("went onLine", Timestamp.valueOf(LocalDateTime.now()),id, false ,0);
+        for (User friend :friends)
       {
           if (clients.containsKey(friend.getUserId()))
           {
-                Notification notification = notificationServer.createNotification("went onLine", Timestamp.valueOf(LocalDateTime.now()),id, false ,0);
 
                ClientRepository clientRepository =clients.get(friend.getUserId());
 
@@ -86,13 +86,11 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
         clients.remove(id);
 
         List<User> friends =  userServer.getUserService().getFriendsUser(id);
-
+        Notification notification = notificationServer.createNotification("went offLine", Timestamp.valueOf(LocalDateTime.now()),id, false ,0);
         for (User friend :friends)
         {
             if (clients.containsKey(friend.getUserId()))
             {
-                Notification notification = notificationServer.createNotification("went offLine", Timestamp.valueOf(LocalDateTime.now()),id, false ,0);
-
                 ClientRepository clientRepository =clients.get(friend.getUserId());
 
                 clientRepository.getNotification(notification);
@@ -166,7 +164,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
         userServer= UserServerImpl.getUserService();
         userServer.updateUserImage(userID, img);
     }
-
+    //we need this unction as two functions one to get the chats for a user and another one to get messages in one chat
     @Override
     public HashMap<Chat, List<Message>> getAllChats(int id) throws RemoteException {
         return null;
@@ -205,8 +203,11 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
     }
 
     @Override
-    public Boolean updateFriendsRequestStatus(Invitation Invitation) throws RemoteException {
-        return null;
+    public Boolean updateFriendsRequestStatus(Invitation invitation) throws RemoteException {
+        InvitationServerImpl invitationServer= InvitationServerImpl.getInvitationServerImpl();
+        Boolean c=invitationServer.updateFriendsRequestStatus(invitation);
+        return c;
+
     }
 
     @Override
@@ -218,7 +219,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
     public void createGroup(String Name, List<Integer> id) throws RemoteException {
 
     }
-
+    //need service in the chat server impl to create chat
     @Override
     public int createChat(Chat chat) throws RemoteException {
         return 0;
@@ -236,7 +237,8 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
 
     @Override
     public void sendInvitation(int user_id, List<User> users) throws RemoteException {
-
+        InvitationServerImpl invitationServer= InvitationServerImpl.getInvitationServerImpl();
+        invitationServer.sendFriendRequest(user_id,users);
     }
 
     @Override
@@ -245,7 +247,8 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
     }
 
     @Override
-    public List<Notification> getAllNotifications() throws RemoteException {
-        return null;
+    public List<Notification> getAllNotifications(int userId) throws RemoteException {
+        NotificationImpl notificationImpl=NotificationImpl.getNotificationImpl();
+        return notificationImpl.getAllNotification(userId);
     }
 }
