@@ -82,14 +82,20 @@ public class UserService  implements UserRepository {
     @Override
     public void updateUser(User userDTO) {
         if (connection == null) {
-            throw new IllegalStateException("Database connection is not initialized!");
+            System.out.println("Database connection is not initialized!");
+            return;
         }
         if (userDTO == null) {
-            throw new IllegalArgumentException("UserDTO cannot be null");
+            System.out.println("UserDTO cannot be null");
+            return;
         }
         if (userDTO.getUserId() == null) {
-            throw new IllegalArgumentException("User ID cannot be null");
+            System.out.println("User ID cannot be null");
+            return ;
         }
+
+        //User user = findUserById(userDTO.getUserId());
+
 
         String query = "UPDATE user SET " +
                 "phone_number = ?, " +
@@ -143,7 +149,7 @@ public class UserService  implements UserRepository {
                 System.out.println("No user found with the given ID.");
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Error updating user", e);
+            System.out.println(e.getMessage());
         }
     }
 
@@ -258,7 +264,7 @@ public class UserService  implements UserRepository {
                 userDTO.setCountry(resultSet.getString("country"));
                 userDTO.setBio(resultSet.getString("bio"));
                 userDTO.setDob(resultSet.getDate("DOB"));
-                //   userDTO.setPassword(resultSet.getString("password"));
+                userDTO.setPassword(resultSet.getString("password"));
                 userDTO.setCountOfLogin(resultSet.getInt("count_of_login"));
                 userDTO.setMode(resultSet.getString("mode"));
                 userDTO.setIsChatbotEnabled(resultSet.getBoolean("is_chatbot_enabled"));
@@ -347,6 +353,14 @@ public class UserService  implements UserRepository {
 
         }
         return arrayList;
+    }
+
+    public static void main(String[] args) {
+        UserService service = new UserService();
+        User user =service.findUserById(1);
+        System.out.println(user);
+        user.setEmail("menna@gmail.com");
+        service.updateUser(user);
     }
 
 }

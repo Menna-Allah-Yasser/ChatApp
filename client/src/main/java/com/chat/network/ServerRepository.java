@@ -27,7 +27,7 @@ public interface ServerRepository  extends Remote {
 
     public void updateUserInfo(User user)throws RemoteException;
     public void updateUserImage(int userID, byte[] img) throws RemoteException;
-  //  public boolean updateUserPassword(int userID, String password) throws RemoteException ;
+    //  public boolean updateUserPassword(int userID, String password) throws RemoteException ;
 
 
     public User getUser(int userID)  throws RemoteException;

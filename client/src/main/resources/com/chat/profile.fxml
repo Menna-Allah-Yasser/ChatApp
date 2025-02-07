@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane id="main" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: WHITE;" stylesheets="@../../css/profile.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chat.controller.ProfileController">
+   <center>
+      <GridPane prefHeight="311.0" prefWidth="1255.0" BorderPane.alignment="CENTER">
+         <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+         </rowConstraints>
+         <children>
+            <VBox prefHeight="53.0" prefWidth="280.0">
+               <children>
+                  <Label text="Full Name">
+                     <VBox.margin>
+                        <Insets left="30.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="fNameTxt" editable="false" promptText="Your Name">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="74.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Label text="Country">
+                     <VBox.margin>
+                        <Insets left="30.0" />
+                     </VBox.margin>
+                  </Label>
+                  <MenuButton id="modeMenu" mnemonicParsing="false" prefHeight="30.0" prefWidth="570.0">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Afghanistan" />
+                        <MenuItem mnemonicParsing="false" text="Albania" />
+                        <MenuItem mnemonicParsing="false" text="Algeria" />
+                        <MenuItem mnemonicParsing="false" text="Andorra" />
+                        <MenuItem mnemonicParsing="false" text="Angola" />
+                        <MenuItem mnemonicParsing="false" text="Antigua and Barbuda" />
+                        <MenuItem mnemonicParsing="false" text="Argentina" />
+                        <MenuItem mnemonicParsing="false" text="Armenia" />
+                        <MenuItem mnemonicParsing="false" text="Australia" />
+                        <MenuItem mnemonicParsing="false" text="Austria" />
+                        <MenuItem mnemonicParsing="false" text="Azerbaijan" />
+                        <MenuItem mnemonicParsing="false" text="Bahamas" />
+                        <MenuItem mnemonicParsing="false" text="Bahrain" />
+                        <MenuItem mnemonicParsing="false" text="Bangladesh" />
+                        <MenuItem mnemonicParsing="false" text="Barbados" />
+                        <MenuItem mnemonicParsing="false" text="Belarus" />
+                        <MenuItem mnemonicParsing="false" text="Belgium" />
+                        <MenuItem mnemonicParsing="false" text="Belize" />
+                        <MenuItem mnemonicParsing="false" text="Benin" />
+                        <MenuItem mnemonicParsing="false" text="Bhutan" />
+                        <MenuItem mnemonicParsing="false" text="Bolivia" />
+                        <MenuItem mnemonicParsing="false" text="Bosnia and Herzegovina" />
+                        <MenuItem mnemonicParsing="false" text="Botswana" />
+                        <MenuItem mnemonicParsing="false" text="Brazil" />
+                        <MenuItem mnemonicParsing="false" text="Brunei" />
+                        <MenuItem mnemonicParsing="false" text="Bulgaria" />
+                        <MenuItem mnemonicParsing="false" text="Burkina Faso" />
+                        <MenuItem mnemonicParsing="false" text="Burundi" />
+                        <MenuItem mnemonicParsing="false" text="Cabo Verde" />
+                        <MenuItem mnemonicParsing="false" text="Cambodia" />
+                        <MenuItem mnemonicParsing="false" text="Cameroon" />
+                        <MenuItem mnemonicParsing="false" text="Canada" />
+                        <MenuItem mnemonicParsing="false" text="Central African Republic" />
+                        <MenuItem mnemonicParsing="false" text="Chad" />
+                        <MenuItem mnemonicParsing="false" text="Chile" />
+                        <MenuItem mnemonicParsing="false" text="China" />
+                        <MenuItem mnemonicParsing="false" text="Colombia" />
+                        <MenuItem mnemonicParsing="false" text="Comoros" />
+                        <MenuItem mnemonicParsing="false" text="Congo (Congo-Brazzaville)" />
+                        <MenuItem mnemonicParsing="false" text="Costa Rica" />
+                        <MenuItem mnemonicParsing="false" text="Croatia" />
+                        <MenuItem mnemonicParsing="false" text="Cuba" />
+                        <MenuItem mnemonicParsing="false" text="Cyprus" />
+                        <MenuItem mnemonicParsing="false" text="Czech Republic (Czechia)" />
+                        <MenuItem mnemonicParsing="false" text="Democratic Republic of the Congo" />
+                        <MenuItem mnemonicParsing="false" text="Denmark" />
+                        <MenuItem mnemonicParsing="false" text="Djibouti" />
+                        <MenuItem mnemonicParsing="false" text="Dominica" />
+                        <MenuItem mnemonicParsing="false" text="Dominican Republic" />
+                        <MenuItem mnemonicParsing="false" text="Ecuador" />
+                        <MenuItem mnemonicParsing="false" text="Egypt" />
+                        <MenuItem mnemonicParsing="false" text="El Salvador" />
+                        <MenuItem mnemonicParsing="false" text="Equatorial Guinea" />
+                        <MenuItem mnemonicParsing="false" text="Eritrea" />
+                        <MenuItem mnemonicParsing="false" text="Estonia" />
+                        <MenuItem mnemonicParsing="false" text="Eswatini (Swaziland)" />
+                        <MenuItem mnemonicParsing="false" text="Ethiopia" />
+                        <MenuItem mnemonicParsing="false" text="Fiji" />
+                        <MenuItem mnemonicParsing="false" text="Finland" />
+                        <MenuItem mnemonicParsing="false" text="France" />
+                        <MenuItem mnemonicParsing="false" text="Gabon" />
+                        <MenuItem mnemonicParsing="false" text="Gambia" />
+                        <MenuItem mnemonicParsing="false" text="Georgia" />
+                        <MenuItem mnemonicParsing="false" text="Germany" />
+                        <MenuItem mnemonicParsing="false" text="Ghana" />
+                        <MenuItem mnemonicParsing="false" text="Greece" />
+                        <MenuItem mnemonicParsing="false" text="Grenada" />
+                        <MenuItem mnemonicParsing="false" text="Guatemala" />
+                        <MenuItem mnemonicParsing="false" text="Guinea" />
+                        <MenuItem mnemonicParsing="false" text="Guinea-Bissau" />
+                        <MenuItem mnemonicParsing="false" text="Guyana" />
+                        <MenuItem mnemonicParsing="false" text="Haiti" />
+                        <MenuItem mnemonicParsing="false" text="Honduras" />
+                        <MenuItem mnemonicParsing="false" text="Hungary" />
+                        <MenuItem mnemonicParsing="false" text="Iceland" />
+                        <MenuItem mnemonicParsing="false" text="India" />
+                        <MenuItem mnemonicParsing="false" text="Indonesia" />
+                        <MenuItem mnemonicParsing="false" text="Iran" />
+                        <MenuItem mnemonicParsing="false" text="Iraq" />
+                        <MenuItem mnemonicParsing="false" text="Ireland" />
+                        <MenuItem mnemonicParsing="false" text="Israel" />
+                        <MenuItem mnemonicParsing="false" text="Italy" />
+                        <MenuItem mnemonicParsing="false" text="Jamaica" />
+                        <MenuItem mnemonicParsing="false" text="Japan" />
+                        <MenuItem mnemonicParsing="false" text="Jordan" />
+                        <MenuItem mnemonicParsing="false" text="Kazakhstan" />
+                        <MenuItem mnemonicParsing="false" text="Kenya" />
+                        <MenuItem mnemonicParsing="false" text="Kiribati" />
+                        <MenuItem mnemonicParsing="false" text="Kuwait" />
+                        <MenuItem mnemonicParsing="false" text="Kyrgyzstan" />
+                        <MenuItem mnemonicParsing="false" text="Laos" />
+                        <MenuItem mnemonicParsing="false" text="Latvia" />
+                        <MenuItem mnemonicParsing="false" text="Lebanon" />
+                        <MenuItem mnemonicParsing="false" text="Lesotho" />
+                        <MenuItem mnemonicParsing="false" text="Liberia" />
+                        <MenuItem mnemonicParsing="false" text="Libya" />
+                        <MenuItem mnemonicParsing="false" text="Liechtenstein" />
+                        <MenuItem mnemonicParsing="false" text="Lithuania" />
+                        <MenuItem mnemonicParsing="false" text="Luxembourg" />
+                        <MenuItem mnemonicParsing="false" text="Madagascar" />
+                        <MenuItem mnemonicParsing="false" text="Malawi" />
+                        <MenuItem mnemonicParsing="false" text="Malaysia" />
+                        <MenuItem mnemonicParsing="false" text="Maldives" />
+                        <MenuItem mnemonicParsing="false" text="Mali" />
+                        <MenuItem mnemonicParsing="false" text="Malta" />
+                        <MenuItem mnemonicParsing="false" text="Marshall Islands" />
+                        <MenuItem mnemonicParsing="false" text="Mauritania" />
+                        <MenuItem mnemonicParsing="false" text="Mauritius" />
+                        <MenuItem mnemonicParsing="false" text="Mexico" />
+                        <MenuItem mnemonicParsing="false" text="Micronesia" />
+                        <MenuItem mnemonicParsing="false" text="Moldova" />
+                        <MenuItem mnemonicParsing="false" text="Monaco" />
+                        <MenuItem mnemonicParsing="false" text="Mongolia" />
+                        <MenuItem mnemonicParsing="false" text="Montenegro" />
+                        <MenuItem mnemonicParsing="false" text="Morocco" />
+                        <MenuItem mnemonicParsing="false" text="Mozambique" />
+                        <MenuItem mnemonicParsing="false" text="Myanmar (Burma)" />
+                        <MenuItem mnemonicParsing="false" text="Namibia" />
+                        <MenuItem mnemonicParsing="false" text="Nauru" />
+                        <MenuItem mnemonicParsing="false" text="Nepal" />
+                        <MenuItem mnemonicParsing="false" text="Netherlands" />
+                        <MenuItem mnemonicParsing="false" text="New Zealand" />
+                        <MenuItem mnemonicParsing="false" text="Nicaragua" />
+                        <MenuItem mnemonicParsing="false" text="Niger" />
+                        <MenuItem mnemonicParsing="false" text="Nigeria" />
+                        <MenuItem mnemonicParsing="false" text="North Korea" />
+                        <MenuItem mnemonicParsing="false" text="North Macedonia" />
+                        <MenuItem mnemonicParsing="false" text="Norway" />
+                        <MenuItem mnemonicParsing="false" text="Oman" />
+                        <MenuItem mnemonicParsing="false" text="Pakistan" />
+                        <MenuItem mnemonicParsing="false" text="Palau" />
+                        <MenuItem mnemonicParsing="false" text="Panama" />
+                        <MenuItem mnemonicParsing="false" text="Papua New Guinea" />
+                        <MenuItem mnemonicParsing="false" text="Paraguay" />
+                        <MenuItem mnemonicParsing="false" text="Peru" />
+                        <MenuItem mnemonicParsing="false" text="Philippines" />
+                        <MenuItem mnemonicParsing="false" text="Poland" />
+                        <MenuItem mnemonicParsing="false" text="Portugal" />
+                        <MenuItem mnemonicParsing="false" text="Qatar" />
+                        <MenuItem mnemonicParsing="false" text="Romania" />
+                        <MenuItem mnemonicParsing="false" text="Russia" />
+                        <MenuItem mnemonicParsing="false" text="Rwanda" />
+                        <MenuItem mnemonicParsing="false" text="Saint Kitts and Nevis" />
+                        <MenuItem mnemonicParsing="false" text="Saint Lucia" />
+                        <MenuItem mnemonicParsing="false" text="Saint Vincent and the Grenadines" />
+                        <MenuItem mnemonicParsing="false" text="Samoa" />
+                        <MenuItem mnemonicParsing="false" text="San Marino" />
+                        <MenuItem mnemonicParsing="false" text="Sao Tome and Principe" />
+                        <MenuItem mnemonicParsing="false" text="Saudi Arabia" />
+                        <MenuItem mnemonicParsing="false" text="Senegal" />
+                        <MenuItem mnemonicParsing="false" text="Serbia" />
+                        <MenuItem mnemonicParsing="false" text="Seychelles" />
+                        <MenuItem mnemonicParsing="false" text="Sierra Leone" />
+                        <MenuItem mnemonicParsing="false" text="Singapore" />
+                        <MenuItem mnemonicParsing="false" text="Slovakia" />
+                        <MenuItem mnemonicParsing="false" text="Slovenia" />
+                        <MenuItem mnemonicParsing="false" text="Solomon Islands" />
+                        <MenuItem mnemonicParsing="false" text="Somalia" />
+                        <MenuItem mnemonicParsing="false" text="South Africa" />
+                        <MenuItem mnemonicParsing="false" text="South Korea" />
+                        <MenuItem mnemonicParsing="false" text="South Sudan" />
+                        <MenuItem mnemonicParsing="false" text="Spain" />
+                        <MenuItem mnemonicParsing="false" text="Sri Lanka" />
+                        <MenuItem mnemonicParsing="false" text="Sudan" />
+                        <MenuItem mnemonicParsing="false" text="Suriname" />
+                        <MenuItem mnemonicParsing="false" text="Sweden" />
+                        <MenuItem mnemonicParsing="false" text="Switzerland" />
+                        <MenuItem mnemonicParsing="false" text="Syria" />
+                        <MenuItem mnemonicParsing="false" text="Tajikistan" />
+                        <MenuItem mnemonicParsing="false" text="Tanzania" />
+                        <MenuItem mnemonicParsing="false" text="Thailand" />
+                        <MenuItem mnemonicParsing="false" text="Timor-Leste" />
+                        <MenuItem mnemonicParsing="false" text="Togo" />
+                        <MenuItem mnemonicParsing="false" text="Tonga" />
+                        <MenuItem mnemonicParsing="false" text="Trinidad and Tobago" />
+                        <MenuItem mnemonicParsing="false" text="Tunisia" />
+
+                     </items>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+                     </VBox.margin>
+                  </MenuButton>
+               </children>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+               <children>
+                  <Label text="E-Mail">
+                     <VBox.margin>
+                        <Insets left="30.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="email" prefHeight="35.0" prefWidth="570.0" promptText="Your email">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+               <children>
+                  <Label text="Date of Birth">
+                     <VBox.margin>
+                        <Insets left="30.0" />
+                     </VBox.margin>
+                  </Label>
+                  <DatePicker id="dobTxt" fx:id="DOB" prefHeight="35.0" prefWidth="570.0" promptText="birth date">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+                     </VBox.margin>
+                  </DatePicker>
+               </children>
+            </VBox>
+            <VBox layoutX="292.0" layoutY="74.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <Label text="Mode">
+                     <VBox.margin>
+                        <Insets left="30.0" />
+                     </VBox.margin>
+                  </Label>
+                  <MenuButton id="modeMenu" fx:id="mode" mnemonicParsing="false" prefHeight="35.0" prefWidth="570.0">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Available" />
+                        <MenuItem mnemonicParsing="false" text="Busy" />
+                     </items>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+                     </VBox.margin>
+                  </MenuButton>
+               </children>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
+               <children>
+                  <Label text="Gender">
+                     <VBox.margin>
+                        <Insets left="30.0" />
+                     </VBox.margin>
+                  </Label>
+                  <MenuButton id="genderMenu" fx:id="gender" mnemonicParsing="false" prefHeight="35.0" prefWidth="570.0">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Female" />
+                      <MenuItem mnemonicParsing="false" text="Male" />
+                    </items>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+                     </VBox.margin>
+                  </MenuButton>
+               </children>
+            </VBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/email.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="15.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <VBox prefHeight="80.0" prefWidth="278.0">
+                     <children>
+                        <TextField prefHeight="10.0" prefWidth="227.0" style="-fx-background-color: transparant;" text="My Phone Number">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></TextField>
+                        <TextField editable="false" style="-fx-background-color: transparant;" text="01020333333" />
+                     </children>
+                  </VBox>
+               </children>
+               <GridPane.margin>
+                  <Insets left="30.0" top="10.0" />
+               </GridPane.margin>
+            </HBox>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#updateUserProfile" styleClass="custom-button" text="UPDATE PROFILE" AnchorPane.rightAnchor="40.0" />
+               </children>
+            </AnchorPane>
+         </children>
+         <BorderPane.margin>
+            <Insets top="60.0" />
+         </BorderPane.margin>
+      </GridPane>
+   </center>
+   <top>
+      <VBox BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets left="60.0" />
+         </BorderPane.margin>
+         <children>
+            <Pane id="pane" prefHeight="132.0" prefWidth="615.0">
+               <VBox.margin>
+                  <Insets left="-60.0" />
+               </VBox.margin>
+               <children>
+                  <TextField editable="false" layoutX="97.0" layoutY="78.0" style="-fx-background-color: transparant;" text="Menna Allah">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </TextField>
+                  <TextField editable="false" layoutX="97.0" layoutY="98.0" style="-fx-background-color: transparant;" text="Available">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </TextField>
+                  <ImageView id="profileImg" fitHeight="71.0" fitWidth="63.0" layoutX="38.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/profileImg.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+   </top>
+</BorderPane>

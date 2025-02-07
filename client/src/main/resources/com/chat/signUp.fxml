@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import java.net.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../css/color.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chat.controller.SignUpController">
+   <children>
+      <Separator layoutX="455.0" layoutY="14.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="0.0" />
+      <ImageView fx:id="welcomeImageView" fitHeight="601.0" fitWidth="458.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/photo_2025-01-23_17-42-08.jpg" />
+         </image>
+      </ImageView>
+      <VBox layoutX="400.0" layoutY="104.0" prefHeight="418.0" prefWidth="725.0">
+         <children>
+            <HBox prefHeight="73.0" prefWidth="711.0">
+               <children>
+                  <TextField fx:id="userPhoneNumber" prefHeight="29.0" prefWidth="246.0" promptText="phone number" styleClass="custom-text-field">
+                     <HBox.margin>
+                        <Insets left="230.0" right="20.0" top="30.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Label fx:id="UserNumberLabel" visible="false">
+                     <HBox.margin>
+                        <Insets top="44.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <TextField fx:id="userName" prefHeight="29.0" prefWidth="246.0" promptText="Your  Name " styleClass="custom-text-field">
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="230.0" right="250.0" />
+                     </VBox.margin>
+                     <HBox.margin>
+                        <Insets bottom="15.0" left="230.0" right="20.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Label fx:id="UserNameLabel">
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <HBox>
+               <children>
+                  <TextField fx:id="userEmail" prefHeight="29.0" prefWidth="246.0" promptText="Email" styleClass="custom-text-field">
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="230.0" right="250.0" />
+                     </VBox.margin>
+                     <HBox.margin>
+                        <Insets left="230.0" right="20.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Label fx:id="UserEmailLabel">
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <TextField fx:id="userBio" layoutX="240.0" layoutY="299.0" prefHeight="0.0" prefWidth="246.0" promptText="Bio" styleClass="custom-text-field">
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="230.0" right="250.0" />
+                     </VBox.margin>
+                     <HBox.margin>
+                        <Insets left="230.0" right="5.0" top="10.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Label fx:id="BioLabel" prefHeight="17.0" prefWidth="33.0">
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="15.0" top="12.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <PasswordField fx:id="userPassword" prefHeight="29.0" prefWidth="246.0" promptText="Password" styleClass="custom-text-field">
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="230.0" right="250.0" />
+                     </VBox.margin>
+                     <HBox.margin>
+                        <Insets left="230.0" right="5.0" />
+                     </HBox.margin>
+                  </PasswordField>
+                  <Label fx:id="passwordLabel">
+                     <HBox.margin>
+                        <Insets left="15.0" top="5.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <PasswordField fx:id="userConfirmPassword" prefHeight="29.0" prefWidth="246.0" promptText="Confirm Password" styleClass="custom-text-field">
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="230.0" right="250.0" />
+                     </VBox.margin>
+                     <HBox.margin>
+                        <Insets left="230.0" top="10.0" />
+                     </HBox.margin>
+                  </PasswordField>
+                  <Label fx:id="confirmPasswordLabel">
+                     <HBox.margin>
+                        <Insets left="20.0" top="15.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <TextField fx:id="userGender" prefHeight="29.0" prefWidth="246.0" promptText="Gender" styleClass="custom-text-field">
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="230.0" right="250.0" />
+                     </VBox.margin>
+                     <HBox.margin>
+                        <Insets left="230.0" top="10.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Label fx:id="GenderLabel">
+                     <HBox.margin>
+                        <Insets left="20.0" top="15.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <HBox>
+               <children>
+                  <TextField fx:id="userCountry" prefHeight="29.0" prefWidth="246.0" promptText="Country" styleClass="custom-text-field">
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="230.0" right="250.0" top="10.0" />
+                     </VBox.margin>
+                     <HBox.margin>
+                        <Insets left="230.0" top="10.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Label fx:id="CountryLabel">
+                     <HBox.margin>
+                        <Insets left="20.0" top="15.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <DatePicker fx:id="userBirthDate" prefHeight="0.0" prefWidth="246.0" promptText="Date Of BirthDay" styleClass="custom-text-field">
+                     <VBox.margin>
+                        <Insets left="230.0" right="250.0" />
+                     </VBox.margin>
+                     <HBox.margin>
+                        <Insets left="230.0" top="10.0" />
+                     </HBox.margin>
+                  </DatePicker>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <StackPane layoutX="602.0" prefHeight="138.0" prefWidth="240.0">
+         <children>
+            <ImageView fx:id="imageViewSignUp" fitHeight="119.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/profile.png" />
+               </image>
+               <StackPane.margin>
+                  <Insets left="20.0" />
+               </StackPane.margin>
+            </ImageView>
+            <Button fx:id="addProfilePictureButton" mnemonicParsing="false" onAction="#addPhoto" styleClass="white-circle" text="+">
+               <StackPane.margin>
+                  <Insets left="75.0" top="65.0" />
+               </StackPane.margin>
+               <font>
+                  <Font name="Berlin Sans FB" size="20.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="BLACK" />
+                        <Stop color="#f9f9fc" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Button>
+         </children>
+      </StackPane>
+      <Hyperlink fx:id="signInNavigation" layoutX="632.0" layoutY="564.0" onAction="#goToSignin" prefHeight="23.0" prefWidth="236.0" text="You already Have an account ? sign in" />
+      <Button fx:id="signUpButton" layoutX="686.0" layoutY="522.0" mnemonicParsing="false" onAction="#addNewUser" prefHeight="35.0" prefWidth="114.0" styleClass="custom-button" text="Sign Up" textFill="#e4e5e8">
+         <font>
+            <Font name="Bodoni MT" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>
