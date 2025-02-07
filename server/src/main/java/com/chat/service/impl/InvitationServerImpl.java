@@ -12,18 +12,23 @@ import java.util.List;
 import java.util.Map;
 
 public class InvitationServerImpl implements InvitationServerRepository {
-
+  
     private static InvitationServerImpl invitationServer=null;
     InvitationService invitationService;
-    private InvitationServerImpl(){invitationService=new InvitationService();}
-    public static InvitationServerImpl getInvitationServerImpl()
-    {
+
+    private InvitationServerImpl() {
+        invitationService = new InvitationService();
+    }
+
+    public static synchronized InvitationServerImpl getInvitationServerImp() {
+      
         if(invitationServer==null)
         {
             invitationServer=new InvitationServerImpl();
         }
         return invitationServer;
     }
+
     @Override
     public List<Invitation> getUserFriendRequests(int userID) {
         return invitationService.getAllInvitationsByStatus(userID, InvStatus.WAIT);
@@ -59,6 +64,29 @@ public class InvitationServerImpl implements InvitationServerRepository {
             }
         }
         return invitationService.addListOfInvitation(requests);
+    }
+
+    @Override
+    public boolean sendFriendRequest(List<Invitation> invitations) {
+        int senderId = invitations.get(0).getSenderId();
+        List<Invitation> requestsToSend = new ArrayList<>();
+        List<Invitation> receivedInvitations = invitationService.getAllInvitationsByStatus(senderId, InvStatus.WAIT);
+
+        Map<Integer, Invitation> invitationMap = new HashMap<>();
+        for (Invitation invitation : receivedInvitations) {
+            invitationMap.put(invitation.getSenderId(), invitation);
+        }
+
+        for(Invitation inv : invitations) {
+            Invitation existingInvitation = invitationMap.get(inv.getReceiverId());
+            if(existingInvitation != null) {
+                existingInvitation.setStatus(InvStatus.ACCEPT);
+                invitationService.updateStatus(existingInvitation);
+            } else {
+                requestsToSend.add(inv);
+            }
+        }
+        return invitationService.addListOfInvitation(requestsToSend);
     }
 
 }
