@@ -1,0 +1,16 @@
+/* Sidebar-like Button */
+#btnGender, #btnOnline, #btnCountry {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-text-fill: #ffffff; /* White text */
+    -fx-font-size: 16px;
+    -fx-font-family: "Dubai";
+    -fx-cursor: hand;
+    -fx-padding: 5px 10px;
+    -fx-alignment: center-left;
+}
+
+/* Hover Effect - subtle underline */
+#btnGender:hover, #btnOnline:hover, #btnCountry:hover {
+    -fx-text-fill: #ff6347; /* Slight change in text color on hover */
+}

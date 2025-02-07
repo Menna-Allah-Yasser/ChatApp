@@ -1,0 +1,52 @@
+/* Set the background color of the VBox */
+VBox Pane{
+    -fx-background-color: linear-gradient(to bottom, #3b5998, #192f6a);
+}
+
+BorderPane {
+    -fx-background-color: linear-gradient(to bottom, #3b5998, #192f6a);
+}
+
+/* Stylish label-like buttons */
+Button {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+
+    -fx-font-family: "Arial";
+
+    -fx-cursor: hand;
+}
+
+#onButton, #offButton {
+    -fx-background-color: grey;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+}
+
+#onButton.active {
+    -fx-background-color: green;
+}
+
+#offButton.active {
+    -fx-background-color: red;
+}
+
+/* Add a subtle underline on hover */
+Button:hover {
+    -fx-text-fill: #ffeb3b;
+}
+
+/* Add a glowing effect when focused */
+Button:focused {
+    -fx-text-fill: #ff9800;
+    -fx-effect: dropshadow(three-pass-box, rgba(255,152,0,0.8), 8, 0, 0, 0);
+}
+
+/* Add spacing between buttons */
+VBox Button {
+    -fx-margin: 10;
+}
