@@ -12,7 +12,7 @@ public class Notification implements Serializable {
     private int senderId;
     private boolean isMessage;
     private int chat_id;
-
+    private status stat=status.UNREAD;
     public Notification() {
 
     }
@@ -34,6 +34,24 @@ public class Notification implements Serializable {
         this.senderId = senderId;
         this.chat_id = chat_id;
 
+    }
+    public Notification(int Id,String desc, Timestamp time, int senderId, boolean isMessage, int chat_id,status stat) {
+        this.time = time;
+        this.desc = desc;
+        this.Id = Id;
+        this.isMessage = isMessage;
+        this.senderId = senderId;
+        this.chat_id = chat_id;
+        this.stat=stat;
+
+    }
+
+    public status getStat() {
+        return stat;
+    }
+
+    public void setStat(status stat) {
+        this.stat = stat;
     }
 
     public int getChat_id() {
@@ -86,7 +104,7 @@ public class Notification implements Serializable {
 
     @Override
     public String toString() {
-        return "Notification [ID=" + Id + ", desc : " + desc + ", time" + time + "]";
+        return "Notification [ID=" + Id + ", desc : " + desc + ", time" + time + "sender_id "+senderId+"  status"+stat+ "]";
     }
 
     public enum status {

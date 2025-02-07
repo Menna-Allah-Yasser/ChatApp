@@ -58,7 +58,6 @@ public interface ServerRepository  extends Remote {
 
 
 
-    public void sendNotification(int sender_id , int recevier_id , Notification notification, String type) throws RemoteException;
 
     public void sendInvitation(int user_id, List<User> users)throws RemoteException;
 
@@ -66,6 +65,7 @@ public interface ServerRepository  extends Remote {
     public List<Announcement> getAllAnnouncememts() throws RemoteException;
 
     public List<Notification> getAllNotifications(int userId)throws RemoteException;
+    public void updateNotification(int NotificationId, int userId) throws RemoteException;
 
 
 
