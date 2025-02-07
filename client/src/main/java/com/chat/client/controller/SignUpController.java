@@ -1,6 +1,7 @@
 package com.chat.client.controller;
 
 import com.chat.client.ClientStarter;
+import com.chat.client.network.ServerRepository;
 import com.chat.client.utils.Director;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -276,6 +277,11 @@ public class SignUpController {
 
   @FXML
   void addNewUser(ActionEvent event) {
+
+
+    //check all true
+    //
+    // get the user_id
 
 
 
