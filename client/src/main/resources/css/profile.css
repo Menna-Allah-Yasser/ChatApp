@@ -103,3 +103,30 @@
 .vbox {
     -fx-spacing: 10; /* Space between children */
 }
+
+.label {
+    -fx-font-family: 'Arial Rounded MT Bold';
+    -fx-font-size: 14px;
+    -fx-text-fill: #555555;
+}
+
+.text-field{
+    -fx-font-family: 'Arial Rounded MT Bold';
+    -fx-font-size: 14px;
+    -fx-text-fill: #555555;
+}
+
+.custom-button {
+    -fx-background-color: #7B76F1; /* اللون الأساسي */
+    -fx-text-fill: white; /* لون النص */
+
+    -fx-font-weight: bold; /* نص عريض */
+    -fx-padding: 10 20; /* مسافة داخلية */
+    -fx-border-radius: 20; /* زوايا مستديرة */
+    -fx-background-radius: 20; /* تطابق الزوايا */
+    -fx-border-color: #5E58D5; /* لون الحواف */
+    -fx-border-width: 2; /* سمك الحواف */
+    -fx-effect: dropshadow(gaussian, rgba(123, 118, 241, 0.5), 10, 0.5, 0, 0); /* توهج خفيف */
+    -fx-cursor: hand; /* تغيير المؤشر عند الوقوف */
+    -fx-transition: 0.3s; /* تأثير التغيير التدريجي */
+}

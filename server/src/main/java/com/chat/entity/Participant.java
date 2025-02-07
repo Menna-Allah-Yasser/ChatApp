@@ -34,7 +34,6 @@ public class Participant implements Serializable {
         return particpantId;
     }
 
-
     public void setParticpantId(int particpantId) {
         this.particpantId = particpantId;
     }
@@ -54,6 +53,7 @@ public class Participant implements Serializable {
     public enum Category {
         WORK, FAMILY, FRIEND;
     }
+
 
 
     public enum State {
