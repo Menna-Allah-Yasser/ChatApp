@@ -179,7 +179,9 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
 
     @Override
     public List<User> getAllFrirnds(int userId) throws RemoteException {
-        return null;
+        userServer= UserServerImpl.getUserService();
+
+        return userServer.getFriendsUser(userId);
     }
 
     @Override
