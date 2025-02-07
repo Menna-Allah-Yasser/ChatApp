@@ -15,7 +15,7 @@ public class InvitationServerImpl implements InvitationServerRepository {
 
     private static InvitationServerImpl invitationServer=null;
     InvitationService invitationService;
-    private InvitationServerImpl(){}
+    private InvitationServerImpl(){invitationService=new InvitationService();}
     public static InvitationServerImpl getInvitationServerImpl()
     {
         if(invitationServer==null)
