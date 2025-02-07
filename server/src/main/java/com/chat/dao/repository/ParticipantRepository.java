@@ -44,5 +44,7 @@ public interface ParticipantRepository {
 
     boolean addListOfParticipant(List<Participant> participants);
 
+     List<Integer> getAllChatsById(int user_id);
+
 
 }
