@@ -70,6 +70,7 @@ public class UserService  implements UserRepository {
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, phoneNumber);
             int rowsAffected = preparedStatement.executeUpdate();
+            connection.commit();
             if (rowsAffected == 0) {
                 System.out.println("No user found with the phone number: " + phoneNumber);
             }
@@ -135,6 +136,7 @@ public class UserService  implements UserRepository {
             preparedStatement.setInt(17, userDTO.getUserId());
 
             int rowsUpdated = preparedStatement.executeUpdate();
+            connection.commit();
             if (rowsUpdated > 0) {
                 System.out.println("User updated successfully!");
             } else {
@@ -170,6 +172,7 @@ public class UserService  implements UserRepository {
             preparedStatement.setBoolean(16, userDTO.getIsOnline());
 
             int rowsInserted = preparedStatement.executeUpdate();
+            connection.commit();
             if (rowsInserted > 0) {
                 System.out.println("New user added successfully!");
             } else {
@@ -206,6 +209,7 @@ public class UserService  implements UserRepository {
             preparedStatement.setInt(2, userId);
 
             int rowsUpdated = preparedStatement.executeUpdate();
+            connection.commit();
             if (rowsUpdated == 0) {
                 System.out.println("No user found with ID " + userId);
             }

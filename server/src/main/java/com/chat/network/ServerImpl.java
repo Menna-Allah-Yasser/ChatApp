@@ -1,14 +1,15 @@
 package com.chat.network;
 
 import com.chat.entity.*;
+import com.chat.service.impl.NotificationImpl;
+import com.chat.service.impl.UserServerImpl;
 
-import java.io.*;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ServerImpl extends UnicastRemoteObject implements ServerRepository {
@@ -16,6 +17,11 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
     public static ConcurrentHashMap<Integer ,ClientRepository > clients ;
 
     private  static  ServerRepository server ;
+
+    private  UserServerImpl userServer ;
+
+   private NotificationImpl notificationServer;
+
 
     private ServerImpl() throws RemoteException {
 
@@ -40,6 +46,32 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
     @Override
     public void login(int id, ClientRepository callback) throws RemoteException {
 
+        userServer= UserServerImpl.getUserService();
+        notificationServer= NotificationImpl.getNotificationImpl();
+        userServer.getUserService().updateOnline(id, true);
+
+        clients.put(id , callback);
+
+        List<User> friends =  userServer.getUserService().getFriendsUser(id);
+
+      for (User friend :friends)
+      {
+          if (clients.containsKey(friend.getUserId()))
+          {
+                Notification notification = notificationServer.createNotification("went onLine", Timestamp.valueOf(LocalDateTime.now()),id, false ,0);
+
+               ClientRepository clientRepository =clients.get(friend.getUserId());
+
+               clientRepository.getNotification(notification);
+
+
+          }
+
+
+
+      }
+
+
 
 
     }
@@ -47,41 +79,92 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
     @Override
     public void logout(int id) throws RemoteException {
 
+        userServer= UserServerImpl.getUserService();
+        notificationServer= NotificationImpl.getNotificationImpl();
+        userServer.getUserService().updateOnline(id, false);
+
+        clients.remove(id);
+
+        List<User> friends =  userServer.getUserService().getFriendsUser(id);
+
+        for (User friend :friends)
+        {
+            if (clients.containsKey(friend.getUserId()))
+            {
+                Notification notification = notificationServer.createNotification("went offLine", Timestamp.valueOf(LocalDateTime.now()),id, false ,0);
+
+                ClientRepository clientRepository =clients.get(friend.getUserId());
+
+                clientRepository.getNotification(notification);
+
+
+            }
+
+
+
+        }
+
+
+
+
     }
 
     @Override
     public void signUp(User user) throws RemoteException {
+
+        userServer= UserServerImpl.getUserService();
+
+        userServer.getUserService().addNewUser(user);
 
     }
 
     @Override
     public void updateStatus(int userId, String status) throws RemoteException {
 
+
+        userServer= UserServerImpl.getUserService();
+
+        userServer.updateStatus(userId ,status);
+
+
+
     }
 
     @Override
     public void updateChatbotEnabled(int userId, Boolean status) throws RemoteException {
 
+        userServer= UserServerImpl.getUserService();
+
+        userServer.updateChatbotEnabled(userId,status);
+
+
     }
 
     @Override
     public boolean authenticateUser(String phoneNumber, String password) throws RemoteException {
-        return false;
+        userServer= UserServerImpl.getUserService();
+        return userServer.authenticateUser(phoneNumber ,password) ;
     }
 
     @Override
     public void updateOnline(int userId, Boolean isOnline) throws RemoteException {
 
+        userServer= UserServerImpl.getUserService();
+        userServer.updateOnline(userId, isOnline);
+
+
     }
 
     @Override
-    public boolean updateUserInfo(User user) throws RemoteException {
-        return false;
+    public void updateUserInfo(User user) throws RemoteException {
+        userServer= UserServerImpl.getUserService();
+        userServer.updateUser(user);
     }
 
     @Override
-    public boolean updateUserImage(int userID, String phone, byte[] img) throws RemoteException {
-        return false;
+    public void updateUserImage(int userID, byte[] img) throws RemoteException {
+        userServer= UserServerImpl.getUserService();
+        userServer.updateUserImage(userID, img);
     }
 
     @Override
@@ -106,12 +189,14 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
 
     @Override
     public User getUser(int userID) throws RemoteException {
-        return null;
+        userServer= UserServerImpl.getUserService();
+        return userServer.findUserById(userID);
     }
 
     @Override
     public User getUser(String phoneNumber) throws RemoteException {
-        return null;
+        userServer= UserServerImpl.getUserService();
+        return userServer.findUserByPhoneNumber(phoneNumber);
     }
 
     @Override
