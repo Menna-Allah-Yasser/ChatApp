@@ -15,9 +15,9 @@
          <children>
             <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="441.0" prefWidth="298.0" style="-fx-background-color: #FFFEFE;" HBox.hgrow="ALWAYS">
                <children>
-                  <Pane id="head" prefHeight="112.0" prefWidth="605.0">
+                  <Pane id="head" prefHeight="132.0" prefWidth="605.0">
                      <children>
-                        <Label id="friendReqTxt" prefHeight="83.0" prefWidth="570.0" text="Friend Requests" textFill="#777070">
+                        <Label id="friendReqTxt" layoutX="49.0" layoutY="1.0" prefHeight="83.0" prefWidth="245.0" text="Friend Requests" textFill="#777070">
                            <font>
                               <Font size="24.0" />
                            </font>

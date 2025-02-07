@@ -10,6 +10,7 @@ import com.chat.service.repository.ChatServerRepository;
 
 import java.rmi.RemoteException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,8 +34,16 @@ public class ChatServerImpl implements ChatServerRepository {
         return mp;
     }
 
+    @Override
+    public List<Chat> getUserChatsByUserId(int user_id) {
+        List<Chat> chats = new ArrayList<>();
+        List<Integer> ids = participantService.getAllChatsById(user_id);
+        chats = chatService.getChatsById(ids);
+        return chats;
+    }
+
     public static void main(String[] args) {
         ChatServerImpl server = new ChatServerImpl();
-        System.out.println(server.getChatsWithMessagesByUserId(1));
+        System.out.println(server.getUserChatsByUserId(1));
     }
 }

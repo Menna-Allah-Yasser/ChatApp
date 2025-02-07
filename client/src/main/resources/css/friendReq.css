@@ -9,6 +9,7 @@
     -fx-background-color: linear-gradient(to bottom right, #c0c0e4, #6f6d98);
 }
 
+
 /* Style for the VBox containing the friend requests */
 .vbox {
     -fx-background-color: #FFFEFE; /* Background color for the content area */
@@ -32,22 +33,22 @@
 }
 
 /* Text styling */
-#friendReqTxt{
-    -fx-text-fill: #ffffff; /* Text color */
-    -fx-font-family: "Arial"; /* Font family */
-    -fx-font-size: 20px; /* Font size */
-    -fx-font-weight: bold; /* Font weight */
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 5, 0, 0, 1); /* Shadow effect */
-    -fx-padding: 30 , 100 , 30 , 50px; /* Padding around the text */
+/*#friendReqTxt{
+    -fx-text-fill: #ffffff; !* Text color *!
+    -fx-font-family: "Arial"; !* Font family *!
+    -fx-font-size: 20px; !* Font size *!
+    -fx-font-weight: bold; !* Font weight *!
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 5, 0, 0, 1); !* Shadow effect *!
+    -fx-padding: 30 , 100 , 30 , 50px; !* Padding around the text *!
 }
 
-/* Additional styling for a heading */
+!* Additional styling for a heading *!
 .heading-text {
-    -fx-text-fill: #D32F2F; /* Heading text color */
-    -fx-font-size: 28px; /* Heading font size */
-    -fx-font-family: "Verdana"; /* Heading font family */
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.7), 8, 0, 0, 1); /* Shadow effect */
-}
+    -fx-text-fill: #D32F2F; !* Heading text color *!
+    -fx-font-size: 28px; !* Heading font size *!
+    -fx-font-family: "Verdana"; !* Heading font family *!
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.7), 8, 0, 0, 1); !* Shadow effect *!
+}*/
 
 #friendReqList {
     -fx-background-color: white; /* Background color of the list */
@@ -56,6 +57,12 @@
     -fx-padding: 10px; /* Padding inside the ListView */
     -fx-pref-height: 370px; /* Preferred height */
     -fx-pref-width: 605px; /* Preferred width */
+}
+
+.label {
+    -fx-font-family: 'Arial Rounded MT Bold';
+    -fx-font-size: 24px;
+    -fx-text-fill: #555555;
 }
 
 

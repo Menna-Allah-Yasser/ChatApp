@@ -109,10 +109,10 @@
 }
 
 /* Styling for Labels */
-.label {
-    -fx-font-family: 'Arial Rounded MT Bold';
-    -fx-font-size: 24px;
-    -fx-text-fill: #555555;
+
+
+#head{
+    -fx-background-color: linear-gradient(to bottom right, #c0c0e4, #6f6d98);
 }
 
 /* Styling ListView */
@@ -126,17 +126,17 @@
     -fx-text-fill: #333;
 }
 
-.list-view .list-cell {
+/*.list-view .list-cell {
     -fx-background-color: #FFFEFE;
     -fx-padding: 8px;
     -fx-border-color: #DDDDDD;
     -fx-border-width: 0 0 1px 0;
 }
 
-/* Hover effect for ListView cells */
+!* Hover effect for ListView cells *!
 .list-view .list-cell:hover {
     -fx-background-color: #E8F5E9;
-}
+}*/
 
 /* VBox customization */
 .vbox {
@@ -148,4 +148,10 @@
 /* Center Pane Margins */
 .pane {
     -fx-background-color: transparent;
+}
+
+.label {
+    -fx-font-family: 'Arial Rounded MT Bold';
+    -fx-font-size: 24px;
+    -fx-text-fill: #555555;
 }
