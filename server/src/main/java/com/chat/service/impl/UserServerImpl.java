@@ -22,7 +22,7 @@ public class UserServerImpl implements UserServerRepository {
         this.invitationServer = new InvitationServerImpl();
     }
 
-    public static synchronized UserServerImpl getInstance() {
+    public static synchronized UserServerImpl getUserService() {
         if (instance == null) {
             instance = new UserServerImpl();
         }
