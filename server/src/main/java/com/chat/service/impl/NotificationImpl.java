@@ -37,4 +37,7 @@ public class NotificationImpl implements NotificationRepository {
         userNotificationService.updateStatus(userId,NotificationId);
 
     }
+    public static void main(String[] args) {
+
+    }
 }

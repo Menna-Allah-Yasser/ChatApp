@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 public class InvitationServerImpl implements InvitationServerRepository {
+  
     private static InvitationServerImpl invitationServer=null;
     InvitationService invitationService;
 
@@ -20,6 +21,7 @@ public class InvitationServerImpl implements InvitationServerRepository {
     }
 
     public static synchronized InvitationServerImpl getInvitationServerImp() {
+      
         if(invitationServer==null)
         {
             invitationServer=new InvitationServerImpl();

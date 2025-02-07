@@ -17,7 +17,7 @@ import java.util.Map;
 public class ChatServerImpl implements ChatServerRepository {
 
     ParticipantService participantService = new ParticipantService();
-    ChatService chatService  = new ChatService();;
+    ChatService chatService  = new ChatService();
     MessageService messageService = new MessageService();
 
     @Override
@@ -32,6 +32,7 @@ public class ChatServerImpl implements ChatServerRepository {
 
         return mp;
     }
+    //need function to return list of objects of type chat to render chat and group chat
 
     public static void main(String[] args) {
         ChatServerImpl server = new ChatServerImpl();

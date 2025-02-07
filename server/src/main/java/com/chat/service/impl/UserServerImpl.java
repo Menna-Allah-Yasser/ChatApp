@@ -18,7 +18,7 @@ public class UserServerImpl implements UserServerRepository {
 
     private UserServerImpl() {
         this.userService = new UserService();
-        this.invitationServer = InvitationServerImpl.getInvitationServerImp();
+        this.invitationServer = InvitationServerImpl.getInvitationServerImpl();
     }
 
     public static synchronized UserServerImpl getUserService() {
