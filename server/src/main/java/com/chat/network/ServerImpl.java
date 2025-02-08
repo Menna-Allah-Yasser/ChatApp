@@ -139,10 +139,8 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
         return userServer.getFriendsUser(userId);
     }
 
-    @Override
-    public List<Integer> getAllFriends(int userId) throws RemoteException {
-        return InvitationServerImpl.getInvitationServerImp().getUserFriends(userId);
-    }
+
+
 
     @Override
     public List<Invitation> getAllInvitation(int userId) throws RemoteException {
@@ -192,8 +190,8 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
     }
 
     @Override
-    public void sendNotification(int sender_id, int recevier_id, Notification notification, String type) throws RemoteException {
-
+    public void updateNotification(int NotificationId, int userId) throws RemoteException {
+        NotificationImpl.getNotificationImpl().UpdateNotificationState(NotificationId,userId);
     }
 
     @Override

@@ -2,6 +2,8 @@ package com.chat.network;
 
 
 import com.chat.entity.*;
+import com.chat.utils.Cordinator;
+
 import java.rmi.RemoteException;
 
 public class ClientImpl implements ClientRepository {
@@ -9,6 +11,7 @@ public class ClientImpl implements ClientRepository {
 
     @Override
     public void getNotification(Notification notification) {
+        Cordinator.getNotificationList().add(0,notification);
 
     }
 

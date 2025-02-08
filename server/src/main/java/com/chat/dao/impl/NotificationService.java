@@ -29,6 +29,7 @@ public class NotificationService implements NotificationRepository {
             stmt.setInt(5, notification.getChat_id());
 
             int id = stmt.executeUpdate();
+            con.commit();
             ResultSet rrs = stmt.getGeneratedKeys();
             rrs.next();
             id = rrs.getInt(1);
@@ -38,6 +39,7 @@ public class NotificationService implements NotificationRepository {
                 stmt4.setInt(1, notification.getChat_id());
                 stmt4.setInt(2, notification.getSenderId());
                 ResultSet rs = stmt4.executeQuery();
+                con.commit();
                 UserNotificationService impl = new UserNotificationService();
                 while (rs.next()) {
                     impl.createUserNottification(rs.getInt(1), id);
@@ -50,6 +52,7 @@ public class NotificationService implements NotificationRepository {
                 stmt3.setInt(1, notification.getSenderId());
                 stmt3.setInt(2, notification.getSenderId());
                 ResultSet rs = stmt3.executeQuery();
+                con.commit();
                 UserNotificationService impl = new UserNotificationService();
                 while (rs.next()) {
                     impl.createUserNottification(rs.getInt(1), id);
@@ -80,7 +83,7 @@ public class NotificationService implements NotificationRepository {
             while (rs.next()) {
                 nots.add(new Notification(rs.getInt("notifcation_id"), rs.getString("describtion"),
                         rs.getTimestamp("time"), rs.getInt("senderId"), rs.getBoolean("isMessage"),
-                        rs.getInt("chatId")));
+                        rs.getInt("chatId"),Notification.status.valueOf(rs.getString("status"))));
 
             }
             rs.close();

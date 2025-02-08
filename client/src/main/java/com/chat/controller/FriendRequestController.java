@@ -1,16 +1,18 @@
 package com.chat.controller;
 
+import com.chat.utils.Cordinator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 
 public class FriendRequestController  {
-   // Image accept=new Image(getClass().getResource("/images/accept.png").toExternalForm());
-  //  Image decline=new Image(getClass().getResource("/images/decline.png").toExternalForm());
+   Image accept=new Image(getClass().getResource("/images/accept.png").toExternalForm());
+   Image decline=new Image(getClass().getResource("/images/decline.png").toExternalForm());
     @FXML
-    private ListView<FriendRequest> list;
-    ObservableList<FriendRequest> nlist= FXCollections.observableArrayList();
+    private ListView<Object> list;
+    ObservableList<Object> flist= Cordinator.getFriendRequestlist();
 
 
 //    public void setStage(Stage stage) {
