@@ -35,12 +35,12 @@
          <children>
             <VBox prefHeight="53.0" prefWidth="280.0">
                <children>
-                  <Label text="Full Name">
+                  <Label text="Bio">
                      <VBox.margin>
                         <Insets left="30.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="fNameTxt" editable="false" promptText="Your Name">
+                  <TextField fx:id="bio" editable="false" promptText="Your Bio">
                      <VBox.margin>
                         <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
                      </VBox.margin>
@@ -54,7 +54,7 @@
                         <Insets left="30.0" />
                      </VBox.margin>
                   </Label>
-                  <MenuButton id="modeMenu" mnemonicParsing="false" prefHeight="30.0" prefWidth="570.0">
+                  <MenuButton id="modeMenu" fx:id="country" mnemonicParsing="false" prefHeight="30.0" prefWidth="570.0">
                      <items>
                         <MenuItem mnemonicParsing="false" text="Afghanistan" />
                         <MenuItem mnemonicParsing="false" text="Albania" />
@@ -320,7 +320,7 @@
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font></TextField>
-                        <TextField editable="false" style="-fx-background-color: transparant;" text="01020333333" />
+                        <TextField fx:id="phone" editable="false" style="-fx-background-color: transparant;" text="01020333333" />
                      </children>
                   </VBox>
                </children>
@@ -350,17 +350,17 @@
                   <Insets left="-60.0" />
                </VBox.margin>
                <children>
-                  <TextField editable="false" layoutX="97.0" layoutY="78.0" style="-fx-background-color: transparant;" text="Menna Allah">
+                  <TextField fx:id="name" editable="false" layoutX="97.0" layoutY="78.0" style="-fx-background-color: transparant;" text="Menna Allah">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </TextField>
-                  <TextField editable="false" layoutX="97.0" layoutY="98.0" style="-fx-background-color: transparant;" text="Available">
+                  <TextField fx:id="modehead" editable="false" layoutX="97.0" layoutY="98.0" style="-fx-background-color: transparant;" text="Available">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </TextField>
-                  <ImageView id="profileImg" fitHeight="71.0" fitWidth="63.0" layoutX="38.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView id="profileImg" fx:id="imgView" fitHeight="71.0" fitWidth="63.0" layoutX="38.0" layoutY="88.0" onMouseClicked="#updateImg" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/profileImg.png" />
                      </image>

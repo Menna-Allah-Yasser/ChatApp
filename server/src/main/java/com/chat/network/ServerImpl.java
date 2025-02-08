@@ -5,6 +5,9 @@ import com.chat.service.impl.InvitationServerImpl;
 import com.chat.service.impl.NotificationImpl;
 import com.chat.service.impl.UserServerImpl;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.Timestamp;
@@ -111,7 +114,6 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
 
     @Override
     public void updateUserInfo(User user) throws RemoteException {
-        System.out.println("lllllllllllll: "+user);
         userServer= UserServerImpl.getUserService();
         userServer.updateUser(user);
     }
@@ -137,11 +139,6 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
         userServer= UserServerImpl.getUserService();
 
         return userServer.getFriendsUser(userId);
-    }
-
-    @Override
-    public List<Integer> getAllFriends(int userId) throws RemoteException {
-        return InvitationServerImpl.getInvitationServerImp().getUserFriends(userId);
     }
 
     @Override
@@ -212,5 +209,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
         NotificationImpl notificationImpl=NotificationImpl.getNotificationImpl();
         return notificationImpl.getAllNotification(userId);
     }
+
+
 
 }

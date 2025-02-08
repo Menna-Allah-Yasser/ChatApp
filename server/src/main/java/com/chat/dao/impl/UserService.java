@@ -4,7 +4,11 @@ import com.chat.dao.repository.UserRepository;
 import com.chat.db.DBConnectionManager;
 import com.chat.entity.User;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class UserService  implements UserRepository {
@@ -125,7 +129,7 @@ public class UserService  implements UserRepository {
             preparedStatement.setString(6, userDTO.getBio());
 
             if (userDTO.getDob() != null) {
-                preparedStatement.setDate(7, new java.sql.Date(userDTO.getDob().getTime()));
+                preparedStatement.setDate(7,java.sql.Date.valueOf(userDTO.getDob()));
             } else {
                 preparedStatement.setNull(7, Types.DATE);
             }
@@ -166,7 +170,7 @@ public class UserService  implements UserRepository {
             preparedStatement.setString(4, userDTO.getGender());
             preparedStatement.setString(5, userDTO.getCountry());
             preparedStatement.setString(6, userDTO.getBio());
-            preparedStatement.setDate(7, new java.sql.Date(userDTO.getDob().getTime()));
+            preparedStatement.setDate(7, java.sql.Date.valueOf(userDTO.getDob()));
             preparedStatement.setString(8, userDTO.getPassword());
             preparedStatement.setObject(9, userDTO.getCountOfLogin());
             preparedStatement.setString(10, userDTO.getMode());
@@ -263,7 +267,7 @@ public class UserService  implements UserRepository {
                 userDTO.setGender(resultSet.getString("gender"));
                 userDTO.setCountry(resultSet.getString("country"));
                 userDTO.setBio(resultSet.getString("bio"));
-                userDTO.setDob(resultSet.getDate("DOB"));
+                userDTO.setDob(resultSet.getDate("DOB").toLocalDate());
                 userDTO.setPassword(resultSet.getString("password"));
                 userDTO.setCountOfLogin(resultSet.getInt("count_of_login"));
                 userDTO.setMode(resultSet.getString("mode"));
@@ -357,10 +361,16 @@ public class UserService  implements UserRepository {
 
     public static void main(String[] args) {
         UserService service = new UserService();
-        User user =service.findUserById(1);
-        System.out.println(user);
-        user.setEmail("menna@gmail.com");
-        service.updateUser(user);
+        byte[] imageBytes = new byte[0];
+        try {
+            imageBytes = Files.readAllBytes(Path.of("C:\\Users\\HP\\Pictures\\Screenshots\\Screenshot (1).png"));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        service.updateUserImage(1 , imageBytes);
+
+        System.out.println(service.findUserById(1));
+
     }
 
 }

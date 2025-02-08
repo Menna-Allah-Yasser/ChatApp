@@ -3,8 +3,13 @@ package com.chat.service.impl;
 
 import com.chat.dao.impl.UserService;
 import com.chat.entity.User;
+import com.chat.network.ServerImpl;
 import com.chat.service.repository.UserServerRepository;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,5 +105,17 @@ public class UserServerImpl implements UserServerRepository {
     @Override
     public void updateUserImage(int userID, byte[] img) {
         userService.updateUserImage(userID,img);
+    }
+
+    public static void main(String[] args) {
+        UserServerImpl server1 = new UserServerImpl();
+
+        byte[] imageBytes = new byte[0];
+        try {
+            imageBytes = Files.readAllBytes(Path.of("C:\\Users\\HP\\Pictures\\Screenshots\\Screenshot 2025-02-06 143302.png"));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        server1.updateUserImage(1 ,imageBytes );
     }
 }

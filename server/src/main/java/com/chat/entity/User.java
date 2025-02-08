@@ -1,7 +1,7 @@
 package com.chat.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.time.LocalDate;
 
 public class User  implements Serializable {
 
@@ -13,7 +13,7 @@ public class User  implements Serializable {
     private String gender;
     private String country;
     private String bio;
-    private Date dob;
+    private LocalDate dob;
     private String password;
     private Integer countOfLogin;
     private String mode;
@@ -81,11 +81,11 @@ public class User  implements Serializable {
         this.bio = bio;
     }
 
-    public Date getDob() {
+    public LocalDate getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(LocalDate dob) {
         this.dob = dob;
     }
 
