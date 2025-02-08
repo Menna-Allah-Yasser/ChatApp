@@ -1,5 +1,7 @@
 package com.chat;
 
+import com.chat.controller.BarController;
+import com.chat.utils.Cordinator;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,7 +25,8 @@ public class ClientStarter extends Application {
         final int initHeight = 600; // initial height
         final Pane root = new Pane(); // root container
 
-
+        stage.setOnCloseRequest((e)->{
+            Cordinator.getScheduledExecutorService().shutdown();});
         Pane controller = loadFXML("login");
         controller.setPrefWidth(initWidth);
         controller.setPrefHeight(initHeight);
@@ -67,7 +70,12 @@ public class ClientStarter extends Application {
 
     private static Pane loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ClientStarter.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
+        Pane p= fxmlLoader.load();
+        if(fxml=="Bar")
+        {
+            Cordinator.barController=fxmlLoader.getController();
+        }
+        return p;
     }
 
     public static void main(String[] args) {

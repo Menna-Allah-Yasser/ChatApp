@@ -12,11 +12,11 @@ import java.rmi.server.UnicastRemoteObject;
 public class ServerConnection {
 
     private static ServerConnection serverConnection;
-    private final String serverURI = "rmi://localhost:1900/ChatUPServer";
+    private final String serverURI = "rmi://localhost:1901/ChatServer";
 
     private ServerConnection(){
         try {
-            LocateRegistry.createRegistry(1900);
+            LocateRegistry.createRegistry(1901);
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         }

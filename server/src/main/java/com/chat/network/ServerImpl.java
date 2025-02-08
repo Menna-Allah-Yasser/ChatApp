@@ -139,10 +139,8 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
         return userServer.getFriendsUser(userId);
     }
 
-    @Override
-    public List<Integer> getAllFriends(int userId) throws RemoteException {
-        return InvitationServerImpl.getInvitationServerImp().getUserFriends(userId);
-    }
+
+
 
     @Override
     public List<Invitation> getAllInvitation(int userId) throws RemoteException {

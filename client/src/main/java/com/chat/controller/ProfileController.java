@@ -44,7 +44,7 @@ public class ProfileController {
         } catch (RemoteException e) {
             System.out.println(e.getMessage());
         }
-
+        System.out.println(user);
         user.setEmail(email.getText());
         try {
             serverRepository.updateUserInfo(user);
