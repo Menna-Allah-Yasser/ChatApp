@@ -19,6 +19,7 @@ public class UserNotificationService implements UserNotificationRepository {
             stmt.setInt(2, Notification_id);
 
             stmt.executeUpdate();
+            conn.commit();
             System.out.println("deleted");
         } catch (Exception e) {
             e.printStackTrace();
@@ -36,6 +37,7 @@ public class UserNotificationService implements UserNotificationRepository {
             stmt.setInt(2, user_id);
             stmt.setInt(3, Notification_id);
             stmt.executeUpdate();
+            conn.commit();
             System.out.println("updated");
         } catch (Exception e) {
             e.printStackTrace();
@@ -51,10 +53,10 @@ public class UserNotificationService implements UserNotificationRepository {
             stmt.setInt(1, user_id);
             stmt.setInt(2, Notification_id);
             stmt.setString(3, Notification.status.UNREAD.name());
+            stmt.executeUpdate();
+            conn.commit();
 
-            if (stmt.executeUpdate() != 0)
-                return false;
-            System.out.println("added");
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

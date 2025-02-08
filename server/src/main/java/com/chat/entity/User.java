@@ -1,9 +1,11 @@
 package com.chat.entity;
 
 import java.io.Serializable;
+
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Arrays;
+
 
 public class User  implements Serializable {
 

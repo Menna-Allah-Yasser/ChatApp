@@ -26,7 +26,7 @@ public class BarController {
     private ImageView profileImg;
 
     @FXML
-    private BorderPane centerPane;
+    private  BorderPane centerPane;
 
     @FXML
     public void initialize() {
@@ -37,6 +37,10 @@ public class BarController {
        centerPane.setCenter(node);
 
 
+    }
+
+    public BorderPane getCenterPane() {
+        return centerPane;
     }
 
     @FXML
