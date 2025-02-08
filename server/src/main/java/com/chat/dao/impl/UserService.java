@@ -113,7 +113,7 @@ public class UserService  implements UserRepository {
                 "linkedin_url = ?, " +
                 "facebook_url = ?, " +
                 "twitter_url = ?, " +
-                "is_online = ? " +
+                "isOnline = ? " +
                 "WHERE user_id = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -125,7 +125,7 @@ public class UserService  implements UserRepository {
             preparedStatement.setString(6, userDTO.getBio());
 
             if (userDTO.getDob() != null) {
-                preparedStatement.setDate(7, new java.sql.Date(userDTO.getDob().getTime()));
+                preparedStatement.setDate(7, java.sql.Date.valueOf(userDTO.getDob()));
             } else {
                 preparedStatement.setNull(7, Types.DATE);
             }
@@ -155,8 +155,8 @@ public class UserService  implements UserRepository {
 
     public void addNewUser(User userDTO) {
         String query = "INSERT INTO user (" +
-                "phone_number, email, picture, gender, country, bio, dob, password, count_of_login, mode, " +
-                "is_chatbot_enabled, name, linkedin_url, facebook_url, twitter_url, is_online) " +
+                "phone_number, email, picture, gender, country, bio, DOB, password, count_of_login, mode, " +
+                "is_chatbot_enabled, name, linkedin_url, facebook_url, twitter_url, isOnline) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -166,7 +166,7 @@ public class UserService  implements UserRepository {
             preparedStatement.setString(4, userDTO.getGender());
             preparedStatement.setString(5, userDTO.getCountry());
             preparedStatement.setString(6, userDTO.getBio());
-            preparedStatement.setDate(7, new java.sql.Date(userDTO.getDob().getTime()));
+            preparedStatement.setDate(7, java.sql.Date.valueOf(userDTO.getDob()));
             preparedStatement.setString(8, userDTO.getPassword());
             preparedStatement.setObject(9, userDTO.getCountOfLogin());
             preparedStatement.setString(10, userDTO.getMode());
@@ -185,7 +185,7 @@ public class UserService  implements UserRepository {
                 System.out.println("Failed to add new user.");
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Error adding new user", e);
+            throw new RuntimeException("Error adding new user"+ e);
         }
     }
 
@@ -226,7 +226,7 @@ public class UserService  implements UserRepository {
 
     @Override
     public void updateStatus(int userId, String status) {
-        updateUserField("status", status, userId);
+        updateUserField("mode", status, userId);
     }
 
     @Override
@@ -236,7 +236,7 @@ public class UserService  implements UserRepository {
 
     @Override
     public void updateOnline(int userId, Boolean isOnline) {
-        updateUserField("is_online", isOnline, userId);
+        updateUserField("isOnline", isOnline, userId);
     }
 
     @Override
@@ -263,7 +263,7 @@ public class UserService  implements UserRepository {
                 userDTO.setGender(resultSet.getString("gender"));
                 userDTO.setCountry(resultSet.getString("country"));
                 userDTO.setBio(resultSet.getString("bio"));
-                userDTO.setDob(resultSet.getDate("DOB"));
+                resultSet.getDate("DOB").toLocalDate();
                 userDTO.setPassword(resultSet.getString("password"));
                 userDTO.setCountOfLogin(resultSet.getInt("count_of_login"));
                 userDTO.setMode(resultSet.getString("mode"));
@@ -272,7 +272,7 @@ public class UserService  implements UserRepository {
                 userDTO.setLinkedinUrl(resultSet.getString("linkedin_url"));
                 userDTO.setFacebookUrl(resultSet.getString("facebook_url"));
                 userDTO.setTwitterUrl(resultSet.getString("twitter_url"));
-                userDTO.setIsOnline(resultSet.getBoolean("is_online"));
+                userDTO.setIsOnline(resultSet.getBoolean("isOnline"));
 
 
 
@@ -357,10 +357,28 @@ public class UserService  implements UserRepository {
 
     public static void main(String[] args) {
         UserService service = new UserService();
-        User user =service.findUserById(1);
-        System.out.println(user);
-        user.setEmail("menna@gmail.com");
-        service.updateUser(user);
+        User user = new User();
+
+
+        user.setPhoneNumber("0123456789");
+        user.setEmail("user@example.com");
+        user.setPicture(new byte[0]);  // صورة فارغة
+        user.setGender("Female");
+        user.setCountry("Egypt");
+        user.setBio("This is my bio.");
+       // user.setDob(new Date(2000 - 1900, 5, 15));  // لاحظ تعديل السنة
+        user.setPassword("password123");
+        user.setCountOfLogin(0);
+        user.setMode("AVALIABLE");
+        user.setIsChatbotEnabled(true);
+        user.setName("Sama");
+        user.setLinkedinUrl("https://linkedin.com/in/sama");
+        user.setFacebookUrl("https://facebook.com/sama");
+        user.setTwitterUrl("https://twitter.com/sama");
+        user.setIsOnline(false);
+        service.addNewUser(user);
+
+
     }
 
 }
