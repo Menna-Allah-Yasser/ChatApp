@@ -14,7 +14,7 @@ public class ClientImpl extends UnicastRemoteObject implements ClientRepository 
     }
 
     @Override
-    public void getNotification(Notification notification) {
+    public void getNotification(Notification notification)  throws  RemoteException{
         Cordinator.getNotificationList().add(0,notification);
 
     }

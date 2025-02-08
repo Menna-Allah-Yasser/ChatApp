@@ -10,6 +10,8 @@ module com.chat.client {
     requires java.desktop;
     //  exports com.chat to javafx.graphics;
 
+    exports com.chat.network to java.rmi;
+
 
     opens com.chat to javafx.fxml;
     exports com.chat to javafx.graphics;

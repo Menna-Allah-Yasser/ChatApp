@@ -87,6 +87,9 @@ public class LoginController {
             SessionManager.setLoggedInUser(user.getUserId(),user.getPhoneNumber(), user.getPassword());
 
 
+            System.out.println("hello"+SessionManager.getLoggedInUser());
+
+
 
         }
 

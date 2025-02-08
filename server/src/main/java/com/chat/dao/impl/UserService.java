@@ -367,26 +367,14 @@ public class UserService  implements UserRepository {
     public static void main(String[] args) {
         UserService service = new UserService();
 
-        User user = new User();
+        User user = service.findUserById(2);
+
+        service.updateOnline(user.getUserId(), false);
 
 
-        user.setPhoneNumber("0123456789");
-        user.setEmail("user@example.com");
-        user.setPicture(new byte[0]);  // صورة فارغة
-        user.setGender("Female");
-        user.setCountry("Egypt");
-        user.setBio("This is my bio.");
-       // user.setDob(new Date(2000 - 1900, 5, 15));  // لاحظ تعديل السنة
-        user.setPassword("password123");
-        user.setCountOfLogin(0);
-        user.setMode("AVALIABLE");
-        user.setIsChatbotEnabled(true);
-        user.setName("Sama");
-        user.setLinkedinUrl("https://linkedin.com/in/sama");
-        user.setFacebookUrl("https://facebook.com/sama");
-        user.setTwitterUrl("https://twitter.com/sama");
-        user.setIsOnline(false);
-        service.addNewUser(user);
+        user = service.findUserById(2);
+
+        System.out.println(user);
 
     }
 

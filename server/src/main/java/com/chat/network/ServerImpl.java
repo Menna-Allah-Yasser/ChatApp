@@ -26,6 +26,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
    private NotificationImpl notificationServer;
 
     private ServerImpl() throws RemoteException {
+        clients = new ConcurrentHashMap<>();
     }
 
     public static ServerRepository getServer() {
@@ -50,14 +51,15 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
         clients.put(id , callback);
         List<User> friends =  userServer.getUserService().getFriendsUser(id);
         Notification notification = notificationServer.createNotification("went onLine", Timestamp.valueOf(LocalDateTime.now()),id, false ,0);
-        for (User friend :friends)
+        if(friends!=null)
+        {   for (User friend :friends)
       {
           if (clients.containsKey(friend.getUserId()))
           {
                ClientRepository clientRepository =clients.get(friend.getUserId());
                clientRepository.getNotification(notification);
           }
-      }
+      }}
     }
 
     @Override
