@@ -5,9 +5,13 @@ import com.chat.entity.*;
 import com.chat.utils.Cordinator;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
-public class ClientImpl implements ClientRepository {
+public class ClientImpl extends UnicastRemoteObject implements ClientRepository {
 
+
+    public ClientImpl() throws RemoteException {
+    }
 
     @Override
     public void getNotification(Notification notification) {

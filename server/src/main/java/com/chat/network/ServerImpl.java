@@ -114,6 +114,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
 
     @Override
     public void updateUserInfo(User user) throws RemoteException {
+
         userServer= UserServerImpl.getUserService();
         userServer.updateUser(user);
     }
