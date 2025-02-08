@@ -71,7 +71,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
         clients.remove(id);
         List<User> friends =  userServer.getUserService().getFriendsUser(id);
         Notification notification = notificationServer.createNotification("went offLine", Timestamp.valueOf(LocalDateTime.now()),id, false ,0);
-        for (User friend :friends)
+      if(friends != null)  for (User friend :friends)
         {
             if (clients.containsKey(friend.getUserId()))
             {

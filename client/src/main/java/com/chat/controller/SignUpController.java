@@ -347,11 +347,12 @@ public class SignUpController {
 
   @FXML
   void goToSignin(ActionEvent event) {
-    try {
-      Director.loadView(event, "login");
-    } catch (Exception e) {
-      throw new RuntimeException(e);
-    }
+
+      try {
+          ClientStarter.setRoot("login");
+      } catch (IOException e) {
+          throw new RuntimeException(e);
+      }
   }
 
   @FXML

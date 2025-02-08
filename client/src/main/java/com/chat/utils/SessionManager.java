@@ -1,6 +1,7 @@
 package com.chat.utils;
 
 
+ import java.io.FileNotFoundException;
  import java.util.Properties;
 import java.io.FileOutputStream;
 import java.io.FileInputStream;
@@ -14,8 +15,10 @@ import java.io.IOException;
             try (FileOutputStream out = new FileOutputStream(PROPERTIES_FILE)) {
                 Properties properties = new Properties();
                 properties.setProperty("loggedInUser", String.valueOf(userId));
-                properties.setProperty("phoneNumber", password);
+                properties.setProperty("phoneNumber", phoneNumber);
                 properties.setProperty("password", password);
+
+                properties.store(out, "new user");
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -26,11 +29,25 @@ import java.io.IOException;
         }
         public static void clearSession() {
 
+            Properties properties = new Properties();
+
+            try (FileInputStream  in =  new FileInputStream(PROPERTIES_FILE)){
+
+                properties.load(in);
+
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            properties.remove("loggedInUser");
+            properties.remove("password");
+
 
             try (FileOutputStream out = new FileOutputStream(PROPERTIES_FILE)) {
-                Properties properties = new Properties();
-                properties.remove("loggedInUser");
-                properties.remove("password");
+
+                properties.store(out,null);
+
 
             } catch (IOException e) {
                 e.printStackTrace();

@@ -95,15 +95,15 @@ public class BarController {
 
         int id = SessionManager.getLoggedInUser();
 
-      //  ClientStarter.setRoot("signUp");
 
-      /*  try {
+
+        try {
             server.logout(id);
 
             SessionManager.clearSession();
 
             try {
-                ClientStarter.setRoot("signUp");
+                ClientStarter.setRoot("login");
             } catch (IOException e) {
 
             }
@@ -112,7 +112,8 @@ public class BarController {
             throw new RuntimeException(e);
         }
 
-       */
+
+
 
     }
 
