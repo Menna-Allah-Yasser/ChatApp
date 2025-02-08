@@ -14,6 +14,7 @@ CREATE TABLE `announcement` (
   KEY `admin_id_idx` (`admin_id`),
   CONSTRAINT `admin_id` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 CREATE TABLE `chat` (
   `chat_id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -23,19 +24,11 @@ CREATE TABLE `chat` (
 CREATE TABLE `invitation` (
   `sender_id` int NOT NULL,
   `receiver_id` int NOT NULL,
-  `status` enum('ACCEPT','GEJECT','WAIT') NOT NULL DEFAULT 'WAIT',
+  `status` enum('ACCEPT','REJECT','WAIT') NOT NULL DEFAULT 'WAIT',
   PRIMARY KEY (`sender_id`,`receiver_id`),
   KEY `receiver_id_idx` (`receiver_id`),
   CONSTRAINT `receiver_id` FOREIGN KEY (`receiver_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE,
   CONSTRAINT `sender_id` FOREIGN KEY (`sender_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE `notifcation` (
-  `notifcation_id` int NOT NULL AUTO_INCREMENT,
-  `describtion` varchar(400) NOT NULL,
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`notifcation_id`),
-  UNIQUE KEY `notifcation_id_UNIQUE` (`notifcation_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `message` (
@@ -53,6 +46,18 @@ CREATE TABLE `message` (
   CONSTRAINT `user_message_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE TABLE `notifcation` (
+  `notifcation_id` int NOT NULL AUTO_INCREMENT,
+  `describtion` varchar(400) NOT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `isMessage` tinyint NOT NULL DEFAULT '1',
+  `chatId` int DEFAULT NULL,
+  PRIMARY KEY (`notifcation_id`),
+  UNIQUE KEY `notifcation_id_UNIQUE` (`notifcation_id`),
+  KEY `chat_id_of_message_idx` (`chatId`),
+  CONSTRAINT `chat_id_of_message` FOREIGN KEY (`chatId`) REFERENCES `chat` (`chat_id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 CREATE TABLE `particpant` (
   `chat_id` int NOT NULL,
   `particpant_id` int NOT NULL,
@@ -63,29 +68,6 @@ CREATE TABLE `particpant` (
   CONSTRAINT `chat_id` FOREIGN KEY (`chat_id`) REFERENCES `chat` (`chat_id`) ON DELETE CASCADE,
   CONSTRAINT `participant_id` FOREIGN KEY (`particpant_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE `user` (
-  `user_id` int NOT NULL AUTO_INCREMENT,
-  `phone_number` varchar(11) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `picture` blob,
-  `gender` enum('FEMALE','MALE') NOT NULL DEFAULT 'MALE',
-  `country` varchar(45) NOT NULL,
-  `bio` varchar(250) DEFAULT NULL,
-  `DOB` date NOT NULL,
-  `password` varchar(12) NOT NULL,
-  `count_of_login` int DEFAULT NULL,
-  `mode` enum('AVALIABLE','BUSY','AWAY') DEFAULT 'AVALIABLE',
-  `is_chatbot_enabled` tinyint NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `linkedin_url` varchar(60) DEFAULT NULL,
-  `facebook_url` varchar(60) DEFAULT NULL,
-  `twitter_url` varchar(60) DEFAULT NULL,
-  `isOnline` tinyint DEFAULT '0',
-  PRIMARY KEY (`user_id`),
-  UNIQUE KEY `user_id_UNIQUE` (`user_id`),
-  UNIQUE KEY `phone_number_UNIQUE` (`phone_number`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `session` (
   `session_id` int NOT NULL AUTO_INCREMENT,
@@ -98,6 +80,29 @@ CREATE TABLE `session` (
   KEY `user_session_id_idx` (`user_session_id`),
   CONSTRAINT `user_session_id` FOREIGN KEY (`user_session_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `user` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `phone_number` varchar(11) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `picture` mediumblob,
+  `gender` enum('FEMALE','MALE') NOT NULL DEFAULT 'MALE',
+  `country` varchar(45) NOT NULL,
+  `bio` varchar(250) DEFAULT NULL,
+  `DOB` date NOT NULL,
+  `password` varchar(12) NOT NULL,
+  `count_of_login` int DEFAULT NULL,
+  `mode` enum('AVALIABLE','BUSY','AWAY') DEFAULT 'AVALIABLE',
+  `is_chatbot_enabled` tinyint NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `linkedin_url` varchar(60) DEFAULT NULL,
+  `facebook_url` varchar(60) DEFAULT NULL,
+  `twitter_url` varchar(60) DEFAULT NULL,
+  `is_online` tinyint DEFAULT '0',
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `user_id_UNIQUE` (`user_id`),
+  UNIQUE KEY `phone_number_UNIQUE` (`phone_number`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `user_announcement` (
   `user_announcement_id` int NOT NULL,
