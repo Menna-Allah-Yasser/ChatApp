@@ -11,6 +11,11 @@ module com.chat.server {
   
     requires mysql.connector.j;
 
+
+    requires javafx.graphics;
+    exports com.chat to javafx.graphics;
+
+
     requires javafx.graphics;
     exports com.chat to javafx.graphics;
 
@@ -20,6 +25,7 @@ module com.chat.server {
   
     exports com.chat.entity;
     exports com.chat.network;
+
     opens com.chat.network to java.rmi;
 }
 

@@ -141,6 +141,9 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
         return userServer.getFriendsUser(userId);
     }
 
+
+
+
     @Override
     public List<Invitation> getAllInvitation(int userId) throws RemoteException {
         return InvitationServerImpl.getInvitationServerImp().getUserFriendRequests(userId);
@@ -209,7 +212,6 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
         NotificationImpl notificationImpl=NotificationImpl.getNotificationImpl();
         return notificationImpl.getAllNotification(userId);
     }
-
 
 
 }

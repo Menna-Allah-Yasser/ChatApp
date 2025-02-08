@@ -63,6 +63,7 @@ public class ProfileController {
 
         User user ;
         try {
+
             user = serverRepository.getUser(1);
             System.out.println(user);
             user.setEmail(email.getText());
@@ -127,6 +128,14 @@ public class ProfileController {
 
 
     private void showUserData(){
+
+            user = serverRepository.getUser(21);
+        } catch (RemoteException e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println(user);
+        user.setEmail(email.getText());
+
         try {
 
 
