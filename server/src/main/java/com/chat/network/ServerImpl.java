@@ -50,12 +50,17 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
         userServer.getUserService().updateOnline(id, true);
         clients.put(id , callback);
         List<User> friends =  userServer.getUserService().getFriendsUser(id);
-        Notification notification = notificationServer.createNotification("went onLine", Timestamp.valueOf(LocalDateTime.now()),id, false ,0);
+        Notification notification = notificationServer.createNotification("went onLine", Timestamp.valueOf(LocalDateTime.now()),id, false ,6);
+        System.out.println("jhfjhfcghcgkcjhcghcgh");
+        System.out.println(notification);
+        System.out.println(friends);
+        System.out.println(friends.size());
         if(friends!=null)
         {   for (User friend :friends)
       {
           if (clients.containsKey(friend.getUserId()))
           {
+
                ClientRepository clientRepository =clients.get(friend.getUserId());
                clientRepository.getNotification(notification);
           }
@@ -70,7 +75,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
         userServer.getUserService().updateOnline(id, false);
         clients.remove(id);
         List<User> friends =  userServer.getUserService().getFriendsUser(id);
-        Notification notification = notificationServer.createNotification("went offLine", Timestamp.valueOf(LocalDateTime.now()),id, false ,0);
+        Notification notification = notificationServer.createNotification("went offLine", Timestamp.valueOf(LocalDateTime.now()),id, false ,6);
       if(friends != null)  for (User friend :friends)
         {
             if (clients.containsKey(friend.getUserId()))
