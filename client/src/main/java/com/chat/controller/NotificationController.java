@@ -46,7 +46,7 @@ public class NotificationController implements Initializable {
 
             Runnable r=()->{
                 try {
-                    nlist.setAll(server.getAllNotifications(29));//SessionManager.getLoggedInUser()
+                    nlist.setAll(server.getAllNotifications(SessionManager.getLoggedInUser()));//
                 } catch (RemoteException e) {
                     throw new RuntimeException(e);
                 }
@@ -125,7 +125,7 @@ public class NotificationController implements Initializable {
                        if(notification.getStat()== Notification.status.UNREAD)
                        {
                            Runnable r=()->{ try {
-                               server.updateNotification(notification.getId(),29);
+                               server.updateNotification(notification.getId(),SessionManager.getLoggedInUser());
                            } catch (RemoteException ex) {
                                throw new RuntimeException(ex);
                            }};
