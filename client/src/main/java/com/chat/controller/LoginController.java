@@ -7,10 +7,7 @@ import com.chat.network.ServerConnection;
 import com.chat.network.ServerRepository;
 import com.chat.utils.SessionManager;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 
 import java.io.File;
@@ -37,6 +34,10 @@ public class LoginController {
 
     @FXML
     private ImageView imageView;
+
+    @FXML
+    private Label warningLabel;
+
 
     ServerRepository server;
     @FXML
@@ -78,6 +79,7 @@ public class LoginController {
 
         if(server.authenticateUser(phoneNumber,password))
         {
+            System.out.println(server.authenticateUser(phoneNumber,password));
            User user = server.getUser(phoneNumber);
 
            ClientImpl client = new ClientImpl();
@@ -89,12 +91,20 @@ public class LoginController {
 
             System.out.println("hello"+SessionManager.getLoggedInUser());
 
+            ClientStarter.setRoot("Bar");
+
+            warningLabel.setVisible(false);
 
 
         }
+        else{
+            warningLabel.setVisible(true);
+            warningLabel.setStyle("-fx-text-fill: red;");
+           // signInbutton.setDisable(false);
+        }
 
         //send id to home
-        ClientStarter.setRoot("Bar");
+
 
     }
 
