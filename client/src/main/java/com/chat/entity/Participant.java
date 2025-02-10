@@ -57,7 +57,7 @@ public class Participant implements Serializable {
 
 
     public enum State {
-        BLOCKED, AVAILABLE;
+        BOLCKED, AVAILABLE;
     }
 
     @Override

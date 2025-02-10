@@ -1,7 +1,12 @@
 package com.chat;
 
 import com.chat.controller.BarController;
+import com.chat.entity.Participant;
+import com.chat.network.ServerConnection;
+import com.chat.network.ServerRepository;
 import com.chat.utils.Cordinator;
+import com.chat.utils.CurrentChat;
+import com.chat.utils.SessionManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,6 +19,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
+import java.util.List;
 
 public class ClientStarter extends Application {
 
@@ -26,7 +33,9 @@ public class ClientStarter extends Application {
         final Pane root = new Pane(); // root container
 
         stage.setOnCloseRequest((e)->{
-            Cordinator.getScheduledExecutorService().shutdown();});
+            Cordinator.getScheduledExecutorService().shutdown();
+            ServerConnection.disconnect();
+        });
         Pane controller = loadFXML("login");
         controller.setPrefWidth(initWidth);
         controller.setPrefHeight(initHeight);
@@ -71,14 +80,15 @@ public class ClientStarter extends Application {
     private static Pane loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ClientStarter.class.getResource(fxml + ".fxml"));
         Pane p= fxmlLoader.load();
-        if(fxml=="Bar")
+        if(fxml.equals("Bar"))
         {
             Cordinator.barController=fxmlLoader.getController();
         }
         return p;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
+
         launch();
     }
 }

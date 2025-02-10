@@ -130,20 +130,7 @@ public class ProfileController {
 
 
     private void showUserData(){
-
         try {
-            user = serverRepository.getUser(21);
-
-            user.setEmail(email.getText());
-        } catch (RemoteException ex) {
-            throw new RuntimeException(ex);
-        }
-
-
-
-        try {
-
-
             User user = serverRepository.getUser(1);
             name.setText(user.getName());
             modehead.setText(user.getMode());
@@ -154,10 +141,10 @@ public class ProfileController {
             mode.setText(user.getMode());
             email.setText(user.getEmail());
             DOB.setValue(user.getDob());
-            byte[] imageData  = user.getPicture();
-            InputStream inputStream = new ByteArrayInputStream(imageData);
-            Image newImage = new Image(inputStream);
-            imgView.setImage(newImage);
+//            byte[] imageData  = user.getPicture();
+//            InputStream inputStream = new ByteArrayInputStream(imageData);
+//            Image newImage = new Image(inputStream);
+//            imgView.setImage(newImage);
 
         }catch(RemoteException e) {
             System.out.println(e.getMessage());

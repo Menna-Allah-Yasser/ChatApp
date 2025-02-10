@@ -9,6 +9,7 @@ import com.chat.utils.Cordinator;
 import com.chat.utils.CurrentChat;
 import com.chat.utils.Director;
 import com.chat.utils.SessionManager;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -45,16 +46,21 @@ public class NotificationController implements Initializable {
         ServerRepository server= ServerConnection.getServer();
 
             Runnable r=()->{
-                try {
-                    nlist.setAll(server.getAllNotifications(29));//SessionManager.getLoggedInUser()
-                } catch (RemoteException e) {
-                    throw new RuntimeException(e);
-                }
+
+                    Platform.runLater(()->{
+                        try {
+                            nlist.setAll(server.getAllNotifications(SessionManager.getLoggedInUser()));
+                        } catch (RemoteException e) {
+                            throw new RuntimeException(e);
+                        }
+                        list.setItems(nlist);});
+                    //
+
             };
             Cordinator.getScheduledExecutorService().execute(r);
 
 
-        list.setItems(nlist);
+
         list.setCellFactory(param -> new ListCell<Object>() {
             private final HBox content;
             //private final ImageView avatar;
@@ -125,7 +131,7 @@ public class NotificationController implements Initializable {
                        if(notification.getStat()== Notification.status.UNREAD)
                        {
                            Runnable r=()->{ try {
-                               server.updateNotification(notification.getId(),29);
+                               server.updateNotification(notification.getId(),SessionManager.getLoggedInUser());
                            } catch (RemoteException ex) {
                                throw new RuntimeException(ex);
                            }};

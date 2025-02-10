@@ -3,6 +3,7 @@ package com.chat.network;
 
 import com.chat.entity.*;
 import com.chat.utils.Cordinator;
+import javafx.application.Platform;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -15,7 +16,7 @@ public class ClientImpl extends UnicastRemoteObject implements ClientRepository 
 
     @Override
     public void getNotification(Notification notification)  throws  RemoteException{
-        Cordinator.getNotificationList().add(0,notification);
+       Platform.runLater(()->{Cordinator.getNotificationList().add(0,notification);});
 
     }
 

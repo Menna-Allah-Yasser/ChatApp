@@ -7,7 +7,7 @@ import java.rmi.RemoteException;
 
 public class ServerConnection {
 
-    private static ServerRepository server;
+    private static ServerRepository server=null;
 
     private final static String serverURI = "rmi://localhost:1901/ChatServer";
 
