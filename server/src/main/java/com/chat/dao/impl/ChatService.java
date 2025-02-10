@@ -17,13 +17,13 @@ import java.util.List;
 public class ChatService implements ChatRepository {
 
     private String query;
-    private Connection connection = DBConnectionManager.getConnection();
+
 
     @Override
     public boolean addNewChat(Chat chat) {
         query = "INSERT INTO CHAT (NAME) VALUES (?)";
         int rowAffected = 0;
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query);){
+        try (Connection connection=DBConnectionManager.getConnection();PreparedStatement preparedStatement = connection.prepareStatement(query);){
             preparedStatement.setString(1 , chat.getName());
             rowAffected = preparedStatement.executeUpdate();
             connection.commit();
@@ -37,7 +37,7 @@ public class ChatService implements ChatRepository {
     public List<Chat> getChats() {
         List<Chat> chatList = new ArrayList<>();
         query = "SELECT * FROM CHAT";
-        try(Statement statement = connection.createStatement() ) {
+        try(Connection connection=DBConnectionManager.getConnection();Statement statement = connection.createStatement() ) {
             ResultSet chats = statement.executeQuery(query);
 
             while(chats.next()){
@@ -56,7 +56,7 @@ public class ChatService implements ChatRepository {
         int rowAffected = 0;
         query = "UPDATE CHAT SET Name = ? WHERE chat_id = ?";
 
-        try( PreparedStatement preparedStatement = connection.prepareStatement(query);) {
+        try(Connection connection=DBConnectionManager.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query);) {
             preparedStatement.setString(1 , newName);
             preparedStatement.setInt(2 , id);
             rowAffected = preparedStatement.executeUpdate();
@@ -70,8 +70,8 @@ public class ChatService implements ChatRepository {
     @Override
     public boolean isValidChatId(int chat_id) {
         query = "SELECT chat_id FROM Chat";
-        try {
-            Statement statement = connection.createStatement();
+        try (Connection connection=DBConnectionManager.getConnection();Statement statement = connection.createStatement();){
+
             ResultSet ids = statement.executeQuery(query);
             while (ids.next()){
                 if(ids.getInt(1) == chat_id){
@@ -88,17 +88,18 @@ public class ChatService implements ChatRepository {
     @Override
     public Chat getChatById(int chatId) {
 
-        query = "SELECT * FROM Chat WHERE chat_id=?";
+        query = "SELECT * FROM chat WHERE chat_id=?";
         Chat chat = null;
 
-        try( PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        try(Connection connection=DBConnectionManager.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1 , chatId);
             ResultSet rs = preparedStatement.executeQuery();
+            connection.commit();
             while (rs.next()){
                 chat = new Chat(rs.getString(2));
                 chat.setId(rs.getInt(1));
             }
-            connection.commit();
+            rs.close();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -120,12 +121,10 @@ public class ChatService implements ChatRepository {
 
         ChatService chatService = new ChatService();
 
-        List<Integer> ids = new ArrayList<>();
-        ids.add(1);
-        ids.add(3);
+
         //System.out.println(chatService.getChats());
         //System.out.println(chatService.getChatById(1));
-        System.out.println(chatService.getChatsById(ids));
+        System.out.println(chatService.getChatById(6));
 
 
       /*  Chat chat = new Chat("iti");

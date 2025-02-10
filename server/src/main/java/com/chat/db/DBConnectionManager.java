@@ -25,7 +25,7 @@ public class DBConnectionManager {
             dataSource.setPassword(props.getProperty("MYSQL_DB_PASSWORD"));
             dataSource.setMinIdle(5);
             dataSource.setMaxIdle(10);
-            dataSource.setMaxTotal(20);
+            dataSource.setMaxTotal(50);
             dataSource.setMaxWaitMillis(5000);
             dataSource.setTestOnBorrow(true);
         } catch (IOException e) {
