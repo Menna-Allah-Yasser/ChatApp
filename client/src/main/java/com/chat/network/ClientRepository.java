@@ -23,4 +23,7 @@ public interface ClientRepository extends Remote {
 
     public void disconnect() throws RemoteException;
 
+
+
+
 }

@@ -8,7 +8,6 @@ import javafx.scene.control.*;
 import com.chat.entity.User;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 
 import java.io.ByteArrayInputStream;
@@ -17,8 +16,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.rmi.RemoteException;
-import java.time.LocalDate;
-import java.time.ZoneId;
 
 public class ProfileController {
     @FXML
@@ -130,7 +127,11 @@ public class ProfileController {
 
 
     private void showUserData(){
+
+
+
         try {
+
             User user = serverRepository.getUser(1);
             name.setText(user.getName());
             modehead.setText(user.getMode());

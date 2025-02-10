@@ -1,6 +1,7 @@
 package com.chat.service.repository;
 
 import com.chat.entity.Chat;
+import com.chat.entity.ChatCard;
 import com.chat.entity.Message;
 import com.chat.entity.Participant;
 
@@ -12,6 +13,11 @@ public interface ChatServerRepository {
      Map<Chat, List<Message>> getChatsWithMessagesByUserId(int user_id);
 
      List<Chat> getUserChatsByUserId(int user_id);
+
+
+     List<ChatCard> getChatsForUser(int userId);
+
      public List<Participant> getChatParticipants(int chat_id);
      public Chat getChatById(int chatId);
+
 }

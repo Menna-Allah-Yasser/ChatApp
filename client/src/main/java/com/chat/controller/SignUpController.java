@@ -1,9 +1,11 @@
 package com.chat.controller;
 
+
 import com.chat.ClientStarter;
 import com.chat.entity.User;
 import com.chat.network.ServerConnection;
 import com.chat.network.ServerRepository;
+
 import com.chat.utils.Director;
 import com.chat.utils.UserValidation;
 import javafx.event.ActionEvent;
