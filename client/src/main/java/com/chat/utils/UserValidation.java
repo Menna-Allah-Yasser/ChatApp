@@ -37,7 +37,7 @@
          if (isNull(userName))
              return false;
 
-         regex = "^[A-Za-a]{3,12}$";
+         regex = "^[A-Za-z]{3,12}$";
 
          pattern = Pattern.compile(regex);
 

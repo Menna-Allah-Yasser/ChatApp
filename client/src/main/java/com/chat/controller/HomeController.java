@@ -1,11 +1,16 @@
 package com.chat.controller;
 
+
 import com.chat.entity.ChatCard;
 import com.chat.entity.ChatCardClient;
+
+import com.chat.entity.Message;
+
 import com.chat.network.ServerConnection;
 import com.chat.network.ServerRepository;
 import com.chat.utils.Cordinator;
 import com.chat.utils.CurrentChat;
+
 import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -266,10 +271,6 @@ public class HomeController {
 
 }
         }*/
-
-
-
-
 
 
 

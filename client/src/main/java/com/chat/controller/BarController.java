@@ -1,11 +1,18 @@
 package com.chat.controller;
 
+import com.chat.ClientStarter;
+import com.chat.network.ServerConnection;
+import com.chat.network.ServerRepository;
 import com.chat.utils.Director;
+import com.chat.utils.SessionManager;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+
+import java.io.IOException;
+import java.rmi.RemoteException;
 
 public class BarController {
 
@@ -45,7 +52,7 @@ public class BarController {
     @FXML
     protected void onFriendRequestClick()
     {
-        Node node=  Director.loadView("friendreq");
+        Node node=  Director.loadView("friend");
         centerPane.setCenter(node);
 
     }
@@ -79,6 +86,35 @@ public class BarController {
     void onLogoClicked(MouseEvent event) {
         Node node=  Director.loadView("home");
         centerPane.setCenter(node);
+    }
+
+    @FXML
+    void exitHandler(MouseEvent event) {
+
+        ServerRepository  server = ServerConnection.getServer();
+
+        int id = SessionManager.getLoggedInUser();
+
+
+
+        try {
+            server.logout(id);
+
+            SessionManager.clearSession();
+
+            try {
+                ClientStarter.setRoot("login");
+            } catch (IOException e) {
+
+            }
+
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
+
     }
 
 

@@ -1,11 +1,14 @@
 package com.chat.controller;
 
+import com.chat.entity.Invitation;
+import com.chat.network.ServerConnection;
+import com.chat.network.ServerRepository;
+import com.chat.utils.SessionManager;
+import com.chat.utils.UserValidation;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ListCell;
+import javafx.scene.control.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.AnchorPane;
@@ -13,6 +16,9 @@ import javafx.scene.text.Text;
 import javafx.scene.text.Font;
 
 import java.net.URL;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class addContactController implements Initializable {
@@ -23,6 +29,9 @@ public class addContactController implements Initializable {
     @FXML private TextField phoneTextField;
 
     private ObservableList<String> contacts;
+
+    @FXML
+    private Label warningLabel;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -77,10 +86,80 @@ public class addContactController implements Initializable {
         // Handle Add button click event
         btnAdd.setOnAction(event -> {
             String phoneNumber = phoneTextField.getText().trim();
-            if (!phoneNumber.isEmpty()) {
+
+            ServerRepository server =ServerConnection.getServer();
+
+            boolean isValid;
+
+
+            try {
+                 isValid = (server.getUser(phoneNumber)!=null)&& UserValidation.isValidPhoneNumber(phoneNumber);
+            } catch (RemoteException e) {
+                throw new RuntimeException(e);
+            }
+
+            if (isValid) {
                 contacts.add(phoneNumber);
                 phoneTextField.clear();
+                warningLabel.setVisible(false);
+            }
+            else {
+                warningLabel.setText("invalid number");
+                applyWarningStyle(warningLabel);
+                //  warningLabel.setStyle("-fx-text-fill: red;");
+                warningLabel.setVisible(true);
             }
         });
+    }
+    private void applyWarningStyle(Label label) {
+        label.setStyle(
+                "-fx-text-fill: red;" +
+                        "-fx-font-weight: bold;" +
+                        "-fx-font-size: 14px;" +
+                        "-fx-background-color: #ffe6e6;" +
+                        "-fx-padding: 5px;" +
+                        "-fx-border-color: red;" +
+                        "-fx-border-radius: 5px;" +
+                        "-fx-background-radius: 5px;"
+        );
+    }
+
+    @FXML
+    void sendRequsts(ActionEvent event) {
+
+        int sender_id = SessionManager.getLoggedInUser();
+
+        ServerRepository server = ServerConnection.getServer();
+
+        List<Invitation> invitations = new ArrayList<>();
+
+        Invitation invitation;
+
+        for (String contact : contacts) {
+
+            try {
+             int receiver = server.getUser(contact).getUserId();
+
+             invitation = new Invitation(sender_id,receiver);
+
+             invitations.add(invitation);
+
+
+
+
+            } catch (RemoteException e) {
+                throw new RuntimeException(e);
+            }
+
+
+        }
+
+        try {
+            server.sendFriendRequest(invitations);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 }

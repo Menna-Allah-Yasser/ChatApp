@@ -50,6 +50,8 @@ public class ProfileController {
 
     @FXML
     private TextField phone;
+
+    User user ;
     private ServerRepository serverRepository = ServerConnection.getServer();
     @FXML
     public void initialize() {
@@ -58,7 +60,7 @@ public class ProfileController {
     @FXML
     void updateUserProfile() {
 
-        User user ;
+
         try {
 
             user = serverRepository.getUser(1);
@@ -126,6 +128,8 @@ public class ProfileController {
 
     private void showUserData(){
 
+
+
         try {
 
             User user = serverRepository.getUser(1);
@@ -138,12 +142,12 @@ public class ProfileController {
             mode.setText(user.getMode());
             email.setText(user.getEmail());
             DOB.setValue(user.getDob());
-            byte[] imageData  = user.getPicture();
-            InputStream inputStream = new ByteArrayInputStream(imageData);
-            Image newImage = new Image(inputStream);
-            imgView.setImage(newImage);
+//            byte[] imageData  = user.getPicture();
+//            InputStream inputStream = new ByteArrayInputStream(imageData);
+//            Image newImage = new Image(inputStream);
+//            imgView.setImage(newImage);
 
-        } catch (RemoteException e) {
+        }catch(RemoteException e) {
             System.out.println(e.getMessage());
         }
     }

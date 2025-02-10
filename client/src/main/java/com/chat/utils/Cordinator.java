@@ -1,7 +1,11 @@
 package com.chat.utils;
 
 import com.chat.controller.BarController;
+
 import com.chat.entity.ChatCardClient;
+
+import com.chat.entity.Chat;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
@@ -11,9 +15,15 @@ import java.util.concurrent.ScheduledExecutorService;
 
 public class Cordinator {
 
+
     //    private static ObservableList<Object> chats=FXCollections.observableArrayList();
     private static ObservableList<Object> list=FXCollections.observableArrayList();
     //    private static ObservableList<Object> flist= FXCollections.observableArrayList();
+
+//    private static ObservableList<Object> chats=FXCollections.observableArrayList();
+    private static ObservableList<Object> list=FXCollections.observableArrayList();
+//    private static ObservableList<Object> flist= FXCollections.observableArrayList();
+
     public static BarController barController;
     private static ObservableList<Object> nlist= FXCollections.observableArrayList();
 
@@ -37,7 +47,11 @@ public class Cordinator {
 //        return flist;
 //    }
 
+
     //    public static ObservableList<Object> getChats() {
+
+//    public static ObservableList<Object> getChats() {
+
 //        return chats;
 //    }
 //
@@ -45,4 +59,6 @@ public class Cordinator {
         return list;
     }
 
+
 }
+

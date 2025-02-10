@@ -1,5 +1,6 @@
 package com.chat;
 
+import com.chat.db.DBConnectionManager;
 import com.chat.enums.ServerState;
 import com.chat.service.impl.InvitationServerImpl;
 import javafx.application.Application;
@@ -10,13 +11,9 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
 
 public class ServerStarter extends Application {
-    private static ServerState serverState = ServerState.STOPPED;
-
-    public static ServerState getServerState() {return serverState;}
-
-    public static void setServerState(ServerState state) {serverState = state;}
 
     @Override
     public void start(Stage stage) throws IOException {

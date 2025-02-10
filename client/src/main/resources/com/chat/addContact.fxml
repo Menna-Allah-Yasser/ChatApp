@@ -28,7 +28,10 @@
                                     <Button fx:id="btnAdd" mnemonicParsing="false" prefHeight="46.0" prefWidth="103.0" text="+" />
                                  </children>
                               </HBox>
-                              <Pane prefHeight="100.0" prefWidth="106.0" HBox.hgrow="ALWAYS" />
+                              <Pane prefHeight="100.0" prefWidth="106.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label fx:id="warningLabel" layoutX="44.0" layoutY="42.0" visible="false" />
+                                 </children></Pane>
                            </children>
                         </HBox>
                      </top>
@@ -39,7 +42,7 @@
                               <HBox alignment="CENTER" layoutX="119.0" layoutY="200.0" prefHeight="73.0" prefWidth="542.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                  <children>
                                     <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                                    <Button fx:id="btnRequest" mnemonicParsing="false" text=" Send Request" />
+                                    <Button fx:id="btnRequest" mnemonicParsing="false" onAction="#sendRequsts" text=" Send Request" />
                                     <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                                  </children>
                               </HBox>
