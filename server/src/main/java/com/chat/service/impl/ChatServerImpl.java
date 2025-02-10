@@ -6,6 +6,7 @@ import com.chat.dao.impl.MessageService;
 import com.chat.dao.impl.ParticipantService;
 import com.chat.entity.Chat;
 import com.chat.entity.Message;
+import com.chat.entity.Participant;
 import com.chat.service.repository.ChatServerRepository;
 
 import java.rmi.RemoteException;
@@ -42,9 +43,21 @@ public class ChatServerImpl implements ChatServerRepository {
         chats = chatService.getChatsById(ids);
         return chats;
     }
+    @Override
+    public ArrayList<Participant> getChatParticipants(int chat_id) {
+        ArrayList<Participant> participants;
+        participants = participantService.geParticpantByChat(chat_id);
+        return participants;
+    }
+
+    @Override
+    public Chat getChatById(int chatId) {
+        return chatService.getChatById(chatId);
+    }
 
     public static void main(String[] args) {
         ChatServerImpl server = new ChatServerImpl();
-        System.out.println(server.getUserChatsByUserId(1));
+        System.out.println(server.getChatById(6 ));
     }
+
 }
