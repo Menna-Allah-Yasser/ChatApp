@@ -97,7 +97,9 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
             {
                 ClientRepository clientRepository =clients.get(friend.getUserId());
                 clientRepository.getNotification(notification);
-                clientRepository.friendLoggedIn(id);
+
+                clientRepository.friendLoggedOut(id);
+
             }
         }
     }

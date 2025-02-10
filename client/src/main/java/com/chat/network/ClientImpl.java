@@ -4,7 +4,10 @@ package com.chat.network;
 import com.chat.entity.*;
 import com.chat.utils.Cordinator;
 
+import javafx.beans.Observable;
+
 import javafx.collections.ObservableList;
+
 
 import javafx.application.Platform;
 
@@ -32,6 +35,8 @@ public class ClientImpl extends UnicastRemoteObject implements ClientRepository 
     @Override
     public void sendMessage(Message message) throws RemoteException {
 
+
+
     }
 
     @Override
@@ -42,10 +47,27 @@ public class ClientImpl extends UnicastRemoteObject implements ClientRepository 
     @Override
     public void friendAcceptedRequest(int friendID) throws RemoteException {
 
+    /*    ObservableList<CardItem> list = Cordinator.getContactList();
+        for(CardItem friend :list)
+        {
+            if(friend.getId()==friendID)
+            {
+                friend.setisuser_isOnline(true);
+            }
+        }*/
     }
 
     @Override
     public void receivedFriendRequest(int friendID) throws RemoteException {
+
+       /* ObservableList<CardItem> list = Cordinator.getContactList();
+        for(CardItem friend :list)
+        {
+            if(friend.getId()==friendID)
+            {
+                friend.setisuser_isOnline(false);
+            }
+        }*/
 
     }
 
