@@ -9,7 +9,7 @@ import java.rmi.RemoteException;
 
 public interface ClientRepository extends Remote {
 
-    public  void  getNotification(Notification notification);  //khaled
+    public  void  getNotification(Notification notification) throws RemoteException;  //khaled
 
     public void sendMessage(Message message) throws RemoteException;
 

@@ -98,8 +98,8 @@ public class UserServerImpl implements UserServerRepository {
 
       List<Integer> usersid=  invitationServer.getUserFriends(id);
 
-      userService.getAllUsers((ArrayList<Integer>) usersid);
-        return null;
+        return userService.getAllUsers((ArrayList<Integer>) usersid);
+
     }
 
     @Override

@@ -18,7 +18,11 @@ public class DBConnectionManager {
         FileInputStream fis = null;
         try {
 
+
             fis = new FileInputStream("E:\\iti\\projects\\ChatApp\\server\\db.properties");
+
+
+            fis = new FileInputStream("/home/khaled/chaatproj/project5/ChatApp/server/db.properties");
 
             props.load(fis);
             dataSource.setUrl(props.getProperty("MYSQL_DB_URL"));
@@ -26,7 +30,7 @@ public class DBConnectionManager {
             dataSource.setPassword(props.getProperty("MYSQL_DB_PASSWORD"));
             dataSource.setMinIdle(5);
             dataSource.setMaxIdle(10);
-            dataSource.setMaxTotal(20);
+            dataSource.setMaxTotal(50);
             dataSource.setMaxWaitMillis(5000);
             dataSource.setTestOnBorrow(true);
         } catch (IOException e) {

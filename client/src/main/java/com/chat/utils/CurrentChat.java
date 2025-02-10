@@ -12,4 +12,6 @@ public class CurrentChat {
     public static Chat chat=null;
     public static User user=null;
     public static List<Participant> participants=new ArrayList<>();
+
 }
+

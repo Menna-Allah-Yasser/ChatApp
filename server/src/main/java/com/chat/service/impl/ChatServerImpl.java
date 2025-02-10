@@ -4,10 +4,16 @@ package com.chat.service.impl;
 import com.chat.dao.impl.ChatService;
 import com.chat.dao.impl.MessageService;
 import com.chat.dao.impl.ParticipantService;
+
 import com.chat.dao.impl.UserService;
 import com.chat.dao.repository.ParticipantRepository;
 import com.chat.db.DBConnectionManager;
 import com.chat.entity.*;
+
+import com.chat.entity.Chat;
+import com.chat.entity.Message;
+import com.chat.entity.Participant;
+
 import com.chat.service.repository.ChatServerRepository;
 
 import java.rmi.RemoteException;
@@ -50,6 +56,17 @@ public class ChatServerImpl implements ChatServerRepository {
         List<Integer> ids = participantService.getAllChatsById(user_id);
         chats = chatService.getChatsById(ids);
         return chats;
+    }
+    @Override
+    public ArrayList<Participant> getChatParticipants(int chat_id) {
+        ArrayList<Participant> participants;
+        participants = participantService.geParticpantByChat(chat_id);
+        return participants;
+    }
+
+    @Override
+    public Chat getChatById(int chatId) {
+        return chatService.getChatById(chatId);
     }
 
     @Override
@@ -133,6 +150,7 @@ public class ChatServerImpl implements ChatServerRepository {
     }
 
     public static void main(String[] args) {
+
         /*ChatServerImpl server = new ChatServerImpl();
         System.out.println(server.getUserChatsByUserId(1));*/
 
@@ -141,5 +159,10 @@ public class ChatServerImpl implements ChatServerRepository {
         List<ChatCard> chatCards = repo.getChatsForUser(1);
         chatCards.forEach(System.out::println);
 
+
+        ChatServerImpl server = new ChatServerImpl();
+        System.out.println(server.getChatById(6 ));
+
     }
+
 }

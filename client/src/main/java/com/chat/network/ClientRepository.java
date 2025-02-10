@@ -4,11 +4,12 @@ import com.chat.entity.Announcement;
 import com.chat.entity.Message;
 import com.chat.entity.Notification;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface ClientRepository {
+public interface ClientRepository extends Remote {
 
-    public  void  getNotification(Notification notification);  //khaled
+    public  void  getNotification(Notification notification) throws RemoteException;
 
     public void sendMessage(Message message) throws RemoteException;
 

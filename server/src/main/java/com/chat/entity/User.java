@@ -1,7 +1,11 @@
 package com.chat.entity;
 
 import java.io.Serializable;
+
+import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Arrays;
+
 
 public class User  implements Serializable {
 
@@ -22,9 +26,9 @@ public class User  implements Serializable {
     private String linkedinUrl;
     private String facebookUrl;
     private String twitterUrl;
-    private boolean isOnline;  // تم إضافة الخاصية الجديدة
+    private boolean isOnline;
 
-    // Getters and Setters
+
     public Integer getUserId() {
         return userId;
     }
@@ -161,12 +165,12 @@ public class User  implements Serializable {
         this.isOnline = isOnline;
     }
 
-    @Override
     public String toString() {
-        return "UserDTO{" +
+        return "User{" +
                 "userId=" + userId +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
+                ", picture=" + Arrays.toString(picture) +
                 ", gender='" + gender + '\'' +
                 ", country='" + country + '\'' +
                 ", bio='" + bio + '\'' +
@@ -179,8 +183,7 @@ public class User  implements Serializable {
                 ", linkedinUrl='" + linkedinUrl + '\'' +
                 ", facebookUrl='" + facebookUrl + '\'' +
                 ", twitterUrl='" + twitterUrl + '\'' +
-                ", isOnline=" + isOnline +  // إضافة isOnline في الـ toString
+                ", isOnline=" + isOnline +
                 '}';
     }
-
 }

@@ -1,9 +1,13 @@
 package com.chat.network;
 
 import com.chat.dao.impl.ChatService;
+
 import com.chat.dao.impl.ParticipantService;
 import com.chat.dao.repository.ChatRepository;
 import com.chat.dao.repository.ParticipantRepository;
+
+import com.chat.dao.impl.MessageService;
+
 import com.chat.entity.*;
 import com.chat.service.impl.ChatServerImpl;
 import com.chat.service.impl.InvitationServerImpl;
@@ -19,6 +23,9 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+
+import java.util.Arrays;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -33,6 +40,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
    private NotificationImpl notificationServer;
 
     private ServerImpl() throws RemoteException {
+        clients = new ConcurrentHashMap<>();
     }
 
     public static ServerRepository getServer() {
@@ -56,16 +64,22 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
         userServer.getUserService().updateOnline(id, true);
         clients.put(id , callback);
         List<User> friends =  userServer.getUserService().getFriendsUser(id);
-        Notification notification = notificationServer.createNotification("went onLine", Timestamp.valueOf(LocalDateTime.now()),id, false ,0);
-        for (User friend :friends)
+        Notification notification = notificationServer.createNotification("went onLine", Timestamp.valueOf(LocalDateTime.now()),id, false ,6);
+        System.out.println("jhfjhfcghcgkcjhcghcgh");
+        System.out.println(notification);
+        System.out.println(friends);
+        System.out.println(friends.size());
+        if(friends!=null)
+        {   for (User friend :friends)
       {
           if (clients.containsKey(friend.getUserId()))
           {
+
                ClientRepository clientRepository =clients.get(friend.getUserId());
                clientRepository.getNotification(notification);
                clientRepository.friendLoggedIn(id);
           }
-      }
+      }}
     }
 
     @Override
@@ -76,14 +90,16 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
         userServer.getUserService().updateOnline(id, false);
         clients.remove(id);
         List<User> friends =  userServer.getUserService().getFriendsUser(id);
-        Notification notification = notificationServer.createNotification("went offLine", Timestamp.valueOf(LocalDateTime.now()),id, false ,0);
-        for (User friend :friends)
+        Notification notification = notificationServer.createNotification("went offLine", Timestamp.valueOf(LocalDateTime.now()),id, false ,6);
+      if(friends != null)  for (User friend :friends)
         {
             if (clients.containsKey(friend.getUserId()))
             {
                 ClientRepository clientRepository =clients.get(friend.getUserId());
                 clientRepository.getNotification(notification);
-                clientRepository.friendLoggedIn(id);
+
+                clientRepository.friendLoggedOut(id);
+
             }
         }
     }
@@ -123,6 +139,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
 
     @Override
     public void updateUserInfo(User user) throws RemoteException {
+
         userServer= UserServerImpl.getUserService();
         userServer.updateUser(user);
     }
@@ -140,11 +157,16 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
 
     @Override
     public List<Message> getChatMessages(int chatID) throws RemoteException {
-        return null;
+        MessageService messageService=new MessageService();
+       return messageService.getChatMessages(chatID);
+        //Message message=new Message("bjkbjhvjh",LocalDateTime.now(),6,5);
+        //return new ArrayList<Message>(List.of(message));
     }
 
+
+
     @Override
-    public List<User> getAllFriends(int userId) throws RemoteException {
+    public ArrayList<User> getAllFriends(int userId) throws RemoteException {
         userServer= UserServerImpl.getUserService();
 
         return userServer.getFriendsUser(userId);
@@ -202,6 +224,8 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
         NotificationImpl.getNotificationImpl().UpdateNotificationState(NotificationId,userId);
     }
 
+
+
     @Override
     public void sendInvitation(int user_id, List<User> users) throws RemoteException {
         InvitationServerImpl invitationServer= InvitationServerImpl.getInvitationServerImp();
@@ -218,6 +242,17 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
         NotificationImpl notificationImpl=NotificationImpl.getNotificationImpl();
         return notificationImpl.getAllNotification(userId);
     }
+    @Override
+    public List<Participant> getChatParticipants(int chat_id)throws RemoteException {
+        return (new ChatServerImpl()).getChatParticipants(chat_id);
+    }
+
+    @Override
+    public Chat getChatById(int chatId) throws RemoteException {
+        return (new ChatServerImpl()).getChatById(chatId);
+    }
+
+
 
     @Override
     public ArrayList<Participant> geParticpantByChat(int id){

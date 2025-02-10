@@ -1,6 +1,7 @@
 package com.chat;
 
 import com.chat.controller.BarController;
+import com.chat.network.ServerConnection;
 import com.chat.utils.Cordinator;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +27,8 @@ public class ClientStarter extends Application {
         final Pane root = new Pane(); // root container
 
         stage.setOnCloseRequest((e)->{
-            Cordinator.getScheduledExecutorService().shutdown();});
+            Cordinator.getScheduledExecutorService().shutdown();
+        });
         Pane controller = loadFXML("login");
         controller.setPrefWidth(initWidth);
         controller.setPrefHeight(initHeight);

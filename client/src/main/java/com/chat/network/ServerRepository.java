@@ -69,6 +69,7 @@ public interface ServerRepository extends Remote {
     public void updateNotification(int NotificationId, int userId) throws RemoteException;
 
 
+
     ////////////////////// Particpant
 
     public List<Integer> getAllChatsById(int user_id) throws RemoteException;
@@ -81,6 +82,10 @@ public interface ServerRepository extends Remote {
 
     List<ChatCard> getChatsForUser(int userId) throws RemoteException;
 
+
+
+    public List<Participant> getChatParticipants(int chat_id)throws RemoteException;
+    public Chat getChatById(int chatId)throws RemoteException;
 
 
 
