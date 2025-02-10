@@ -1,6 +1,5 @@
 package com.chat.controller;
 
-import com.chat.network.ServerRepository;
 import com.chat.utils.Director;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

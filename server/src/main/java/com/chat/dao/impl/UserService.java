@@ -361,7 +361,8 @@ public class UserService  implements UserRepository {
 
     public static void main(String[] args) {
         UserService service = new UserService();
-        byte[] imageBytes = new byte[0];
+        service.updateOnline(6 , false);
+        /*byte[] imageBytes = new byte[0];
         try {
             imageBytes = Files.readAllBytes(Path.of("C:\\Users\\HP\\Pictures\\Screenshots\\Screenshot (1).png"));
         } catch (IOException e) {
@@ -369,7 +370,7 @@ public class UserService  implements UserRepository {
         }
         service.updateUserImage(1 , imageBytes);
 
-        System.out.println(service.findUserById(1));
+        System.out.println(service.findUserById(1));*/
 
     }
 

@@ -4,6 +4,7 @@ import com.chat.entity.*;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -53,7 +54,7 @@ public interface ServerRepository  extends Remote {
     public void createGroup(String Name , List<Integer> id) throws RemoteException;
 
     public int createChat(Chat chat)  throws RemoteException;
-    public Chat getChat(int chatID) throws RemoteException;
+
     //public List<User> getGroupMembers(int chatId) throws RemoteException;
 
 
@@ -68,8 +69,19 @@ public interface ServerRepository  extends Remote {
     public void updateNotification(int NotificationId, int userId) throws RemoteException;
 
 
+    ////////////////////// Particpant
 
 
+    public List<Integer> getAllChatsById(int user_id) throws RemoteException;
+
+
+    public ArrayList<Participant> geParticpantByChat(int id) throws RemoteException;
+
+
+    /////////////////////////////////////////CHATS
+    public Chat getChat(int chatID) throws RemoteException;
+
+    List<ChatCard> getChatsForUser(int userId) throws RemoteException;
 
 
 }

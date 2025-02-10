@@ -18,7 +18,7 @@ public class DBConnectionManager {
         FileInputStream fis = null;
         try {
 
-            fis = new FileInputStream("E:\\iti\\projects\\ChatApp\\server\\db.properties")
+            fis = new FileInputStream("E:\\iti\\projects\\ChatApp\\server\\db.properties");
 
             props.load(fis);
             dataSource.setUrl(props.getProperty("MYSQL_DB_URL"));

@@ -19,4 +19,6 @@ public interface ChatRepository extends Remote {
     List<Chat> getChatsById(List<Integer> chat_ids);
 
     Chat getChatById(int chatId);
+
+    List<Integer> getChatUsersIdByChatId(int chat_id);
 }

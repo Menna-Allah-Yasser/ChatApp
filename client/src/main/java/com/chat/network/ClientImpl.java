@@ -3,6 +3,7 @@ package com.chat.network;
 
 import com.chat.entity.*;
 import com.chat.utils.Cordinator;
+import javafx.collections.ObservableList;
 
 import java.rmi.RemoteException;
 
@@ -11,7 +12,7 @@ public class ClientImpl implements ClientRepository {
 
     @Override
     public void getNotification(Notification notification) {
-        Cordinator.getNotificationList().add(0,notification);
+        Cordinator.getNotificationList().add(0, notification);
 
     }
 
@@ -22,16 +23,6 @@ public class ClientImpl implements ClientRepository {
 
     @Override
     public void addedToGroup(int groupID) throws RemoteException {
-
-    }
-
-    @Override
-    public void friendLoggedIn(int friendID) throws RemoteException {
-
-    }
-
-    @Override
-    public void friendLoggedOut(int friendID) throws RemoteException {
 
     }
 
@@ -53,5 +44,28 @@ public class ClientImpl implements ClientRepository {
     @Override
     public void disconnect() throws RemoteException {
 
+    }
+
+    @Override
+    public void friendLoggedIn(int friendID) throws RemoteException {
+
+        ObservableList<ChatCardClient> list = Cordinator.getContactList();
+        for (ChatCardClient friend : list) {
+            if (friend.getUserId() == friendID) {
+                friend.setUserIsOnline(true);
+            }
+        }
+    }
+
+    @Override
+    public void friendLoggedOut(int friendID) throws RemoteException {
+
+        ObservableList<ChatCardClient> list = Cordinator.getContactList();
+        for (ChatCardClient friend : list) {
+            if (friend.getUserId()== friendID) {
+                friend.setUserIsOnline(false);
+            }
+
+        }
     }
 }

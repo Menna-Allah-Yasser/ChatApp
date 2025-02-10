@@ -16,9 +16,6 @@ module com.chat.server {
     exports com.chat to javafx.graphics;
 
 
-    requires javafx.graphics;
-    exports com.chat to javafx.graphics;
-
     opens com.chat to javafx.fxml;
     opens com.chat.controllers to javafx.fxml;
     exports com.chat.controllers;
