@@ -68,7 +68,7 @@
                   </ImageView>
                   <ImageView fx:id="addGroup" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#onnewGroupClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/add_group.jpg" />
+                        <Image url="@../../images/group.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="exit" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">

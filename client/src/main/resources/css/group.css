@@ -1,0 +1,64 @@
+#root {
+    -fx-background-color: white;
+}
+
+#headPane{
+    -fx-background-color: linear-gradient(to bottom right, #c0c0e4, #6f6d98);
+}
+
+#newGrouplbl {
+    -fx-font-family: 'Arial Rounded MT Bold';
+    -fx-font-size: 24px;
+    -fx-text-fill: #555555;
+}
+
+#groupName{
+    -fx-font-family: 'Arial Rounded MT Bold';
+    -fx-font-size: 16px;
+    -fx-text-fill: #555555;
+}
+
+.list-view {
+    -fx-background-color: #efefef;
+    -fx-border-color: transparent;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px;
+    -fx-font-family: 'Segoe UI';
+    -fx-font-size: 16px;
+    -fx-text-fill: #333;
+}
+
+.custom-button {
+    -fx-background-color: #7B76F1; /* اللون الأساسي */
+    -fx-text-fill: white; /* لون النص */
+
+    -fx-font-weight: bold; /* نص عريض */
+    -fx-padding: 10 20; /* مسافة داخلية */
+    -fx-border-radius: 20; /* زوايا مستديرة */
+    -fx-background-radius: 20; /* تطابق الزوايا */
+    -fx-border-color: #5E58D5; /* لون الحواف */
+    -fx-border-width: 2; /* سمك الحواف */
+    -fx-effect: dropshadow(gaussian, rgba(123, 118, 241, 0.5), 10, 0.5, 0, 0); /* توهج خفيف */
+    -fx-cursor: hand; /* تغيير المؤشر عند الوقوف */
+    -fx-transition: 0.3s; /* تأثير التغيير التدريجي */
+}
+
+.custom-button:hover {
+    -fx-background-color: #9D96F5; /* لون عند الوقوف */
+    -fx-border-color: #7B76F1; /* تغيير لون الحواف */
+    -fx-effect: dropshadow(gaussian, rgba(157, 150, 245, 0.8), 15, 0.7, 0, 0); /* زيادة التوهج */
+    -fx-scale-x: 1.1; /* تكبير خفيف */
+    -fx-scale-y: 1.1; /* تكبير خفيف */
+}
+
+.custom-button:pressed {
+    -fx-background-color: #5E58D5; /* لون أغمق عند الضغط */
+    -fx-effect: none; /* إزالة التوهج */
+    -fx-translate-y: 2px; /* تحريك الزر لأسفل */
+}
+
+.hbox{
+    -fx-background-color: #FFFEFE;
+    -fx-border-radius: 8px;
+    -fx-padding: 20px;
+}

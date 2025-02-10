@@ -1,15 +1,15 @@
 package com.chat.controller;
 
+import com.chat.entity.User;
+import com.chat.network.ServerConnection;
+import com.chat.network.ServerRepository;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
@@ -17,86 +17,92 @@ import javafx.collections.ObservableList;
 import javafx.event.*;
 import org.controlsfx.control.textfield.CustomTextField;
 
+import java.io.ByteArrayInputStream;
+import java.rmi.RemoteException;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class GroupController {
 
-    @FXML
-    private TextField groupName;
-
-    @FXML
+  /*  @FXML
     private Button cancelButton;
 
     @FXML
     private Button createButton;
 
     @FXML
-    private ListView<String> userListView;
+    private TextField groupName;*/
 
     @FXML
-    private TextField searchTextField;
+    private ListView<User> userListView;
 
-    @FXML
+    private ServerRepository server ;
+
+    /*@FXML
     public void initialize() {
-        ObservableList<String> users = FXCollections.observableArrayList("sama", "roaa", "nada");
-        userListView.setItems(users);
-        userListView.setFixedCellSize(65);
+        System.out.println("Group init");
 
+        server = ServerConnection.getServer();
 
-        userListView.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
-            @Override
-            public ListCell<String> call(ListView<String> param) {
-                return new ListCell<String>() {
-                    @Override
-                    protected void updateItem(String user, boolean empty) {
-                        super.updateItem(user, empty);
-                        if (empty) {
+        try {
+            List<User> friends = server.getAllFriends(1);
+            ObservableList<User> friendsList = FXCollections.observableArrayList(friends);
+            userListView.setItems(friendsList);
 
-                            HBox emptyBox = new HBox();
-                            emptyBox.setVisible(false);
-                            setGraphic(emptyBox);
+            userListView.setFixedCellSize(80);
 
+            userListView.setCellFactory(param -> new ListCell<User>() {
+                @Override
+                protected void updateItem(User user, boolean empty) {
+                    super.updateItem(user, empty);
+                    if (empty || user == null) {
+                        setGraphic(null);
+                        setText(null);
+                    } else {
+                        ImageView imageView;
+                        if (user.getPicture() != null && user.getPicture().length > 0) {
+                            Image image = new Image(new ByteArrayInputStream(user.getPicture()));
+                            imageView = new ImageView(image);
                         } else {
-
-                            CheckBox checkBox = new CheckBox();
-                            checkBox.getStyleClass().add("check-box");
-
-                            Image image = new Image(getClass().getResourceAsStream("/images/woman.png"));
-                            ImageView imageView = new ImageView(image);
-                            imageView.setFitHeight(30);
-                            imageView.setFitWidth(30);
-
-                            HBox hBox = new HBox(3);
-
-                            hBox.getChildren().addAll(imageView, new javafx.scene.control.Label(user));
-
-                            HBox.setMargin(checkBox, new Insets(0, 10, 10, 620));
-
-                            hBox.getChildren().add(checkBox);
-
-                            setGraphic(hBox);
-                            hBox.getStyleClass().add("hbox-style");
+                            Image defaultImage = new Image(getClass().getResourceAsStream("/images/default_user.png"));
+                            imageView = new ImageView(defaultImage);
                         }
+                        imageView.setFitHeight(40);
+                        imageView.setFitWidth(40);
+
+                        Label nameLabel = new Label(user.getName());
+                        nameLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
+
+                        Label bioLabel = new Label(user.getBio() == null ? "No bio available" : user.getBio());
+                        bioLabel.setStyle("-fx-text-fill: #666; -fx-font-size: 12px;");
+
+                        HBox hBox = new HBox(10, imageView, new VBox(nameLabel, bioLabel));
+                        hBox.setPadding(new Insets(5));
+                        setGraphic(hBox);
                     }
-                };
-            }
-        });
+                }
+            });
+
+        } catch (RemoteException e) {
+            System.out.println("Error fetching friends: " + e.getMessage());
+        }
+    }
+*/
+
+
+
+   /* @FXML
+    void onCancelAction(ActionEvent event) {
+
     }
 
     @FXML
-    void cancelAction(ActionEvent event) {
-        //
+    void onCreateAction(ActionEvent event) {
 
-    }
+    }*/
 
-    @FXML
-    void onCtreateAction(ActionEvent event) {
 
-        //
 
-    }
 
-    @FXML
-    void filterListAction(ActionEvent event) {
-        //
-    }
 
 }

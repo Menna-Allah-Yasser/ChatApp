@@ -65,7 +65,8 @@ public class BarController {
     @FXML
     void onnewGroupClicked() {
 
-        Node node=  Director.loadView("group");
+        System.out.println("kkkkkkkkkkkkkkkkkkk");
+        Node node =  Director.loadView("group");
         centerPane.setCenter(node);
     }
 
