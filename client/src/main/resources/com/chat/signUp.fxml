@@ -32,7 +32,7 @@
                   </TextField>
                   <Label fx:id="UserNumberLabel" visible="false">
                      <HBox.margin>
-                        <Insets top="44.0" />
+                        <Insets top="35.0" />
                      </HBox.margin>
                   </Label>
                </children>
@@ -49,7 +49,7 @@
                   </TextField>
                   <Label fx:id="UserNameLabel">
                      <HBox.margin>
-                        <Insets top="5.0" />
+                        <Insets top="15.0" />
                      </HBox.margin>
                   </Label>
                </children>
@@ -137,7 +137,7 @@
                   </TextField>
                   <Label fx:id="GenderLabel">
                      <HBox.margin>
-                        <Insets left="20.0" top="15.0" />
+                        <Insets left="20.0" top="5.0" />
                      </HBox.margin>
                   </Label>
                </children>
@@ -174,9 +174,9 @@
                   </DatePicker>
                </children>
             </HBox>
-            <Label fx:id="validUserLab">
+            <Label fx:id="validUserLab" text="this user have already account" visible="false">
                <VBox.margin>
-                  <Insets bottom="10.0" left="350.0" top="12.0" />
+                  <Insets bottom="5.0" left="270.0" top="12.0" />
                </VBox.margin>
             </Label>
          </children>

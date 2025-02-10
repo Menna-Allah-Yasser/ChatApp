@@ -52,7 +52,7 @@ public class BarController {
     @FXML
     protected void onFriendRequestClick()
     {
-        Node node=  Director.loadView("friendreq");
+        Node node=  Director.loadView("friend");
         centerPane.setCenter(node);
 
     }
