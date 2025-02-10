@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -16,7 +22,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../../css/home.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chat.controller.HomeController">
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../../css/home.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chat.controller.HomeController">
     <center>
       <BorderPane fx:id="mainPane">
          <center>
@@ -33,14 +39,14 @@
                         <RowConstraints maxHeight="293.3333282470703" minHeight="10.0" percentHeight="76.0" prefHeight="289.3333282470703" vgrow="ALWAYS" />
                      </rowConstraints>
                      <children>
-                              <TextField promptText="Search" styleClass="search-field" GridPane.rowIndex="1">
+                              <TextField fx:id="search" promptText="Search" styleClass="search-field" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="50.0" right="50.0" top="5.0" />
                            </GridPane.margin>
                         </TextField>
                               <HBox alignment="CENTER" spacing="5.0" GridPane.rowIndex="2">
                                   <children>
-                                      <Label text="All">
+                                      <Label fx:id="all" text="All">
                                  <styleClass>
                                     <String fx:value="category-label" />
                                     <String fx:value="All-label" />
@@ -49,15 +55,15 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                                      <Label styleClass="category-label" text="Family" />
-                                      <Label styleClass="category-label" text="Work" />
-                                      <Label styleClass="category-label" text="Fav" />
+                                      <Label fx:id="family" styleClass="category-label" text="Family" />
+                                      <Label fx:id="work" styleClass="category-label" text="Work" />
+                                      <Label fx:id="fav" styleClass="category-label" text="Fav" />
                                   </children>
                            <padding>
                               <Insets left="10.0" />
                            </padding>
                               </HBox>
-                              <ListView id="chatList" editable="true" styleClass="message-list" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS" />
+                              <ListView id="chatList" fx:id="chats" editable="true" styleClass="message-list" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS" />
                         <Label prefHeight="15.0" prefWidth="97.0" styleClass="title" text="Messages" />
                         <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
                            <children>
@@ -162,7 +168,8 @@
                      <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="327.0" spacing="10.0" style="-fx-background-color: WHITE;" GridPane.hgrow="ALWAYS" GridPane.vgrow="NEVER">
                                   <children>
-                                      <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                      <ImageView fx:id="currentChatImg" fitHeight="40.0" fitWidth="40.0"
+                                                 pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../images/profileImg.png" />
                                  </image>
@@ -170,28 +177,30 @@
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </HBox.margin>
                               </ImageView>
-                                      <Label styleClass="contact-name" text="Travis Barker" />
+                                      <Label fx:id="currentChatName" styleClass="contact-name" text="Travis Barker" />
                                   </children>
                               </HBox>
-                              <ListView editable="true" prefHeight="299.0" prefWidth="327.0" styleClass="chat-list" GridPane.rowIndex="1" />
+                              <ListView fx:id="list" editable="true" prefHeight="299.0" prefWidth="327.0" styleClass="chat-list" GridPane.rowIndex="1" />
                          <HBox prefHeight="20.0" prefWidth="327.0" spacing="5" style="-fx-background-color: WHITE;" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES">
-                                 <TextField prefHeight="40.0" prefWidth="675.0" promptText="Type your message..." styleClass="message-input" />
-                           <ImageView fitHeight="22.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                              <image>
-                                 <Image url="@../../images/attach-file.png" />
-                              </image>
-                              <HBox.margin>
-                                 <Insets bottom="15.0" top="10.0" />
-                              </HBox.margin>
-                           </ImageView>
-                           <ImageView fitHeight="22.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                              <image>
-                                 <Image url="@../../images/send.png" />
-                              </image>
-                              <HBox.margin>
-                                 <Insets bottom="15.0" right="5.0" top="10.0" />
-                              </HBox.margin>
-                           </ImageView>
+                            <children>
+                                    <TextField fx:id="message" prefHeight="40.0" prefWidth="675.0" promptText="Type your message..." styleClass="message-input" />
+                              <ImageView fitHeight="22.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../images/attach-file.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" top="10.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fx:id="send" fitHeight="22.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../images/send.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" right="5.0" top="10.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                            </children>
                            <GridPane.margin>
                               <Insets top="10.0" />
                            </GridPane.margin>

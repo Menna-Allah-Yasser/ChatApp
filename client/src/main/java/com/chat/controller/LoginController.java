@@ -35,16 +35,17 @@ public class LoginController {
     @FXML
     private ImageView imageView;
 
+
     @FXML
     private Label warningLabel;
 
+    ServerRepository server=null;
 
-    ServerRepository server;
     @FXML
     public void initialize()
     {
         server = ServerConnection.getServer();
-
+        System.out.println(server);
         String PROPERTIES_FILE = "user_session.properties";
 
         File file = new File(PROPERTIES_FILE);
@@ -76,7 +77,6 @@ public class LoginController {
         String phoneNumber= userPhoneNumberSignIn.getText();
 
         String  password = userPasswordSignIn.getText();
-
         if(server.authenticateUser(phoneNumber,password))
         {
             System.out.println(server.authenticateUser(phoneNumber,password));

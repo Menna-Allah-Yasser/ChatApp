@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 public class Message  implements Serializable {
 
+
     private int id;
 
     private String description;

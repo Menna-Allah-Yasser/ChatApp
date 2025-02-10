@@ -8,12 +8,12 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 
 public class FriendRequestController  {
-   Image accept=new Image(getClass().getResource("/images/accept.png").toExternalForm());
-   Image decline=new Image(getClass().getResource("/images/decline.png").toExternalForm());
-    @FXML
-    private ListView<Object> list;
-    ObservableList<Object> flist= Cordinator.getFriendRequestlist();
-
+//   Image accept=new Image(getClass().getResource("/com.chat/accept.png").toExternalForm());
+//   Image decline=new Image(getClass().getResource("/com.chat/decline.png").toExternalForm());
+//    @FXML
+//    private ListView<Object> list;
+//    ObservableList<Object> flist= Cordinator.getFriendRequestlist();
+//
 
 //    public void setStage(Stage stage) {
 //        this.stage = stage;

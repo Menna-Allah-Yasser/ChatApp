@@ -283,7 +283,7 @@ public class UserService  implements UserRepository {
 
     @Override
     public void updateOnline(int userId, Boolean isOnline) {
-        updateUserField("isOnline", isOnline, userId);
+        updateUserField("is_online", isOnline, userId);
     }
 
     @Override
@@ -322,7 +322,7 @@ public class UserService  implements UserRepository {
                 userDTO.setLinkedinUrl(resultSet.getString("linkedin_url"));
                 userDTO.setFacebookUrl(resultSet.getString("facebook_url"));
                 userDTO.setTwitterUrl(resultSet.getString("twitter_url"));
-                userDTO.setIsOnline(resultSet.getBoolean("isOnline"));
+                userDTO.setIsOnline(resultSet.getBoolean("is_online"));
 
 
 
