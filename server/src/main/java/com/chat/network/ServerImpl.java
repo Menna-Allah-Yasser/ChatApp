@@ -1,12 +1,19 @@
 package com.chat.network;
 
 import com.chat.dao.impl.ChatService;
+
+import com.chat.dao.impl.ParticipantService;
+import com.chat.dao.repository.ChatRepository;
+import com.chat.dao.repository.ParticipantRepository;
+
 import com.chat.dao.impl.MessageService;
+
 import com.chat.entity.*;
 import com.chat.service.impl.ChatServerImpl;
 import com.chat.service.impl.InvitationServerImpl;
 import com.chat.service.impl.NotificationImpl;
 import com.chat.service.impl.UserServerImpl;
+import com.chat.service.repository.ChatServerRepository;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -16,7 +23,9 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+
 import java.util.Arrays;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -88,7 +97,9 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
             {
                 ClientRepository clientRepository =clients.get(friend.getUserId());
                 clientRepository.getNotification(notification);
+
                 clientRepository.friendLoggedOut(id);
+
             }
         }
     }
@@ -240,6 +251,37 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
     public Chat getChatById(int chatId) throws RemoteException {
         return (new ChatServerImpl()).getChatById(chatId);
     }
+
+
+
+    @Override
+    public ArrayList<Participant> geParticpantByChat(int id){
+        ParticipantRepository participantRepository = new ParticipantService();
+        return  participantRepository.geParticpantByChat(id);
+    }
+
+    // CHATS
+
+    @Override
+    public Chat getChat(int chatID) throws RemoteException {
+        ChatRepository chatRepository = new ChatService();
+        return chatRepository.getChatById(chatID);
+    }
+
+    @Override
+    public List<Integer> getAllChatsById(int user_id){
+       ParticipantRepository participantRepository = new ParticipantService();
+       return participantRepository.getAllChatsById(user_id);
+    }
+
+
+    @Override
+    public List<ChatCard> getChatsForUser(int userId){
+        ChatServerRepository serverRepository = new ChatServerImpl();
+        return serverRepository.getChatsForUser(userId);
+    }
+
+
 
 
 
