@@ -4,7 +4,7 @@ Button:hover {
     -fx-text-fill: #ffeb3b;
 }
 
-#btnOne , #btnTwo, #btnThree {
+#btnOne , #btnTwo, #btnThree , #addUser{
     -fx-background-color: transparent;
     -fx-border-width: 0;
     -fx-text-fill: #ffffff;

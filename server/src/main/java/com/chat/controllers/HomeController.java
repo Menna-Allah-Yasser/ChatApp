@@ -51,4 +51,11 @@ public class HomeController implements Initializable {
         mainPane.setCenter(view);
     }
 
+    public void btnFourHandler(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(ServerStarter.class.getResource("register.fxml"));
+        Node view =fxmlLoader.load();
+        mainPane.setCenter(view);
+    }
+
+
 }

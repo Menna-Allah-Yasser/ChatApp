@@ -22,4 +22,8 @@ module com.chat.server {
     exports com.chat.network;
 
     opens com.chat.network to java.rmi;
+
+    requires okhttp3;
+    requires org.json;
+
 }

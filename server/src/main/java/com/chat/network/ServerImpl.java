@@ -9,6 +9,7 @@ import com.chat.dao.repository.ParticipantRepository;
 import com.chat.dao.impl.MessageService;
 
 import com.chat.entity.*;
+import com.chat.service.impl.ChatBotServer;
 import com.chat.service.impl.ChatServerImpl;
 import com.chat.service.impl.InvitationServerImpl;
 import com.chat.service.impl.NotificationImpl;
@@ -300,6 +301,12 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
 
 
 
+
+    @Override
+    public String getBotResponse(String userMessage) throws RemoteException {
+        ChatBotServer chat = ChatBotServer.getInstance();
+        return chat.getBotResponse(userMessage);
+    }
 
 
 }

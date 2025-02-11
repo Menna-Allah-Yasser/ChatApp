@@ -30,6 +30,4 @@ public interface UserServerRepository {
 
     public void updateUserImage(int userID, byte[] img);
 
-
-
 }
