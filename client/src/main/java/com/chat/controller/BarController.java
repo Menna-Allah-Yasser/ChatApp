@@ -75,6 +75,12 @@ public class BarController {
         Node node=  Director.loadView("group");
         centerPane.setCenter(node);
     }
+    @FXML
+    void onAnnouncement() {
+
+        Node node=  Director.loadView("announcement");
+        centerPane.setCenter(node);
+    }
 
     @FXML
     void onProfileClicked() {

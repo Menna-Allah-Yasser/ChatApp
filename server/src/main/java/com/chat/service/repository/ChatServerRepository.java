@@ -20,4 +20,6 @@ public interface ChatServerRepository {
      public List<Participant> getChatParticipants(int chat_id);
      public Chat getChatById(int chatId);
 
+     public void addMessage(Message message) ;
+
 }

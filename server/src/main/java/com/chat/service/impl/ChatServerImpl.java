@@ -21,6 +21,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -70,6 +71,10 @@ public class ChatServerImpl implements ChatServerRepository {
     }
 
     @Override
+
+    public void addMessage(Message message) {
+        messageService.addMessage(message);
+    }
     public List<ChatCard> getChatsForUser(int userId) {
         List<ChatCard> chatCards = new ArrayList<>();
         String query =
@@ -147,6 +152,7 @@ public class ChatServerImpl implements ChatServerRepository {
             boxed[i] = bytes[i];
         }
         return boxed;
+
     }
 
     public static void main(String[] args) {
@@ -161,7 +167,7 @@ public class ChatServerImpl implements ChatServerRepository {
 
 
         ChatServerImpl server = new ChatServerImpl();
-        System.out.println(server.getChatById(6 ));
+
 
     }
 

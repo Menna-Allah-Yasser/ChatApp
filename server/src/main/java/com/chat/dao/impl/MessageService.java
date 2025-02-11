@@ -7,6 +7,7 @@ import com.chat.db.DBConnectionManager;
 
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +60,7 @@ public class MessageService implements MessageRepository {
 
             rowAffected = preparedStatement.executeUpdate();
             connection.commit();
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -163,8 +165,7 @@ public class MessageService implements MessageRepository {
         System.out.println(messageService.getMessages());*/
        /* MessageService messageService = new MessageService();
         System.out.println(messageService.updateMessageDescription(1 , "Hi mo"));*/
-       MessageService messageService = new MessageService();
-        System.out.println(messageService.getChatMessages(6));
+
     }
 
 }
