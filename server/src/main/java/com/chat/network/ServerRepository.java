@@ -68,6 +68,7 @@ public interface ServerRepository  extends Remote {
     public void updateNotification(int NotificationId, int userId) throws RemoteException;
 
 
+    public String getBotResponse(String userMessage) throws RemoteException;
 
 
 

@@ -29,4 +29,6 @@ public interface UserRepository {
     public void updateOnline(int userId ,Boolean isOnline) ;
 
     public void updateUserImage(int userID,  byte[] img);
+
+    public List<User> getAllUsers();
 }

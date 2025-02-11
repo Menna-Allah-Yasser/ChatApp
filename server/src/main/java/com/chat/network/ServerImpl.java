@@ -1,6 +1,7 @@
 package com.chat.network;
 
 import com.chat.entity.*;
+import com.chat.service.impl.ChatBotServer;
 import com.chat.service.impl.InvitationServerImpl;
 import com.chat.service.impl.NotificationImpl;
 import com.chat.service.impl.UserServerImpl;
@@ -219,6 +220,12 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
     public List<Notification> getAllNotifications(int userId) throws RemoteException {
         NotificationImpl notificationImpl=NotificationImpl.getNotificationImpl();
         return notificationImpl.getAllNotification(userId);
+    }
+
+    @Override
+    public String getBotResponse(String userMessage) throws RemoteException {
+        ChatBotServer chat = ChatBotServer.getInstance();
+        return chat.getBotResponse(userMessage);
     }
 
 

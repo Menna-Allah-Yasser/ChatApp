@@ -1,0 +1,98 @@
+/* Overall Application Style */
+.root {
+    -fx-background-color: #f0f2f5;
+    -fx-font-family: "Poppins", sans-serif;
+}
+
+/* Style the root BorderPane directly */
+BorderPane {
+    -fx-background-color: linear-gradient(to bottom right, #e1bee7, #ce93d8);
+}
+
+
+/* Header Label Style (Top Header) */
+.header-label {
+    -fx-background-color: #6A11CB;  /* Solid purple background */
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-padding: 10;
+    -fx-background-radius: 5;
+}
+
+/* TableView Styling */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-padding: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 8, 0, 4, 4);
+}
+
+/* Force Table Header Styling */
+/* This rule forces the entire header background to be a purple gradient */
+.table-view .column-header-background {
+    -fx-background-color: linear-gradient(to right, #8A2BE2, #6A5ACD) !important;
+    -fx-background-radius: 5 5 0 0;
+    -fx-padding: 10;
+}
+
+/* Ensure header labels have no background (so they show the gradient) */
+.table-view .column-header .label {
+    -fx-background-color: transparent;
+}
+
+/* Header Text Styling */
+.table-view .column-header, .table-view .filler {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER;
+    -fx-background-color: transparent;
+}
+
+/* Table Cell Styling */
+.table-cell {
+    -fx-padding: 4 4 4 4;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333;
+    -fx-alignment: CENTER;
+    -fx-border-color: transparent;
+}
+
+/* Table Row Styling */
+.table-row-cell {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 5;
+    -fx-padding: 2 0 2 0;
+}
+
+/* Alternating row colors */
+.table-row-cell:odd {
+    -fx-background-color: #f9f9f9;
+}
+
+/* Hover effect on rows */
+.table-row-cell:hover {
+    -fx-background-color: #e8f0fe;
+}
+
+/* Selected row styling */
+.table-row-cell:selected {
+    -fx-background-color: linear-gradient(to right, #8A2BE2, #6A5ACD);
+    -fx-text-fill: white;
+}
+
+/* Disconnect Button Styling */
+.disconnect-button {
+    -fx-background-color: linear-gradient(to right, #8A2BE2, #6A5ACD);
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-padding: 5 10 5 10;
+}
+.disconnect-button:hover {
+    -fx-background-color: linear-gradient(to right, #6A5ACD, #8A2BE2);
+}
+.disconnect-button:pressed {
+    -fx-background-color: #6A5ACD;
+}

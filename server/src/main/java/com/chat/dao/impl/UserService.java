@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserService  implements UserRepository {
 
@@ -162,7 +163,7 @@ public class UserService  implements UserRepository {
     public void addNewUser(User userDTO) {
         String query = "INSERT INTO user (" +
                 "phone_number, email, picture, gender, country, bio, DOB, password, count_of_login, mode, " +
-                "is_chatbot_enabled, name, linkedin_url, facebook_url, twitter_url, isOnline) " +
+                "is_chatbot_enabled, name, linkedin_url, facebook_url, twitter_url, is_online) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -364,18 +365,94 @@ public class UserService  implements UserRepository {
         return arrayList;
     }
 
+    public List<User> getAllUsers() {
+        List<User> users = new ArrayList<>();
+        String query = "SELECT * FROM user";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                User user= new User();
+                user.setEmail(resultSet.getString("email"));
+                user.setUserId(resultSet.getInt("user_id"));
+                user.setPhoneNumber(resultSet.getString("phone_number"));
+                user.setPicture(resultSet.getBytes("picture"));
+                user.setGender(resultSet.getString("gender"));
+                user.setCountry(resultSet.getString("country"));
+                user.setCountOfLogin(resultSet.getInt("count_of_login"));
+                user.setIsOnline(resultSet.getBoolean("is_online"));
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all users", e);
+        }
+
+        return users;
+    }
+    public int getNumOfMaleUsers() {
+        int count = 0;
+        String query = "SELECT COUNT(*) AS count FROM user WHERE gender = 'Male'";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            if (resultSet.next()) {
+                count = resultSet.getInt("count");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving number of male users", e);
+        }
+
+        return count;
+    }
+
+    public int getNumOfFemaleUsers() {
+        int count = 0;
+        String query = "SELECT COUNT(*) AS count FROM user WHERE gender = 'Female'";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            if (resultSet.next()) {
+                count = resultSet.getInt("count");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving number of male users", e);
+        }
+
+        return count;
+    }
+
+    public List<String> getCountries() {
+        List<String> cont = new ArrayList<>();
+        String query = "SELECT country AS countries FROM user";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+            while (resultSet.next()) {
+                cont.add(new String(resultSet.getString("countries")));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving number of male users", e);
+        }
+
+        return cont;
+    }
+
     public static void main(String[] args) {
-        UserService service = new UserService();
+//        UserService service = new UserService();
+//
+//        User user = service.findUserById(2);
+//
+//        service.updateOnline(user.getUserId(), false);
+//
+//
+//        user = service.findUserById(2);
+//
+//        System.out.println(user);
 
-        User user = service.findUserById(2);
-
-        service.updateOnline(user.getUserId(), false);
-
-
-        user = service.findUserById(2);
-
-        System.out.println(user);
-
+        System.out.println(new UserService().getCountries());
     }
 
 }
