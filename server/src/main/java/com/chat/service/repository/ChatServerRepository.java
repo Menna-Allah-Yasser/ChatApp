@@ -14,4 +14,5 @@ public interface ChatServerRepository {
      List<Chat> getUserChatsByUserId(int user_id);
      public List<Participant> getChatParticipants(int chat_id);
      public Chat getChatById(int chatId);
+     public void addMessage(Message message) ;
 }

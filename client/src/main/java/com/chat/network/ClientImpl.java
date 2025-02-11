@@ -22,6 +22,14 @@ public class ClientImpl extends UnicastRemoteObject implements ClientRepository 
 
     @Override
     public void sendMessage(Message message) throws RemoteException {
+        Platform.runLater(()->{Cordinator.getList().add(message);});
+    }
+    @Override
+    public void receivedFriendRequest(Invitation invitation) throws RemoteException {
+        if(invitation.getStatus()==InvStatus.WAIT)
+        {
+            Platform.runLater(()->Cordinator.getFriendRequestlist().add(0,invitation));
+        }
 
     }
 
@@ -45,13 +53,11 @@ public class ClientImpl extends UnicastRemoteObject implements ClientRepository 
 
     }
 
-    @Override
-    public void receivedFriendRequest(int friendID) throws RemoteException {
 
-    }
 
     @Override
     public void receiveAnnouncement(Announcement announcement) throws RemoteException {
+        Platform.runLater(()->{Cordinator.getAlist().add(0,announcement);});
 
     }
 

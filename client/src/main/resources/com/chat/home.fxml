@@ -168,8 +168,7 @@
                      <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="327.0" spacing="10.0" style="-fx-background-color: WHITE;" GridPane.hgrow="ALWAYS" GridPane.vgrow="NEVER">
                                   <children>
-                                      <ImageView fx:id="currentChatImg" fitHeight="40.0" fitWidth="40.0"
-                                                 pickOnBounds="true" preserveRatio="true">
+                                      <ImageView fx:id="currentImg" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../images/profileImg.png" />
                                  </image>
@@ -192,7 +191,7 @@
                                     <Insets bottom="15.0" top="10.0" />
                                  </HBox.margin>
                               </ImageView>
-                              <ImageView fx:id="send" fitHeight="22.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="send" fitHeight="22.0" fitWidth="20.0" onMouseClicked="#onSendClick" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../images/send.png" />
                                  </image>

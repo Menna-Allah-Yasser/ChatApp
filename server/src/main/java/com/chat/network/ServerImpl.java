@@ -190,7 +190,23 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
     }
 
     @Override
-    public void sendMessage(int sender_id, int recevier_id, Message Message, int ChatId) throws RemoteException {
+    public void sendMessage( Message message) throws RemoteException {
+        ChatServerImpl chatServer=new ChatServerImpl();
+        chatServer.addMessage(message);
+        Notification notification = notificationServer.createNotification("sent a message", Timestamp.valueOf(LocalDateTime.now()),message.getUser_id(), true ,message.getChat_id());
+        List<Participant>p=chatServer.getChatParticipants(message.getChat_id());
+        if(p!=null)
+        {   for (Participant p1 :p)
+        {
+            if (clients.containsKey(p1.getParticpantId())&&p1.getParticpantId()!=message.getUser_id())
+            {
+
+                ClientRepository clientRepository =clients.get(p1.getParticpantId());
+                clientRepository.getNotification(notification);
+                clientRepository.sendMessage(message);
+            }
+        }}
+
 
     }
 

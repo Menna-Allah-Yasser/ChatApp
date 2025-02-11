@@ -11,6 +11,7 @@ import com.chat.service.repository.ChatServerRepository;
 
 import java.rmi.RemoteException;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -55,9 +56,14 @@ public class ChatServerImpl implements ChatServerRepository {
         return chatService.getChatById(chatId);
     }
 
+    @Override
+    public void addMessage(Message message) {
+        messageService.addMessage(message);
+    }
+
     public static void main(String[] args) {
         ChatServerImpl server = new ChatServerImpl();
-        System.out.println(server.getChatById(6 ));
+
     }
 
 }
