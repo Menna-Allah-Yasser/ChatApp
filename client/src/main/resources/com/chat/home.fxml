@@ -46,7 +46,7 @@
                               <HBox alignment="CENTER" spacing="5.0" GridPane.rowIndex="2">
                                   <children>
 
-                                      <Label fx:id="allCat" text="All">
+
 
                                       <Label fx:id="all" text="All">
 
@@ -63,10 +63,6 @@
                                       <Label fx:id="workCat" styleClass="category-label" text="Work" />
                                       <Label fx:id="friendCat" styleClass="category-label" text="Friend" />
 
-                                      <Label fx:id="family" styleClass="category-label" text="Family" />
-                                      <Label fx:id="work" styleClass="category-label" text="Work" />
-                                      <Label fx:id="fav" styleClass="category-label" text="Fav" />
-
                                   </children>
                            <padding>
                               <Insets left="10.0" />
@@ -74,8 +70,6 @@
                               </HBox>
 
                               <ListView id="chatList" fx:id="chatsArea" editable="true" styleClass="message-list" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS" />
-
-                              <ListView id="chatList" fx:id="chats" editable="true" styleClass="message-list" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS" />
 
                         <Label prefHeight="15.0" prefWidth="97.0" styleClass="title" text="Messages" />
                      </children>
@@ -92,8 +86,7 @@
                      <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="327.0" spacing="10.0" style="-fx-background-color: WHITE;" GridPane.hgrow="ALWAYS" GridPane.vgrow="NEVER">
                                   <children>
-                                      <ImageView fx:id="currentChatImg" fitHeight="40.0" fitWidth="40.0"
-                                                 pickOnBounds="true" preserveRatio="true">
+                                      <ImageView fx:id="currentChatImg" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../images/profileImg.png" />
                                  </image>

@@ -83,6 +83,12 @@ public class BarController {
     }
 
     @FXML
+    public void gotohome() {
+        Node node=  Director.loadView("home");
+        centerPane.setCenter(node);
+    }
+
+    @FXML
     void onLogoClicked(MouseEvent event) {
         Node node=  Director.loadView("home");
         centerPane.setCenter(node);

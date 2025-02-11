@@ -139,7 +139,7 @@ public class UserService  implements UserRepository {
                 "linkedin_url = ?, " +
                 "facebook_url = ?, " +
                 "twitter_url = ?, " +
-                "isOnline = ? " +
+                "is_online = ? " +
                 "WHERE user_id = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -189,7 +189,7 @@ public class UserService  implements UserRepository {
         connection = getConnection();
         String query = "INSERT INTO user (" +
                 "phone_number, email, picture, gender, country, bio, DOB, password, count_of_login, mode, " +
-                "is_chatbot_enabled, name, linkedin_url, facebook_url, twitter_url, isOnline) " +
+                "is_chatbot_enabled, name, linkedin_url, facebook_url, twitter_url, is_online) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {

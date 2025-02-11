@@ -1,7 +1,5 @@
 package com.chat;
-
 import com.chat.controller.BarController;
-import com.chat.network.ServerConnection;
 import com.chat.utils.Cordinator;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +12,10 @@ import javafx.stage.Stage;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Properties;
 
 public class ClientStarter extends Application {
 
@@ -22,23 +23,47 @@ public class ClientStarter extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        final int initWidth = 1000; // initial width
-        final int initHeight = 600; // initial height
-        final Pane root = new Pane(); // root container
-
+        final int initWidth = 1000;
+        final int initHeight = 600;
+        final Pane root = new Pane();
+        Pane controller= null;
         stage.setOnCloseRequest((e)->{
-            Cordinator.getScheduledExecutorService().shutdown();
-        });
-        Pane controller = loadFXML("login");
+            Cordinator.getScheduledExecutorService().shutdown();});
+
+        File file =  new File("user_session.properties");
+        if(!file.exists())
+        {
+            controller = loadFXML("signUp");
+        }
+        else
+        {
+            Properties properties = new Properties();
+
+            try(FileInputStream in =  new FileInputStream("user_session.properties"))
+            {
+                properties.load(in);
+
+
+                {System.out.println("File exists, loading Login...");
+                    controller = loadFXML("login");
+
+                }
+                }
+            }
+
+
+
+
         controller.setPrefWidth(initWidth);
         controller.setPrefHeight(initHeight);
         root.getChildren().add(controller);
 
 
         Scale scale = new Scale(1, 1, 0, 0);
-        scale.xProperty().bind(root.widthProperty().divide(initWidth)); // binding scale X to width
-        scale.yProperty().bind(root.heightProperty().divide(initHeight)); // binding scale Y to height
+        scale.xProperty().bind(root.widthProperty().divide(initWidth));
+        scale.yProperty().bind(root.heightProperty().divide(initHeight));
         root.getTransforms().add(scale);
+
 
 
         scene = new Scene(root, initWidth, initHeight);

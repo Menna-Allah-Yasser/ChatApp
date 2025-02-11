@@ -14,6 +14,7 @@ import javafx.application.Platform;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.time.LocalDateTime;
 
 public class ClientImpl extends UnicastRemoteObject implements ClientRepository {
 
@@ -23,8 +24,6 @@ public class ClientImpl extends UnicastRemoteObject implements ClientRepository 
 
     @Override
 
-    public void getNotification(Notification notification) {
-        Cordinator.getNotificationList().add(0, notification);
 
     public void getNotification(Notification notification)  throws  RemoteException{
        Platform.runLater(()->{Cordinator.getNotificationList().add(0,notification);});
@@ -39,37 +38,28 @@ public class ClientImpl extends UnicastRemoteObject implements ClientRepository 
 
     }
 
+
     @Override
-    public void addedToGroup(int groupID) throws RemoteException {
+    public void moveaNewCardtoTop(ChatCard chatCard) throws RemoteException {
+
+        Platform.runLater(()->{Cordinator.getContactList().add(0,new ChatCardClient(
+                chatCard.getChat_id(),
+                chatCard.getChat_name(),
+                chatCard.getMessage_id(),
+                chatCard.getMessage_desc(),
+                chatCard.getMessage_time(),
+                chatCard.getUser_Id(),
+                chatCard.getUser_name(),
+                chatCard.isUser_isOnline(),
+                chatCard.getUser_pictrue()
+
+        ));});
 
     }
 
-    @Override
-    public void friendAcceptedRequest(int friendID) throws RemoteException {
 
-    /*    ObservableList<CardItem> list = Cordinator.getContactList();
-        for(CardItem friend :list)
-        {
-            if(friend.getId()==friendID)
-            {
-                friend.setisuser_isOnline(true);
-            }
-        }*/
-    }
 
-    @Override
-    public void receivedFriendRequest(int friendID) throws RemoteException {
 
-       /* ObservableList<CardItem> list = Cordinator.getContactList();
-        for(CardItem friend :list)
-        {
-            if(friend.getId()==friendID)
-            {
-                friend.setisuser_isOnline(false);
-            }
-        }*/
-
-    }
 
     @Override
     public void receiveAnnouncement(Announcement announcement) throws RemoteException {
@@ -85,9 +75,12 @@ public class ClientImpl extends UnicastRemoteObject implements ClientRepository 
     public void friendLoggedIn(int friendID) throws RemoteException {
 
         ObservableList<ChatCardClient> list = Cordinator.getContactList();
+
         for (ChatCardClient friend : list) {
+
             if (friend.getUserId() == friendID) {
                 friend.setUserIsOnline(true);
+
             }
         }
     }
@@ -103,4 +96,29 @@ public class ClientImpl extends UnicastRemoteObject implements ClientRepository 
 
         }
     }
+    @Override
+    public void receivedMessage(Message message) throws RemoteException {
+
+        ObservableList<ChatCardClient> list = Cordinator.getContactList();
+
+        int senderId = message.getUser_id();
+        for (ChatCardClient friend : list) {
+            if (friend.getUserId()== senderId) {
+             ChatCardClient client =  friend;
+             list.removeIf(Friend->Friend.getUserId()==senderId);
+
+             client.setMessageDesc(message.getDescription());
+             client.setMessageId(message.getId());
+
+             client.setMessageTime(message.getTime());
+             list.add(0,client);
+             break ;
+
+            }
+
+        }
+
+
+    }
+
 }

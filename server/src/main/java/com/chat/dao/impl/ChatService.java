@@ -121,7 +121,10 @@ public class ChatService implements ChatRepository {
         List<Integer> userIDs = new ArrayList<>();
         query = "select chat_id , particpant_id from particpant where chat_id = ? ";
 
-        try( PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        try(
+                Connection connection=DBConnectionManager.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
             preparedStatement.setInt(1 , chat_id);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()){

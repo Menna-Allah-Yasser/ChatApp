@@ -198,10 +198,6 @@ public class ParticipantService implements ParticipantRepository {
         return cnt;
     }
 
-    public static void main(String[] args) {
-        ParticipantService participantService = new ParticipantService();
-        System.out.println(participantService.countChatParticpantsByChatId(7));
-    }
 
 
 }

@@ -106,6 +106,21 @@ public class ChatCardClient {
         this.userName.set(userName);
     }
 
+    @Override
+    public String toString() {
+        return "ChatCardClient{" +
+                "chatId=" + chatId +
+                ", chatName=" + chatName +
+                ", messageId=" + messageId +
+                ", messageDesc=" + messageDesc +
+                ", messageTime=" + messageTime +
+                ", userId=" + userId +
+                ", userName=" + userName +
+                ", userIsOnline=" + userIsOnline +
+                ", userPicture=" + userPicture +
+                '}';
+    }
+
     public boolean isUserIsOnline() {
         return userIsOnline.get();
     }

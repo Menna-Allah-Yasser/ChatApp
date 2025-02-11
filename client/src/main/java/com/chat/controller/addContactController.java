@@ -93,7 +93,7 @@ public class addContactController implements Initializable {
 
 
             try {
-                 isValid = (server.getUser(phoneNumber)!=null)&& UserValidation.isValidPhoneNumber(phoneNumber)&&phoneNumber.equals(server.getUser(SessionManager.getLoggedInUser()));
+                 isValid = (server.getUser(phoneNumber)!=null)&& UserValidation.isValidPhoneNumber(phoneNumber)&&!phoneNumber.equals(server.getUser(SessionManager.getLoggedInUser()));
             } catch (RemoteException e) {
                 throw new RuntimeException(e);
             }

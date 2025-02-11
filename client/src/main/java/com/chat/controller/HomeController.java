@@ -11,6 +11,8 @@ import com.chat.network.ServerRepository;
 import com.chat.utils.Cordinator;
 import com.chat.utils.CurrentChat;
 
+import com.chat.utils.SessionManager;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -31,6 +33,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+import java.awt.font.FontRenderContext;
 import java.rmi.RemoteException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -93,7 +96,7 @@ public class HomeController {
                 System.out.println("contactList()");
                 try {
 
-                        List<ChatCard> chatDTOs = server.getChatsForUser(1);
+                        List<ChatCard> chatDTOs = server.getChatsForUser(SessionManager.getLoggedInUser());
                         List<ChatCardClient> chatCards = chatDTOs.stream()
                                 .map(dto -> new ChatCardClient(
                                         dto.getChat_id(),
@@ -108,9 +111,16 @@ public class HomeController {
                                 ))
                                 .collect(Collectors.toList());
 
+                    for (int i = 0; i < chatCards.size(); i++) {
+                        System.out.println(chatCards.get(i));
+                    }
+
                         Cordinator.getContactList().setAll(chatCards);
+                    Platform.runLater(() -> {
                         chatsArea.setItems(Cordinator.getContactList());
-                        chatsArea.setCellFactory(lv -> new ListCell<ChatCardClient>() {
+                    });
+
+                    chatsArea.setCellFactory(lv -> new ListCell<ChatCardClient>() {
                                 private HBox content;
                                 private ImageView profileImageView;
                                 private Text username;
@@ -169,8 +179,9 @@ public class HomeController {
                                                 setText(null);
                                                 setGraphic(null);
                                         } else {
-                                                // ربط البيانات مباشرة بالخصائص القابلة للملاحظة
-                                                username.textProperty().bind(chatItem.chatNameProperty());
+
+                                            System.out.println("Updating item: " + chatItem.getChatName());
+                                            username.textProperty().bind(chatItem.chatNameProperty());
                                                 message.textProperty().bind(chatItem.messageDescProperty());
 
                                                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
@@ -204,7 +215,7 @@ public class HomeController {
         }
 
 
-        /*public void renderMessages() {
+        public void renderMessages() {
             System.out.println("rendering message");
             ServerRepository server=ServerConnection.getServer();
             Runnable r=()->{
@@ -266,14 +277,12 @@ public class HomeController {
             };
             Cordinator.getScheduledExecutorService().execute(r2);
 
-
-            //System.out.println(Cordinator.getList());
-
-}
-        }*/
-
-
-
-
+            System.out.println(Cordinator.getList());
 
 }
+        }
+
+
+
+
+
