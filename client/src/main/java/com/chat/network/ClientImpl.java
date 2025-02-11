@@ -25,12 +25,8 @@ public class ClientImpl extends UnicastRemoteObject implements ClientRepository 
 
     public void getNotification(Notification notification) {
         Cordinator.getNotificationList().add(0, notification);
-
-    public void getNotification(Notification notification)  throws  RemoteException{
-       Platform.runLater(()->{Cordinator.getNotificationList().add(0,notification);});
-
-
     }
+
 
     @Override
     public void sendMessage(Message message) throws RemoteException {
@@ -65,28 +61,13 @@ public class ClientImpl extends UnicastRemoteObject implements ClientRepository 
         }*/
     }
 
-    @Override
-    public void receivedFriendRequest(int friendID) throws RemoteException {
 
-       /* ObservableList<CardItem> list = Cordinator.getContactList();
-        for(CardItem friend :list)
-        {
-            if(friend.getId()==friendID)
-            {
-                friend.setisuser_isOnline(false);
-            }
-        }*/
 
-    }
 
-    @Override
-    public void receiveAnnouncement(Announcement announcement) throws RemoteException {
-
-    }
 
 
     @Override
-    public void disconnect() throws RemoteException {
+    public void disconnect() throws RemoteException {}
 
 
 

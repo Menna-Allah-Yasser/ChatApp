@@ -121,7 +121,7 @@ public class ChatService implements ChatRepository {
         List<Integer> userIDs = new ArrayList<>();
         query = "select chat_id , particpant_id from particpant where chat_id = ? ";
 
-        try( PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        try( Connection connection=DBConnectionManager.getConnection();PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1 , chat_id);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()){
@@ -133,40 +133,5 @@ public class ChatService implements ChatRepository {
             System.out.println(e.getMessage());
         }
         return userIDs;
-    }
-
-
-    public static void main(String[] args) {
-
-        ChatService chatService = new ChatService();
-
-
-        System.out.println(chatService.getChatUsersIdByChatId(7));
-
-       /* List<Integer> ids = new ArrayList<>();
-        ids.add(1);
-        ids.add(3);*/
-        //System.out.println(chatService.getChats());
-        //System.out.println(chatService.getChatById(1));
-       // System.out.println(chatService.getChatsById(ids));
-
-
-        //System.out.println(chatService.getChats());
-        //System.out.println(chatService.getChatById(1));
-        System.out.println(chatService.getChatById(6));
-
-
-
-      /*  Chat chat = new Chat("iti");
-        ChatService chatService = new ChatService();
-        System.out.println(chatService.addNewChat(chat));*/
-
-
-       /* ChatService chatService = new ChatService();
-        System.out.println(chatService.getChats());*/
-
-       /* ChatService chatService = new ChatService();
-        System.out.println(chatService.updateChatName(2 , "MEC"));*/
-
     }
 }

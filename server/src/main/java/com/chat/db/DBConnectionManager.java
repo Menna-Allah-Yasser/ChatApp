@@ -19,7 +19,6 @@ public class DBConnectionManager {
         try {
 
 
-            fis = new FileInputStream("E:\\iti\\projects\\ChatApp\\server\\db.properties");
 
 
             fis = new FileInputStream("/home/khaled/chaatproj/project5/ChatApp/server/db.properties");

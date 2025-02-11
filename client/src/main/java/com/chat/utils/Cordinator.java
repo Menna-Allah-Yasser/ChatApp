@@ -21,7 +21,6 @@ public class Cordinator {
     //    private static ObservableList<Object> flist= FXCollections.observableArrayList();
 
 //    private static ObservableList<Object> chats=FXCollections.observableArrayList();
-    private static ObservableList<Object> list=FXCollections.observableArrayList();
 
     private static ObservableList<Object> flist= FXCollections.observableArrayList();
     public static BarController barController;

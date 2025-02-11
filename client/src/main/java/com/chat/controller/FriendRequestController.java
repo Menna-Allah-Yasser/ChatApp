@@ -34,7 +34,7 @@ import java.util.ResourceBundle;
 public class FriendRequestController implements Initializable {
    Image accept1=new Image(getClass().getResource("/images/accept.png").toExternalForm());
    Image decline1=new Image(getClass().getResource("/images/remove.png").toExternalForm());
-    ServerRepository server= ServerConnection.getServer();
+   ServerRepository server= ServerConnection.getServer();
     @FXML
     private ListView<Object> list;
     ObservableList<Object> flist= Cordinator.getFriendRequestlist();

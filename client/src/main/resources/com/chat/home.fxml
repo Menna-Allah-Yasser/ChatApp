@@ -46,7 +46,7 @@
                               <HBox alignment="CENTER" spacing="5.0" GridPane.rowIndex="2">
                                   <children>
 
-                                      <Label fx:id="allCat" text="All">
+                                      <Label fx:id="allCat" text="All"/>
 
                                       <Label fx:id="all" text="All">
 
