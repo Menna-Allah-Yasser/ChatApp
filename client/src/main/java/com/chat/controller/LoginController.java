@@ -77,6 +77,7 @@ public class LoginController {
         String phoneNumber= userPhoneNumberSignIn.getText();
 
         String  password = userPasswordSignIn.getText();
+        System.out.println(server);
         if(server.authenticateUser(phoneNumber,password))
         {
             System.out.println(server.authenticateUser(phoneNumber,password));

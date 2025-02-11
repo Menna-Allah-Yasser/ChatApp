@@ -418,6 +418,8 @@ public class UserService  implements UserRepository {
         List<User> users = new ArrayList<>();
         String query = "SELECT * FROM user";
 
+        connection = getConnection();
+
         try (PreparedStatement preparedStatement = connection.prepareStatement(query);
              ResultSet resultSet = preparedStatement.executeQuery()) {
 
@@ -437,12 +439,14 @@ public class UserService  implements UserRepository {
             throw new RuntimeException("Error retrieving all users", e);
         }
 
+        closeConnection();
         return users;
     }
     public int getNumOfMaleUsers() {
         int count = 0;
         String query = "SELECT COUNT(*) AS count FROM user WHERE gender = 'Male'";
 
+        connection = getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(query);
              ResultSet resultSet = preparedStatement.executeQuery()) {
 
@@ -452,7 +456,7 @@ public class UserService  implements UserRepository {
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving number of male users", e);
         }
-
+        closeConnection();
         return count;
     }
 
@@ -460,6 +464,7 @@ public class UserService  implements UserRepository {
         int count = 0;
         String query = "SELECT COUNT(*) AS count FROM user WHERE gender = 'Female'";
 
+        connection = getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(query);
              ResultSet resultSet = preparedStatement.executeQuery()) {
 
@@ -469,6 +474,9 @@ public class UserService  implements UserRepository {
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving number of male users", e);
         }
+        closeConnection();
+        return count;
+    }
 
     private void closeConnection() {
         if (connection != null) {
@@ -482,31 +490,11 @@ public class UserService  implements UserRepository {
     }
 
 
-    public static void main(String[] args) {
-        UserService service = new UserService();
-
-        service.updateOnline(6 , false);
-        /*byte[] imageBytes = new byte[0];
-        try {
-            imageBytes = Files.readAllBytes(Path.of("C:\\Users\\HP\\Pictures\\Screenshots\\Screenshot (1).png"));
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        service.updateUserImage(1 , imageBytes);
-
-        System.out.println(service.findUserById(1));*/
-
-
-        User user = service.findUserById(2);
-
-
-        return count;
-    }
-
     public List<String> getCountries() {
         List<String> cont = new ArrayList<>();
         String query = "SELECT country AS countries FROM user";
 
+        connection = getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(query);
              ResultSet resultSet = preparedStatement.executeQuery()) {
             while (resultSet.next()) {
@@ -515,11 +503,10 @@ public class UserService  implements UserRepository {
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving number of male users", e);
         }
-
+        closeConnection();
         return cont;
     }
 
-    }
 
 }
 
