@@ -43,16 +43,13 @@ public class ChatBotServer extends UnicastRemoteObject implements ChatBotReposit
             JSONObject requestBodyJson = new JSONObject();
             requestBodyJson.put("contents", contents);
 
-            // Create the RequestBody using JSON payload and set media type.
             RequestBody requestBody = RequestBody.create(requestBodyJson.toString(), MediaType.get("application/json"));
 
-            // Build the HTTP POST request.
             Request request = new Request.Builder()
                     .url(URL)
                     .post(requestBody)
                     .build();
 
-            // Execute the request synchronously.
             Response response = client.newCall(request).execute();
             if (response.isSuccessful()) {
                 String responseBody = response.body().string();

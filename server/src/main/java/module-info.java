@@ -26,5 +26,4 @@ module com.chat.server {
     requires okhttp3;
     requires org.json;
 
-
 }
