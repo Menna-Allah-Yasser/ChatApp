@@ -16,14 +16,26 @@ public class UserService  implements UserRepository {
     private Connection connection;
 
     public UserService() {
-        connection = DBConnectionManager.getConnection();
+
+
 
     }
+
+    private Connection getConnection()
+    {
+        System.out.println("Database connection opened.");
+
+        return DBConnectionManager.getConnection();}
+
+
+
 
     @Override
     public User findUserByPhoneNumber(String phoneNumber) {
         String query = "SELECT * FROM user WHERE phone_number = ?";
         User userDTO = null;
+
+        connection = getConnection();
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, phoneNumber);
@@ -58,6 +70,10 @@ public class UserService  implements UserRepository {
 
             throw new RuntimeException("Error finding user by phone number", e);
         }
+        finally {
+
+            closeConnection();
+        }
 
 
 
@@ -71,6 +87,7 @@ public class UserService  implements UserRepository {
     public void deleteUserByPhoneNumber(String phoneNumber) {
         String query = "DELETE FROM user WHERE phone_number = ?";
 
+        connection = getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, phoneNumber);
             int rowsAffected = preparedStatement.executeUpdate();
@@ -81,10 +98,15 @@ public class UserService  implements UserRepository {
         } catch (SQLException e) {
             throw new RuntimeException("Error deleting user by phone number", e);
         }
+        finally {
+
+            closeConnection();
+        }
     }
 
     @Override
     public void updateUser(User userDTO) {
+        connection = getConnection();
         if (connection == null) {
             System.out.println("Database connection is not initialized!");
             return;
@@ -157,9 +179,14 @@ public class UserService  implements UserRepository {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        finally {
+
+            closeConnection();
+        }
     }
 
     public void addNewUser(User userDTO) {
+        connection = getConnection();
         String query = "INSERT INTO user (" +
                 "phone_number, email, picture, gender, country, bio, DOB, password, count_of_login, mode, " +
                 "is_chatbot_enabled, name, linkedin_url, facebook_url, twitter_url, isOnline) " +
@@ -193,10 +220,15 @@ public class UserService  implements UserRepository {
         } catch (SQLException e) {
             throw new RuntimeException("Error adding new user"+ e);
         }
+        finally {
+
+            closeConnection();
+        }
     }
 
     @Override
     public boolean authenticateUser(String phoneNumber, String password) {
+        connection = getConnection();
         String query = "SELECT password FROM user WHERE phone_number = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, phoneNumber);
@@ -212,9 +244,14 @@ public class UserService  implements UserRepository {
         } catch (SQLException e) {
             throw new RuntimeException("Error authenticating user", e);
         }
+        finally {
+
+            closeConnection();
+        }
     }
 
     private void updateUserField(String fieldName, Object value, int userId) {
+        connection = getConnection();
         String query = "UPDATE user SET " + fieldName + " = ? WHERE user_id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setObject(1, value);
@@ -227,6 +264,10 @@ public class UserService  implements UserRepository {
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error updating user field", e);
+        }
+        finally {
+
+            closeConnection();
         }
     }
 
@@ -294,11 +335,14 @@ public class UserService  implements UserRepository {
             e.printStackTrace();
         }
 
+
         return userDTO ;
     }
 
     @Override
     public User findUserById(int userId) {
+
+        connection = getConnection();
 
         String query = "SELECT * FROM user WHERE user_id = ?";
         User userDTO = null;
@@ -337,6 +381,10 @@ public class UserService  implements UserRepository {
 
             throw new RuntimeException("Error finding user by phone number", e);
         }
+        finally {
+
+            closeConnection();
+        }
 
 
 
@@ -364,8 +412,32 @@ public class UserService  implements UserRepository {
         return arrayList;
     }
 
+    private void closeConnection() {
+        if (connection != null) {
+            try {
+                connection.close();
+                System.out.println("Database connection closed.");
+            } catch (SQLException e) {
+                System.err.println("Error closing connection: " + e.getMessage());
+            }
+        }
+    }
+
+
     public static void main(String[] args) {
         UserService service = new UserService();
+
+        service.updateOnline(6 , false);
+        /*byte[] imageBytes = new byte[0];
+        try {
+            imageBytes = Files.readAllBytes(Path.of("C:\\Users\\HP\\Pictures\\Screenshots\\Screenshot (1).png"));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        service.updateUserImage(1 , imageBytes);
+
+        System.out.println(service.findUserById(1));*/
+
 
         User user = service.findUserById(2);
 
@@ -375,6 +447,7 @@ public class UserService  implements UserRepository {
         user = service.findUserById(2);
 
         System.out.println(user);
+
 
     }
 

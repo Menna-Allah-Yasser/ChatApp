@@ -25,6 +25,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
+
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.List;
@@ -156,3 +157,4 @@ public class FriendRequestController implements Initializable {
 
     }
 }
+

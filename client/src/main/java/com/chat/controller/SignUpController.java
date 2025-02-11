@@ -1,9 +1,11 @@
 package com.chat.controller;
 
+
 import com.chat.ClientStarter;
 import com.chat.entity.User;
 import com.chat.network.ServerConnection;
 import com.chat.network.ServerRepository;
+
 import com.chat.utils.Director;
 import com.chat.utils.UserValidation;
 import javafx.event.ActionEvent;
@@ -23,6 +25,7 @@ import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.rmi.RemoteException;
 import java.sql.Date;
 import java.util.Properties;
 
@@ -135,16 +138,23 @@ public class SignUpController {
   }
 
   private void updateSignUpButtonState() {
-    boolean allValid =
-            UserValidation.isVaildName(userName.getText()) &&
-                    UserValidation.isVaildEmail(userEmail.getText()) &&
-                    UserValidation.isValidPassword(userPassword.getText()) &&
-                    userPassword.getText().equals(userConfirmPassword.getText()) &&
-                    UserValidation.isValidPhoneNumber(userPhoneNumber.getText()) &&
-                    UserValidation.isValidGender(userGender.getText()) &&
-                    UserValidation.isValidCountry(userCountry.getText());
 
-    signUpButton.setDisable(!allValid);
+      boolean allValid =
+              false;
+      try {
+          allValid = UserValidation.isVaildName(userName.getText()) &&
+                  UserValidation.isVaildEmail(userEmail.getText()) &&
+                  UserValidation.isValidPassword(userPassword.getText()) &&
+                  userPassword.getText().equals(userConfirmPassword.getText()) &&
+                  UserValidation.isValidPhoneNumber(userPhoneNumber.getText()) &&
+                  UserValidation.isValidGender(userGender.getText()) &&
+                  UserValidation.isValidCountry(userCountry.getText())&&server.getUser(userPhoneNumber.getText())== null;
+      } catch (RemoteException e) {
+          throw new RuntimeException(e);
+      }
+
+
+      signUpButton.setDisable(!allValid);
   }
 
   private User CreateUser() throws IOException {
@@ -291,18 +301,33 @@ public class SignUpController {
     updateSignUpButtonState();
   }
 
-  private void isValidPhoneNumber() {
+  private void isValidPhoneNumber()  {
     String phoneNumber = userPhoneNumber.getText();
     boolean isValidNumber = UserValidation.isValidPhoneNumber(phoneNumber);
 
-    if (!isValidNumber) {
-      UserNumberLabel.setVisible(true);
-      UserNumberLabel.setText("Invalid");
-      UserNumberLabel.setStyle("-fx-text-fill: red;");
-    } else {
-      UserNumberLabel.setVisible(false);
-    }
-    updateSignUpButtonState();
+      try {
+          if(server.getUser(phoneNumber)!= null)
+          {
+            validUserLab.setVisible(true);
+            validUserLab.setText("this user have already account");
+            validUserLab.setStyle("-fx-text-fill: red;");
+
+          }
+          else{ validUserLab.setVisible(false);}
+      } catch (RemoteException e) {
+          throw new RuntimeException(e);
+      }
+
+
+          if (!isValidNumber) {
+            UserNumberLabel.setVisible(true);
+            UserNumberLabel.setText("Invalid");
+            UserNumberLabel.setStyle("-fx-text-fill: red;");
+          } else {
+            UserNumberLabel.setVisible(false);
+          }
+
+      updateSignUpButtonState();
   }
 
   @FXML
@@ -311,6 +336,7 @@ public class SignUpController {
       validUserLab.setVisible(true);
       validUserLab.setText("can't add this user");
       validUserLab.setStyle("-fx-text-fill: red;");
+
     } else {
       validUserLab.setVisible(false);
 
@@ -351,7 +377,7 @@ public class SignUpController {
       try {
           ClientStarter.setRoot("login");
       } catch (IOException e) {
-          throw new RuntimeException(e);
+
       }
   }
 

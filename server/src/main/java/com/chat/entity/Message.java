@@ -3,7 +3,9 @@ package com.chat.entity;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Message implements Serializable {
+
+public class Message  implements Serializable {
+
 
     private int id;
 
