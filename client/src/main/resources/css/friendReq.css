@@ -20,7 +20,7 @@
 .label {
     -fx-text-fill: #777070; /* Text color for labels */
     -fx-font-size: 24px; /* Font size for labels */
-    -fx-padding: 20px 0; /* Padding above and below the label */
+
 }
 
 /* Style for the ListView */

@@ -172,5 +172,31 @@ public class ParticipantService implements ParticipantRepository {
         return res;
     }
 
+
+    @Override
+    public int countChatParticpantsByChatId(int chat_id){
+        int cnt=0;
+        String query = "SELECT count(particpant_id) FROM particpant WHERE chat_id = ? ";
+        try (Connection c = DBConnectionManager.getConnection();
+             PreparedStatement stmt = c
+                     .prepareStatement(query)) {
+            stmt.setInt(1, chat_id);
+
+           ResultSet rs = stmt.executeQuery() ;
+           if (rs.next()) {
+               cnt = rs.getInt(1);
+           }
+
+
+        } catch (Exception e) {
+            System.out.println("problem in countChatParticpantsByChatId");
+
+        }
+        return cnt;
+    }
+
+
+
+
 }
 

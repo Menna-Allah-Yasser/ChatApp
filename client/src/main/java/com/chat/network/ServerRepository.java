@@ -4,10 +4,11 @@ import com.chat.entity.*;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public interface ServerRepository  extends Remote {
+public interface ServerRepository extends Remote {
 
     public void login(int id, ClientRepository callback)throws RemoteException;
     //call fun update status and add user to server
@@ -27,7 +28,7 @@ public interface ServerRepository  extends Remote {
 
     public void updateUserInfo(User user)throws RemoteException;
     public void updateUserImage(int userID, byte[] img) throws RemoteException;
-    //  public boolean updateUserPassword(int userID, String password) throws RemoteException ;
+  //  public boolean updateUserPassword(int userID, String password) throws RemoteException ;
 
 
     public User getUser(int userID)  throws RemoteException;
@@ -48,12 +49,12 @@ public interface ServerRepository  extends Remote {
     public  Boolean updateFriendsRequestStatus (Invitation Invitation) throws RemoteException;
 
 
-    public void sendMessage(int sender_id , int recevier_id , Message Message, int ChatId) throws RemoteException;
+    public void sendMessage(Message message) throws RemoteException;
 
     public void createGroup(String Name , List<Integer> id) throws RemoteException;
 
     public int createChat(Chat chat)  throws RemoteException;
-    public Chat getChat(int chatID) throws RemoteException;
+
     //public List<User> getGroupMembers(int chatId) throws RemoteException;
 
 
@@ -68,6 +69,24 @@ public interface ServerRepository  extends Remote {
     public void updateNotification(int NotificationId, int userId) throws RemoteException;
 
     public String getBotResponse(String userMessage) throws RemoteException;
+
+    ////////////////////// Particpant
+
+    public List<Integer> getAllChatsById(int user_id) throws RemoteException;
+
+    public ArrayList<Participant> geParticpantByChat(int id);
+
+
+    /////////////////////////////////////////CHATS
+    public Chat getChat(int chatID) throws RemoteException;
+
+    List<ChatCard> getChatsForUser(int userId) throws RemoteException;
+
+
+
+    public List<Participant> getChatParticipants(int chat_id)throws RemoteException;
+    public Chat getChatById(int chatId)throws RemoteException;
+
 
 
 

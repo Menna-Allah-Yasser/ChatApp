@@ -2,8 +2,6 @@ package com.chat.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class Notification implements Serializable {
     private int Id;

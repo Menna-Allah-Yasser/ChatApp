@@ -8,7 +8,6 @@ import java.rmi.RemoteException;
 
 public interface UserRepository {
 
-
     public User findUserByPhoneNumber(String phoneNumber)   ;
     public void deleteUserByPhoneNumber(String phoneNumber) ;
 

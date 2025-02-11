@@ -7,6 +7,7 @@ import com.chat.db.DBConnectionManager;
 
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,14 +15,13 @@ public class MessageService implements MessageRepository {
 
     private String query;
     private DBConnectionManager DBConnectionManager;
-    private final Connection connection = DBConnectionManager.getConnection();
 
     @Override
     public List<Message> getMessages() {
         List<Message> messageList = new ArrayList<>();
 
-        query = "SELECT * FROM Message";
-        try(Statement statement = connection.createStatement() ) {
+        query = "SELECT * FROM message";
+        try(Connection connection = DBConnectionManager.getConnection();Statement statement = connection.createStatement() ) {
             ResultSet messages = statement.executeQuery(query);
 
             while(messages.next()){
@@ -48,8 +48,8 @@ public class MessageService implements MessageRepository {
     public boolean addMessage(Message message) {
 
         int rowAffected = 0;
-        query = "INSERT INTO Message (description, time, file_url, file_type, chat_id, user_id) VALUES (?,?,?,?,?,?)";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)){
+        query = "INSERT INTO message (description, time, file_url, file_type, chat_id, user_id) VALUES (?,?,?,?,?,?)";
+        try (Connection connection = DBConnectionManager.getConnection();PreparedStatement preparedStatement = connection.prepareStatement(query)){
 
             preparedStatement.setString(1 , message.getDescription());
             preparedStatement.setTimestamp(2, Timestamp.valueOf( message.getTime()));
@@ -60,6 +60,7 @@ public class MessageService implements MessageRepository {
 
             rowAffected = preparedStatement.executeUpdate();
             connection.commit();
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -72,9 +73,9 @@ public class MessageService implements MessageRepository {
     public boolean deleteMessage(int id) {
 
         int rowAffected = 0;
-        query = "DELETE FROM Message WHERE message_id = ?";
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
+        query = "DELETE FROM message WHERE message_id = ?";
+        try (Connection connection = DBConnectionManager.getConnection();PreparedStatement preparedStatement = connection.prepareStatement(query);){
+
             preparedStatement.setInt(1 , id);
             rowAffected = preparedStatement.executeUpdate();
             connection.commit();
@@ -89,8 +90,8 @@ public class MessageService implements MessageRepository {
     @Override
     public List<Message> getChatMessages(int chat_id) {
         List<Message> messages = new ArrayList<>();
-        query = "SELECT * FROM Message WHERE chat_id = ?";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)){
+        query = "SELECT * FROM message WHERE chat_id = ?";
+        try (Connection connection = DBConnectionManager.getConnection();PreparedStatement preparedStatement = connection.prepareStatement(query)){
             preparedStatement.setInt(1 , chat_id);
             ResultSet set = preparedStatement.executeQuery();
             while (set.next()){
@@ -114,8 +115,8 @@ public class MessageService implements MessageRepository {
     @Override
     public List<Message> getUserMessages(int user_id) {
         List<Message> messages = new ArrayList<>();
-        query = "SELECT * FROM Message WHERE user_id = ?";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)){
+        query = "SELECT * FROM message WHERE user_id = ?";
+        try (Connection connection = DBConnectionManager.getConnection();PreparedStatement preparedStatement = connection.prepareStatement(query)){
             preparedStatement.setInt(1 , user_id);
             ResultSet set = preparedStatement.executeQuery();
             while (set.next()){
@@ -140,8 +141,8 @@ public class MessageService implements MessageRepository {
     public boolean updateMessageDescription(int id, String newDescription) {
 
         int rowAffected = 0;
-        query = "UPDATE Message SET description = ? WHERE message_id = ?";
-        try(PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        query = "UPDATE message SET description = ? WHERE message_id = ?";
+        try(Connection connection = DBConnectionManager.getConnection();PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             preparedStatement.setString(1 , newDescription);
             preparedStatement.setInt(2 , id);
@@ -158,19 +159,13 @@ public class MessageService implements MessageRepository {
        /* Message message = new Message("hi mnmn", LocalDateTime.now(),1 , 1 );
         MessageService messageService = new MessageService();
         System.out.println(messageService.addMessage(message));*/
-
-      /*  MessageService messageService = new MessageService();
+       /*MessageService messageService = new MessageService();
         System.out.println(messageService.deleteMessage(3));*/
-
        /* MessageService messageService = new MessageService();
         System.out.println(messageService.getMessages());*/
-
-
        /* MessageService messageService = new MessageService();
         System.out.println(messageService.updateMessageDescription(1 , "Hi mo"));*/
 
-       /* MessageService messageService = new MessageService();
-        System.out.println(messageService.getChatMessages(9));*/
     }
 
 }

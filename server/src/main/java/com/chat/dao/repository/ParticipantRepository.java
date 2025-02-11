@@ -25,4 +25,6 @@ public interface ParticipantRepository {
 
     List<Integer> getAllChatsById(int user_id);
 
+    int countChatParticpantsByChatId(int chat_id);
+
 }

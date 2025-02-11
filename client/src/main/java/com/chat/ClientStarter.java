@@ -81,19 +81,9 @@ public class ClientStarter extends Application {
         return p;
     }
 
-//    public static void main(String[] args) {
-//        try {
-//            // Get the remote server object using our ServerConnection helper.
-//            ServerRepository server = ServerConnection.getServer();
-//            System.out.println(server);
-//            if (server != null) {
-//                String response = server.getBotResponse("what is jvm");
-//                System.out.println("Server Response: " + response);
-//            } else {
-//                System.out.println("Failed to connect to the server.");
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
+
+    public static void main(String[] args) {
+        launch();
+    }
 }
+

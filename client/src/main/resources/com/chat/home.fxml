@@ -23,118 +23,115 @@
 
 <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../../css/home.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chat.controller.HomeController">
     <center>
-        <BorderPane fx:id="mainPane">
-            <center>
-                <SplitPane dividerPositions="0.41162514827995267" styleClass="split-pane">
-                    <items>
-                        <GridPane style="-fx-background-color: WHITE;">
-                            <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                            </columnConstraints>
-                            <rowConstraints>
-                                <RowConstraints maxHeight="100.99997965494791" minHeight="10.0" percentHeight="8.0" prefHeight="10.33332888285318" vgrow="ALWAYS" />
-                                <RowConstraints maxHeight="190.33333778381348" minHeight="10.0" percentHeight="8.0" prefHeight="18.9999796549479" vgrow="ALWAYS" />
-                                <RowConstraints maxHeight="251.00002034505206" minHeight="10.0" percentHeight="8.0" prefHeight="19.00000508626306" vgrow="ALWAYS" />
-                                <RowConstraints maxHeight="293.3333282470703" minHeight="10.0" percentHeight="76.0" prefHeight="289.3333282470703" vgrow="ALWAYS" />
-                            </rowConstraints>
+      <BorderPane fx:id="mainPane">
+         <center>
+              <SplitPane dividerPositions="0.41162514827995267" styleClass="split-pane">
+                  <items>
+                  <GridPane style="-fx-background-color: WHITE;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="100.99997965494791" minHeight="10.0" percentHeight="8.0" prefHeight="10.33332888285318" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="190.33333778381348" minHeight="10.0" percentHeight="8.0" prefHeight="18.9999796549479" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="251.00002034505206" minHeight="10.0" percentHeight="8.0" prefHeight="19.00000508626306" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="293.3333282470703" minHeight="10.0" percentHeight="76.0" prefHeight="289.3333282470703" vgrow="ALWAYS" />
+                     </rowConstraints>
+                     <children>
+                              <TextField fx:id="search" promptText="Search" styleClass="search-field" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets bottom="5.0" left="50.0" right="50.0" top="5.0" />
+                           </GridPane.margin>
+                        </TextField>
+                              <HBox alignment="CENTER" spacing="5.0" GridPane.rowIndex="2">
+                                  <children>
+
+
+
+                                      <Label fx:id="all" text="All">
+
+                                 <styleClass>
+                                    <String fx:value="category-label" />
+                                    <String fx:value="All-label" />
+                                 </styleClass>
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+
+                                      <Label fx:id="familyCat" styleClass="category-label" text="Family" />
+                                      <Label fx:id="workCat" styleClass="category-label" text="Work" />
+                                      <Label fx:id="friendCat" styleClass="category-label" text="Friend" />
+
+
+
+
+
+                                  </children>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                              </HBox>
+
+                              <ListView id="chatList" fx:id="chatsArea" editable="true" styleClass="message-list" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS" />
+
+                        <Label prefHeight="15.0" prefWidth="97.0" styleClass="title" text="Messages" />
+                     </children>
+                  </GridPane>
+                  <GridPane alignment="TOP_RIGHT" style="-fx-background-color: WHITE;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="327.0" spacing="10.0" style="-fx-background-color: WHITE;" GridPane.hgrow="ALWAYS" GridPane.vgrow="NEVER">
+                                  <children>
+                                      <ImageView fx:id="currentImg" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../images/profileImg.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                                      <Label fx:id="currentChatName" styleClass="contact-name" text="Travis Barker" />
+                                  </children>
+                              </HBox>
+                              <ListView fx:id="list" editable="true" prefHeight="299.0" prefWidth="327.0" styleClass="chat-list" GridPane.rowIndex="1" />
+                         <HBox prefHeight="20.0" prefWidth="327.0" spacing="5" style="-fx-background-color: WHITE;" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES">
                             <children>
-                                <TextField fx:id="search" promptText="Search" styleClass="search-field" GridPane.rowIndex="1">
-                                    <GridPane.margin>
-                                        <Insets bottom="5.0" left="50.0" right="50.0" top="5.0" />
-                                    </GridPane.margin>
-                                </TextField>
-                                <HBox alignment="CENTER" spacing="5.0" GridPane.rowIndex="2">
-                                    <children>
-
-                                        <Label fx:id="allCat" text="All">
-
-                                        <Label fx:id="all" text="All">
-
-                                            <styleClass>
-                                                <String fx:value="category-label" />
-                                                <String fx:value="All-label" />
-                                            </styleClass>
-                                            <font>
-                                                <Font name="System Bold" size="12.0" />
-                                            </font>
-                                        </Label>
-
-                                        <Label fx:id="familyCat" styleClass="category-label" text="Family" />
-                                        <Label fx:id="workCat" styleClass="category-label" text="Work" />
-                                        <Label fx:id="friendCat" styleClass="category-label" text="Friend" />
-
-                                        <Label fx:id="family" styleClass="category-label" text="Family" />
-                                        <Label fx:id="work" styleClass="category-label" text="Work" />
-                                        <Label fx:id="fav" styleClass="category-label" text="Fav" />
-
-                                    </children>
-                                    <padding>
-                                        <Insets left="10.0" />
-                                    </padding>
-                                </HBox>
-
-                                <ListView id="chatList" fx:id="chatsArea" editable="true" styleClass="message-list" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS" />
-
-                                <ListView id="chatList" fx:id="chats" editable="true" styleClass="message-list" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS" />
-
-                                <Label prefHeight="15.0" prefWidth="97.0" styleClass="title" text="Messages" />
+                                    <TextField fx:id="message" prefHeight="40.0" prefWidth="675.0" promptText="Type your message..." styleClass="message-input" />
+                              <ImageView fitHeight="22.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../images/attach-file.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" top="10.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fx:id="send" fitHeight="22.0" fitWidth="20.0" onMouseClicked="#onSendClick" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../images/send.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" right="5.0" top="10.0" />
+                                 </HBox.margin>
+                              </ImageView>
                             </children>
-                        </GridPane>
-                        <GridPane alignment="TOP_RIGHT" style="-fx-background-color: WHITE;">
-                            <columnConstraints>
-                                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
-                            </columnConstraints>
-                            <rowConstraints>
-                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            </rowConstraints>
-                            <children>
-                                <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="327.0" spacing="10.0" style="-fx-background-color: WHITE;" GridPane.hgrow="ALWAYS" GridPane.vgrow="NEVER">
-                                    <children>
-                                        <ImageView fx:id="currentChatImg" fitHeight="40.0" fitWidth="40.0"
-                                                   pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@../../images/profileImg.png" />
-                                            </image>
-                                            <HBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                            </HBox.margin>
-                                        </ImageView>
-                                        <Label fx:id="currentChatName" styleClass="contact-name" text="Travis Barker" />
-                                    </children>
-                                </HBox>
-                                <ListView fx:id="list" editable="true" prefHeight="299.0" prefWidth="327.0" styleClass="chat-list" GridPane.rowIndex="1" />
-                                <HBox prefHeight="20.0" prefWidth="327.0" spacing="5" style="-fx-background-color: WHITE;" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES">
-                                    <children>
-                                        <TextField fx:id="message" prefHeight="40.0" prefWidth="675.0" promptText="Type your message..." styleClass="message-input" />
-                                        <ImageView fitHeight="22.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@../../images/attach-file.png" />
-                                            </image>
-                                            <HBox.margin>
-                                                <Insets bottom="15.0" top="10.0" />
-                                            </HBox.margin>
-                                        </ImageView>
-                                        <ImageView fx:id="send" fitHeight="22.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@../../images/send.png" />
-                                            </image>
-                                            <HBox.margin>
-                                                <Insets bottom="15.0" right="5.0" top="10.0" />
-                                            </HBox.margin>
-                                        </ImageView>
-                                    </children>
-                                    <GridPane.margin>
-                                        <Insets top="10.0" />
-                                    </GridPane.margin>
-                                </HBox>
-
-                            </children>
-                        </GridPane>
-                    </items>
-                </SplitPane>
-            </center>
-        </BorderPane>
+                           <GridPane.margin>
+                              <Insets top="10.0" />
+                           </GridPane.margin>
+                         </HBox>
+      
+                     </children>
+                  </GridPane>
+                  </items>
+              </SplitPane>
+         </center>
+      </BorderPane>
     </center>
 </BorderPane>

@@ -23,6 +23,7 @@ public class InvitationService implements InvitationRepository {
             pstmt.setString(3, invitation.getStatus().name());
 
             int numOfRowsEffected = pstmt.executeUpdate();
+            conn.commit();
             return numOfRowsEffected > 0;
 
         } catch (SQLException e) {
@@ -43,7 +44,7 @@ public class InvitationService implements InvitationRepository {
             pstmt.setInt(1, userId);
             pstmt.setInt(2, userId);
             ResultSet rs = pstmt.executeQuery();
-
+            conn.commit();
             while (rs.next()) {
                 friends.add(rs.getInt(1));
             }
@@ -64,6 +65,7 @@ public class InvitationService implements InvitationRepository {
             pstmt.setInt(2, receiverId);
 
             int numOfRowsEffected = pstmt.executeUpdate();
+            conn.commit();
             return numOfRowsEffected > 0;
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
@@ -80,6 +82,7 @@ public class InvitationService implements InvitationRepository {
             pstmt.setString(1, status.name());
             pstmt.setInt(2, receiverId);
             ResultSet rs = pstmt.executeQuery();
+            conn.commit();
             while (rs.next()) {
                 Invitation invitation = new Invitation();
                 invitation.setSenderId(rs.getInt("sender_id"));
@@ -101,7 +104,7 @@ public class InvitationService implements InvitationRepository {
         String query = "INSERT INTO invitation (sender_id, receiver_id, status) VALUES(?, ?, ?)";
 
         try (Connection conn = DBConnectionManager.getConnection()) {
-            conn.setAutoCommit(false);
+
 
             try (PreparedStatement pstmt = conn.prepareStatement(query)) {
                 for (Invitation invitation : invitations) {
@@ -132,7 +135,7 @@ public class InvitationService implements InvitationRepository {
              PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setInt(1, receiverId);
             ResultSet rs = pstmt.executeQuery();
-
+    conn.commit();
             while (rs.next()) {
                 Invitation invitationDTO = new Invitation();
                 invitationDTO.setSenderId(rs.getInt("sender_id"));
@@ -153,10 +156,12 @@ public class InvitationService implements InvitationRepository {
         try (Connection conn = DBConnectionManager.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setString(1, newInv.getStatus().name());
+
             pstmt.setInt(2, newInv.getSenderId());
             pstmt.setInt(3, newInv.getReceiverId());
 
             int numOfRowsEffected = pstmt.executeUpdate();
+            conn.commit();
             return numOfRowsEffected > 0;
         } catch (SQLException e) {
             throw new RuntimeException("Error while updating invitation status", e);
@@ -168,6 +173,7 @@ public class InvitationService implements InvitationRepository {
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, userId);
             ResultSet rs = stmt.executeQuery();
+            con.commit();
             return rs.next();
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());

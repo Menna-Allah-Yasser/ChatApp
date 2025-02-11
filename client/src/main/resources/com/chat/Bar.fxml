@@ -71,6 +71,11 @@
                         <Image url="@../../images/img_1.png" />
                      </image>
                   </ImageView>
+                  <ImageView fx:id="Announcement" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#onAnnouncement" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/megaphone.png" />
+                     </image>
+                  </ImageView>
                   <ImageView fx:id="addGroup" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#onnewGroupClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/add_group.jpg" />

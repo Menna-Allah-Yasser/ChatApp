@@ -1,6 +1,5 @@
 package com.chat.controller;
 
-import com.chat.ClientStarter;
 import com.chat.entity.Notification;
 import com.chat.entity.User;
 import com.chat.network.ServerConnection;
@@ -8,28 +7,22 @@ import com.chat.network.ServerRepository;
 import com.chat.utils.Cordinator;
 import com.chat.utils.CurrentChat;
 import com.chat.utils.Director;
+
+
 import com.chat.utils.SessionManager;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
@@ -46,15 +39,21 @@ public class NotificationController implements Initializable {
 
             Runnable r=()->{
                 try {
-                    nlist.setAll(server.getAllNotifications(SessionManager.getLoggedInUser()));//
+                    nlist.setAll(server.getAllNotifications(SessionManager.getLoggedInUser()));
                 } catch (RemoteException e) {
                     throw new RuntimeException(e);
                 }
+                    Platform.runLater(()->{
+
+                        list.setItems(nlist);
+                    });
+                    //
+
             };
             Cordinator.getScheduledExecutorService().execute(r);
 
 
-        list.setItems(nlist);
+
         list.setCellFactory(param -> new ListCell<Object>() {
             private final HBox content;
             //private final ImageView avatar;
