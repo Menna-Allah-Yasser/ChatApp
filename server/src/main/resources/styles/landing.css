@@ -1,0 +1,54 @@
+/* Sidebar Styles (if needed, override or integrate with your existing sidebar styles) */
+.sidebar {
+    -fx-background-color: linear-gradient(to bottom, #8e44ad, #6a1b9a);
+    -fx-padding: 20;
+    -fx-spacing: 15;
+}
+
+.sidebar-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.sidebar-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-cursor: hand;
+}
+
+/* Landing Content Styles */
+.landing-center {
+    -fx-background-color: #ffffff;
+    -fx-alignment: center;
+    -fx-padding: 40;
+}
+
+.landing-title {
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.landing-subtitle {
+    -fx-font-size: 18px;
+    -fx-text-fill: #666666;
+    -fx-wrap-text: true;
+    -fx-max-width: 600px;
+    -fx-alignment: center;
+}
+
+.landing-button {
+    -fx-background-color: #8e44ad;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 3, 0, 0, 1);
+}
+
+.landing-button:hover {
+    -fx-background-color: #6a1b9a;
+}

@@ -17,7 +17,7 @@ public class ServerStarter extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(ServerStarter.class.getResource("home.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ServerStarter.class.getResource("signin.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1000, 600);
         stage.setTitle("Hello!");
         stage.setScene(scene);
@@ -26,5 +26,10 @@ public class ServerStarter extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+
+    @Override
+    public void stop() throws Exception {
+        super.stop();
     }
 }
