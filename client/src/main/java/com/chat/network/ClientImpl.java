@@ -4,6 +4,7 @@ package com.chat.network;
 import com.chat.entity.*;
 import com.chat.utils.Cordinator;
 
+import com.chat.utils.SessionManager;
 import javafx.beans.Observable;
 
 import javafx.collections.ObservableList;
@@ -67,7 +68,12 @@ public class ClientImpl extends UnicastRemoteObject implements ClientRepository 
 
 
     @Override
-    public void disconnect() throws RemoteException {}
+    public void disconnect() throws RemoteException {
+        ServerConnection.getServer().logout(SessionManager.getLoggedInUser());
+        ServerConnection.disconnect();
+        Platform.exit();
+        System.exit(1);
+    }
 
 
 
