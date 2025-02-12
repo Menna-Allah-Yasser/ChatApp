@@ -1,4 +1,4 @@
-package com.chat.network;
+                                                                                                                                              package com.chat.network;
 
 import com.chat.entity.*;
 
@@ -49,7 +49,7 @@ public interface ServerRepository extends Remote {
     public  Boolean updateFriendsRequestStatus (Invitation Invitation) throws RemoteException;
 
 
-    public void sendMessage(int sender_id , int recevier_id , Message Message, int ChatId) throws RemoteException;
+    public void sendMessage(Message message) throws RemoteException;
 
     public void createGroup(String Name , List<Integer> id) throws RemoteException;
 
@@ -68,7 +68,7 @@ public interface ServerRepository extends Remote {
     public List<Notification> getAllNotifications(int userId)throws RemoteException;
     public void updateNotification(int NotificationId, int userId) throws RemoteException;
 
-
+    public String getBotResponse(String userMessage) throws RemoteException;
 
     public List<Integer> getAllChatsById(int user_id) throws RemoteException;
 

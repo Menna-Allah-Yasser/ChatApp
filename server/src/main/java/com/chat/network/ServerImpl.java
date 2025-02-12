@@ -10,6 +10,7 @@ import com.chat.dao.repository.ParticipantRepository;
 import com.chat.dao.impl.MessageService;
 
 import com.chat.entity.*;
+import com.chat.service.impl.ChatBotServer;
 import com.chat.service.impl.ChatServerImpl;
 import com.chat.service.impl.InvitationServerImpl;
 import com.chat.service.impl.NotificationImpl;
@@ -204,7 +205,23 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
     }
 
     @Override
-    public void sendMessage(int sender_id, int recevier_id, Message Message, int ChatId) throws RemoteException {
+    public void sendMessage( Message message) throws RemoteException {
+        ChatServerImpl chatServer=new ChatServerImpl();
+        chatServer.addMessage(message);
+        Notification notification = notificationServer.createNotification("sent a message", Timestamp.valueOf(LocalDateTime.now()),message.getUser_id(), true ,message.getChat_id());
+        List<Participant>p=chatServer.getChatParticipants(message.getChat_id());
+        if(p!=null)
+        {   for (Participant p1 :p)
+        {
+            if (clients.containsKey(p1.getParticpantId())&&p1.getParticpantId()!=message.getUser_id())
+            {
+
+                ClientRepository clientRepository =clients.get(p1.getParticpantId());
+                clientRepository.getNotification(notification);
+                clientRepository.sendMessage(message);
+            }
+        }}
+
 
     }
 
@@ -304,6 +321,12 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
     public boolean addMessage(Message message) throws RemoteException {
         MessageRepository messageRepository = new MessageService();
         return messageRepository.addMessage(message);
+    }
+
+    @Override
+    public String getBotResponse(String userMessage) throws RemoteException {
+        ChatBotServer chat = ChatBotServer.getInstance();
+        return chat.getBotResponse(userMessage);
     }
 
 

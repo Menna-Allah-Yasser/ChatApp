@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserService  implements UserRepository {
 
@@ -412,6 +413,71 @@ public class UserService  implements UserRepository {
         return arrayList;
     }
 
+
+    public List<User> getAllUsers() {
+        List<User> users = new ArrayList<>();
+        String query = "SELECT * FROM user";
+
+        connection = getConnection();
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                User user= new User();
+                user.setEmail(resultSet.getString("email"));
+                user.setUserId(resultSet.getInt("user_id"));
+                user.setPhoneNumber(resultSet.getString("phone_number"));
+                user.setPicture(resultSet.getBytes("picture"));
+                user.setGender(resultSet.getString("gender"));
+                user.setCountry(resultSet.getString("country"));
+                user.setCountOfLogin(resultSet.getInt("count_of_login"));
+                user.setIsOnline(resultSet.getBoolean("is_online"));
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all users", e);
+        }
+
+        closeConnection();
+        return users;
+    }
+    public int getNumOfMaleUsers() {
+        int count = 0;
+        String query = "SELECT COUNT(*) AS count FROM user WHERE gender = 'Male'";
+
+        connection = getConnection();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            if (resultSet.next()) {
+                count = resultSet.getInt("count");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving number of male users", e);
+        }
+        closeConnection();
+        return count;
+    }
+
+    public int getNumOfFemaleUsers() {
+        int count = 0;
+        String query = "SELECT COUNT(*) AS count FROM user WHERE gender = 'Female'";
+
+        connection = getConnection();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            if (resultSet.next()) {
+                count = resultSet.getInt("count");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving number of male users", e);
+        }
+        closeConnection();
+        return count;
+    }
+
     private void closeConnection() {
         if (connection != null) {
             try {
@@ -424,8 +490,10 @@ public class UserService  implements UserRepository {
     }
 
 
-    public static void main(String[] args) {
-        UserService service = new UserService();
+    public List<String> getCountries() {
+        List<String> cont = new ArrayList<>();
+        String query = "SELECT country AS countries FROM user";
+
 
         User user = service.findUserById(8);
         user.setEmail("mennaallah003@gmail.com");
@@ -452,7 +520,21 @@ public class UserService  implements UserRepository {
         System.out.println(user);*/
 
 
+
+        connection = getConnection();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+            while (resultSet.next()) {
+                cont.add(new String(resultSet.getString("countries")));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving number of male users", e);
+        }
+        closeConnection();
+        return cont;
+
     }
+
 
 }
 

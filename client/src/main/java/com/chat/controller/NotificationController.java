@@ -37,14 +37,15 @@ public class NotificationController implements Initializable {
         ServerRepository server= ServerConnection.getServer();
 
             Runnable r=()->{
-
+                try {
+                    nlist.setAll(server.getAllNotifications(SessionManager.getLoggedInUser()));
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
                     Platform.runLater(()->{
-                        try {
-                            nlist.setAll(server.getAllNotifications(SessionManager.getLoggedInUser()));
-                        } catch (RemoteException e) {
-                            throw new RuntimeException(e);
-                        }
-                        list.setItems(nlist);});
+
+                        list.setItems(nlist);
+                    });
                     //
 
             };

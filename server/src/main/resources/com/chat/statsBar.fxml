@@ -1,23 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chat.controllers.StatisticsHomeController" stylesheets="@../../styles/statsBar.css">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.chat.controllers.StatisticsHomeController"
+            stylesheets="@../../styles/statsBar.css">
    <children>
-      <BorderPane layoutX="200.0" layoutY="73.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane layoutX="200.0" layoutY="73.0" prefHeight="200.0" prefWidth="200.0"
+                  AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                  AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #DA498D;" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0"
+                  style="-fx-background-color: #6A1B9A;" BorderPane.alignment="CENTER">
                <children>
                   <Pane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="NEVER" />
-                  <Button fx:id="btnOnline" mnemonicParsing="false" onAction="#btnOnlineHandler" text="online" />
+
+                  <!-- Online Button with Icon -->
+                  <Button fx:id="btnOnline" mnemonicParsing="false" onAction="#btnOnlineHandler" text="Online"
+                          style="-fx-content-display: LEFT; -fx-graphic-text-gap: 10;">
+                     <graphic>
+                        <ImageView fitHeight="16" fitWidth="16">
+                           <image>
+                              <Image url="@../../images/team.png"/>
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+
                   <Pane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                  <Button fx:id="btnGender" mnemonicParsing="false" onAction="#btnGenderHandler" text="gender" />
+
+                  <!-- Gender Button with Icon -->
+                  <Button fx:id="btnGender" mnemonicParsing="false" onAction="#btnGenderHandler" text="Gender"
+                          style="-fx-content-display: LEFT; -fx-graphic-text-gap: 10;">
+                     <graphic>
+                        <ImageView fitHeight="16" fitWidth="16">
+                           <image>
+                              <Image url="@../../images/gender.png"/>
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+
                   <Pane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                  <Button fx:id="btnCountry" mnemonicParsing="false" onAction="#btnCountryHandler" text="country" />
+
+                  <!-- Country Button with Icon -->
+                  <Button fx:id="btnCountry" mnemonicParsing="false" onAction="#btnCountryHandler" text="Country"
+                          style="-fx-content-display: LEFT; -fx-graphic-text-gap: 10;">
+                     <graphic>
+                        <ImageView fitHeight="16" fitWidth="16">
+                           <image>
+                              <Image url="@../../images/treasure-map.png"/>
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+
                   <Pane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>

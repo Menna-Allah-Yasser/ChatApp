@@ -13,11 +13,13 @@ import com.chat.entity.*;
 import com.chat.entity.Chat;
 import com.chat.entity.Message;
 import com.chat.entity.Participant;
-
 import com.chat.service.repository.ChatServerRepository;
-
 import java.rmi.RemoteException;
 import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -68,6 +70,10 @@ public class ChatServerImpl implements ChatServerRepository {
     }
 
     @Override
+
+    public void addMessage(Message message) {
+        messageService.addMessage(message);
+    }
     public List<ChatCard> getChatsForUser(int userId) {
         List<ChatCard> chatCards = new ArrayList<>();
         String query = "WITH LatestMessages AS (\n" +
@@ -242,6 +248,7 @@ public class ChatServerImpl implements ChatServerRepository {
             boxed[i] = bytes[i];
         }
         return boxed;
+
     }
 
     public static void main(String[] args) {
@@ -256,7 +263,7 @@ public class ChatServerImpl implements ChatServerRepository {
 
 
         ChatServerImpl server = new ChatServerImpl();
-        System.out.println(server.getChatById(6 ));
+
 
     }
 

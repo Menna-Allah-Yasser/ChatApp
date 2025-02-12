@@ -4,6 +4,7 @@ package com.chat.network;
 import com.chat.entity.*;
 import com.chat.utils.Cordinator;
 
+import com.chat.utils.SessionManager;
 import javafx.beans.Observable;
 
 import javafx.collections.ObservableList;
@@ -26,8 +27,17 @@ public class ClientImpl extends UnicastRemoteObject implements ClientRepository 
         Cordinator.getNotificationList().add(0, notification);
     }
 
+
     @Override
     public void sendMessage(Message message) throws RemoteException {
+        Platform.runLater(()->{Cordinator.getList().add(message);});
+    }
+    @Override
+    public void receivedFriendRequest(Invitation invitation) throws RemoteException {
+        if(invitation.getStatus()==InvStatus.WAIT)
+        {
+            Platform.runLater(()->Cordinator.getFriendRequestlist().add(0,invitation));
+        }
 
 
 
@@ -51,31 +61,24 @@ public class ClientImpl extends UnicastRemoteObject implements ClientRepository 
         }*/
     }
 
-    @Override
-    public void receivedFriendRequest(int friendID) throws RemoteException {
 
-       /* ObservableList<CardItem> list = Cordinator.getContactList();
-        for(CardItem friend :list)
-        {
-            if(friend.getId()==friendID)
-            {
-                friend.setisuser_isOnline(false);
-            }
-        }*/
 
-    }
 
-    @Override
-    public void receiveAnnouncement(Announcement announcement) throws RemoteException {
 
-    }
 
     @Override
     public void disconnect() throws RemoteException {
-
+        ServerConnection.getServer().logout(SessionManager.getLoggedInUser());
+        ServerConnection.disconnect();
+        Platform.exit();
+        System.exit(1);
     }
 
+
+
     @Override
+    public void receiveAnnouncement(Announcement announcement) throws RemoteException {
+        Platform.runLater(()->{Cordinator.getAlist().add(0,announcement);});}
     public void friendLoggedIn(int friendID) throws RemoteException {
 
         ObservableList<ChatCardClient> list = Cordinator.getContactList();

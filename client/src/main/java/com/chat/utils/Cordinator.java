@@ -22,10 +22,17 @@ public class Cordinator {
 
 //    private static ObservableList<Object> chats=FXCollections.observableArrayList();
 
+    private static ObservableList<Object> flist= FXCollections.observableArrayList();
     public static BarController barController;
     private static ObservableList<Object> nlist= FXCollections.observableArrayList();
+    private static ObservableList<Object> alist= FXCollections.observableArrayList();
+
+//    private static ObservableList<Object> flist= FXCollections.observableArrayList();
+
+  
 
     private static ObservableList<ChatCardClient> contactList = FXCollections.observableArrayList();
+
     private static ScheduledExecutorService scheduledExecutorService =
             Executors. newScheduledThreadPool(10);
     //make it synch or not ? if ii want to update it while it is opened in ui this means two thread accessing it i guess
@@ -41,14 +48,21 @@ public class Cordinator {
         return contactList;
     }
 
-//    public static ObservableList<Object> getFriendRequestlist() {
-//        return flist;
-//    }
+    public static ObservableList<Object> getFriendRequestlist() {
+        return flist;
+    }
+
+    public static ObservableList<Object> getAlist() {
+        return alist;
+    }
+
+    //    public static ObservableList<Object> getChats() {
 
 
     //    public static ObservableList<Object> getChats() {
 
 //    public static ObservableList<Object> getChats() {
+
 
 //        return chats;
 //    }

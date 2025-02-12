@@ -131,7 +131,9 @@ public class ChatService implements ChatRepository {
         List<Integer> userIDs = new ArrayList<>();
         query = "select chat_id , particpant_id from particpant where chat_id = ? ";
 
+
         try(Connection connection = DBConnectionManager.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
             preparedStatement.setInt(1 , chat_id);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()){
@@ -144,6 +146,7 @@ public class ChatService implements ChatRepository {
         }
         return userIDs;
     }
+
 
 
     public static void main(String[] args) {
@@ -180,4 +183,5 @@ public class ChatService implements ChatRepository {
         System.out.println(chatService.updateChatName(2 , "MEC"));*/
 
     }
+
 }

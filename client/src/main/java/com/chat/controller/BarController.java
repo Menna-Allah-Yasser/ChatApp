@@ -76,7 +76,7 @@ public class BarController {
     @FXML
     protected void onFriendRequestClick()
     {
-        Node node=  Director.loadView("friend");
+        Node node=  Director.loadView("friendreq");
         centerPane.setCenter(node);
 
     }
@@ -98,6 +98,12 @@ public class BarController {
 
         System.out.println("kkkkkkkkkkkkkkkkkkk");
         Node node =  Director.loadView("group");
+        centerPane.setCenter(node);
+    }
+    @FXML
+    void onAnnouncement() {
+
+        Node node=  Director.loadView("announcement");
         centerPane.setCenter(node);
     }
 

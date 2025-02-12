@@ -1,24 +1,42 @@
+/* Sidebar container */
+.sidebar {
+    -fx-background-color: linear-gradient(to bottom, #8e44ad, #6a1b9a);
+    -fx-padding: 20;
+    -fx-spacing: 10;
+}
 
-/* Add a subtle underline on hover */
-Button:hover {
+/* Sidebar title */
+.sidebar-title {
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-alignment: center;
+    -fx-padding: 10 0;
+}
+
+/* Base style for sidebar buttons */
+.sidebar-button, .sidebar-signout-button  {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-family: Arial;
+    -fx-cursor: hand;
+    -fx-padding: 10;
+    -fx-content-display: TOP;      /* Icon above text */
+    -fx-alignment: center;
+    -fx-graphic-text-gap: 5;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 3, 0, 0, 1);
+}
+
+/* Hover effect for sidebar buttons */
+.sidebar-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
     -fx-text-fill: #ffeb3b;
 }
 
-#btnOne , #btnTwo, #btnThree {
-    -fx-background-color: transparent;
-    -fx-border-width: 0;
-    -fx-text-fill: #ffffff;
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
 
-    -fx-font-family: "Arial";
-
-    -fx-cursor: hand;
-}
-
-
-/* Add a glowing effect when focused */
-Button:focused {
-    -fx-text-fill: #ff9800;
-    -fx-effect: dropshadow(three-pass-box, rgba(255,152,0,0.8), 8, 0, 0, 0);
+.sidebar-signout-button:hover {
+    -fx-background-color: #8e24aa;
+    -fx-text-fill: #ffeb3b;
 }

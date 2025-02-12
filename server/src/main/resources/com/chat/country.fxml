@@ -6,18 +6,22 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chat.controllers.CountryController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.chat.controllers.CountryController"
+            stylesheets="@../../styles/country.css">
    <children>
-      <BorderPane layoutX="227.0" layoutY="40.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <top>
-            <VBox alignment="CENTER" prefHeight="102.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="102.0" prefWidth="600.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="55.0" text="Statistics" />
+                  <Label alignment="CENTER" text="User Distribution by Country" styleClass="header-label"/>
                </children>
             </VBox>
          </top>
          <center>
-            <PieChart fx:id="pieChart" BorderPane.alignment="CENTER" />
+            <PieChart fx:id="pieChart" BorderPane.alignment="CENTER"/>
          </center>
       </BorderPane>
    </children>

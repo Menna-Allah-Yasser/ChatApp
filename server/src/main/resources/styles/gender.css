@@ -1,0 +1,37 @@
+/* Overall Application Style */
+.root {
+    -fx-background-color: #f0f2f5;
+    -fx-font-family: "Poppins", sans-serif;
+}
+
+/* Style the root BorderPane directly */
+BorderPane {
+    -fx-background-color: linear-gradient(to bottom right, #e1bee7, #ce93d8);
+}
+
+
+/* Header Label Style */
+.header-label {
+    -fx-background-color: #6A11CB;  /* Solid purple background */
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-padding: 10;
+    -fx-background-radius: 5;
+}
+
+/* PieChart general styling */
+.pie-chart {
+    -fx-padding: 10;
+}
+
+/* Optional: PieChart Title Styling */
+.chart-title {
+    -fx-font-size: 18px;
+    -fx-text-fill: #333;
+}
+
+/* Legend symbol styling */
+.chart-legend-item-symbol {
+    -fx-background-color: #4A148C;
+}

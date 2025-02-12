@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.chat.controllers.LandingController"
+            stylesheets="@../../styles/landing.css">
+    <center>
+        <StackPane fx:id="landingCenter" styleClass="landing-center">
+            <VBox spacing="20" alignment="CENTER">
+                <Label fx:id="welcomeLabel" text="Welcome to RFAQ" styleClass="landing-title"/>
+                <Label fx:id="sloganLabel" text="Connect with friends and enjoy seamless chatting." styleClass="landing-subtitle"/>
+                <Button fx:id="getStartedButton" text="Get Started" styleClass="landing-button"/>
+            </VBox>
+        </StackPane>
+    </center>
+</BorderPane>

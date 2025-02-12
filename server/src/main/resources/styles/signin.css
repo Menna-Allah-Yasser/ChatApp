@@ -1,0 +1,64 @@
+/* signin.css */
+
+/* Apply a modern font across the scene */
+.root {
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* Sign-In Form Container */
+.signin-container {
+    -fx-background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay */
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 10, 0, 0, 2);
+    -fx-padding: 20;
+}
+
+/* Header Label (Admin Sign In) */
+.label.header {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #8e44ad;  /* Vivid purple */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 3, 0, 0, 1);
+}
+
+/* General Label Styling */
+.label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+/* TextField and PasswordField styling */
+.text-field,
+.password-field {
+    -fx-background-color: #f3e5f5; /* Light purple tint */
+    -fx-background-radius: 5;
+    -fx-font-size: 14px;
+    -fx-padding: 8px 10px;
+    -fx-border-color: transparent;
+}
+
+.text-field:focused,
+.password-field:focused {
+    -fx-border-color: #8e44ad;  /* Purple border when focused */
+    -fx-border-width: 2;
+}
+
+/* Button Styling */
+.button {
+    -fx-background-color: linear-gradient(to right, #8e44ad, #9b59b6); /* Fancy purple gradient */
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-background-radius: 5;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 4, 0, 0, 2);
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to right, #9b59b6, #8e44ad);
+}
+
+.button:pressed {
+    -fx-background-color: linear-gradient(to right, #7d3c98, #7d3c98);
+}

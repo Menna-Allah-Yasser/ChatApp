@@ -1,48 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0"  xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chat.controllers.HomeController" stylesheets="@../../styles/style.css">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../styles/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chat.controllers.HomeController">
    <children>
       <BorderPane fx:id="mainPane" layoutX="361.0" layoutY="146.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
-            <VBox alignment="CENTER" prefHeight="600.0" prefWidth="241.0" style="-fx-background-color: #69247C;">
+            <!-- Sidebar container with style class "sidebar" -->
+            <VBox alignment="CENTER" prefHeight="600.0" prefWidth="241.0" styleClass="sidebar">
                <children>
                   <Pane prefHeight="130.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                  <Label text="RFQA" textFill="WHITE">
+
+                  <!-- Sidebar title -->
+                  <Label styleClass="sidebar-title" text="RFQA" textFill="WHITE">
                      <font>
                         <Font name="Dubai Regular" size="25.0" />
                      </font>
                   </Label>
+
                   <Pane prefHeight="50.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                  <Button fx:id="btnOne" mnemonicParsing="false" onAction="#btnOneHandler" prefHeight="26.0" prefWidth="169.0" style="-fx-background-color: #69247C;" text="Announcments">
+
+                  <!-- Announcements Button -->
+                  <Button fx:id="btnOne" maxWidth="241.0" mnemonicParsing="false" onAction="#btnOneHandler" prefHeight="50.0" styleClass="sidebar-button" text="Announcements">
+                     <graphic>
+                        <ImageView fitHeight="20" fitWidth="20">
+                           <image>
+                              <Image url="@../../images/announcement.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="btnTwo" mnemonicParsing="false" onAction="#btnTwoHandler" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: #69247C;" text="Statistics">
+
+                  <!-- Statistics Button -->
+                  <Button fx:id="btnTwo" maxWidth="241.0" mnemonicParsing="false" onAction="#btnTwoHandler" prefHeight="50.0" styleClass="sidebar-button" text="Statistics">
+                     <graphic>
+                        <ImageView fitHeight="20" fitWidth="20">
+                           <image>
+                              <Image url="@../../images/analytics.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="btnThree" mnemonicParsing="false" onAction="#btnThreeHandler" prefHeight="26.0" prefWidth="103.0" style="-fx-background-color: #69247C;" text="Server">
+
+                  <!-- Server Button -->
+                  <Button fx:id="btnThree" maxWidth="241.0" mnemonicParsing="false" onAction="#btnThreeHandler" prefHeight="50.0" styleClass="sidebar-button" text="Server">
+                     <graphic>
+                        <ImageView fitHeight="20" fitWidth="20">
+                           <image>
+                              <Image url="@../../images/database.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Button>
+
+                  <!-- Register Button -->
+                  <Button fx:id="addUser" maxWidth="241.0" mnemonicParsing="false" onAction="#btnFourHandler" prefHeight="50.0" styleClass="sidebar-button" text="Register" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="20" fitWidth="20">
+                           <image>
+                              <Image url="@../../images/paper.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Button>
+
+                  <!-- SignOut Button -->
+                  <Button fx:id="signOutBtn" onAction="#signOutHandler" maxWidth="241.0" mnemonicParsing="false" styleClass="sidebar-signout-button" text="SignOut">
+                     <graphic>
+                        <ImageView fitHeight="20" fitWidth="20">
+                           <image>
+                              <Image url="@../../images/log.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Button>
+
                   <Pane prefHeight="201.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" style="-fx-background-color: purple;" text="SignOut" VBox.vgrow="NEVER">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </Button>
                </children>
             </VBox>
          </left>

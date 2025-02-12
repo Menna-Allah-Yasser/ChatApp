@@ -42,6 +42,7 @@
 
 
 
+
                                       <Label fx:id="all" onMouseEntered="#onAllCat" text="All">
 
                                  <styleClass>
@@ -59,6 +60,8 @@
 
 
 
+
+
                                   </children>
                            <padding>
                               <Insets left="10.0" />
@@ -67,7 +70,10 @@
 
                               <ListView id="chatList" fx:id="chatsArea" editable="true" styleClass="message-list" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS" />
 
+
                         <Label prefHeight="37.0" prefWidth="137.0" styleClass="title" text="Messages" />
+
+                        <Label prefHeight="15.0" prefWidth="97.0" styleClass="title" text="Messages" />
                      </children>
                   </GridPane>
                   <GridPane alignment="TOP_RIGHT" style="-fx-background-color: WHITE;">
@@ -82,7 +88,11 @@
                      <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="327.0" spacing="10.0" style="-fx-background-color: WHITE;" GridPane.hgrow="ALWAYS" GridPane.vgrow="NEVER">
                                   <children>
+
                                       <ImageView fx:id="currentChatImg" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+
+                                    //  <ImageView fx:id="currentImg" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+
                                  <image>
                                     <Image url="@../../images/profileImg.png" />
                                  </image>
@@ -105,7 +115,7 @@
                                     <Insets bottom="15.0" top="10.0" />
                                  </HBox.margin>
                               </ImageView>
-                              <ImageView fx:id="send" fitHeight="22.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="send" fitHeight="22.0" fitWidth="20.0" onMouseClicked="#onSendClick" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../images/send.png" />
                                  </image>

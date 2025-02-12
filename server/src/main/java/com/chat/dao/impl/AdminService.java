@@ -103,4 +103,24 @@ public class AdminService implements AdminRepository {
             throw new RuntimeException("Error deleting admin: " + e.getMessage());
         }
     }
+
+    public boolean adminExists(String email, String password) {
+        String query = "SELECT COUNT(*) FROM admin WHERE email = ? AND password = ?";
+
+        try (Connection conn = DBConnectionManager.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setString(1, email);
+            pstmt.setString(2, password);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                return count > 0;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error checking if admin exists: " + e.getMessage());
+        }
+        return false;
+    }
 }

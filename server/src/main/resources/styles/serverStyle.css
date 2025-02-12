@@ -3,9 +3,12 @@ VBox Pane{
     -fx-background-color: linear-gradient(to bottom, #3b5998, #192f6a);
 }
 
+/* Style the root BorderPane directly */
 BorderPane {
-    -fx-background-color: linear-gradient(to bottom, #3b5998, #192f6a);
+    -fx-background-color: linear-gradient(to bottom right, #e1bee7, #ce93d8);
 }
+
+
 
 /* Stylish label-like buttons */
 Button {
