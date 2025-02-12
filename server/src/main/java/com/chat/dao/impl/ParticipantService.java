@@ -171,10 +171,6 @@ public class ParticipantService implements ParticipantRepository {
         }
         return res;
     }
-    public static void main(String[]args)
-    {
-       System.out.println((new ParticipantService()).geParticpantByChat(6));
-    }
 
     @Override
     public int countChatParticpantsByChatId(int chat_id){

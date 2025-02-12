@@ -70,11 +70,12 @@ public interface ServerRepository extends Remote {
 
 
 
-    ////////////////////// Particpant
-
     public List<Integer> getAllChatsById(int user_id) throws RemoteException;
 
-    public ArrayList<Participant> geParticpantByChat(int id);
+    public List<Participant> getChatParticipants(int chat_id)throws RemoteException;
+    public Chat getChatById(int chatId)throws RemoteException;
+
+    public ArrayList<Participant> geParticpantByChat(int id) throws RemoteException;
 
 
     /////////////////////////////////////////CHATS
@@ -82,13 +83,11 @@ public interface ServerRepository extends Remote {
 
     List<ChatCard> getChatsForUser(int userId) throws RemoteException;
 
+    int addNewChat(Chat chat) throws RemoteException;
 
+    void createParticpant(Participant p) throws RemoteException;
+    List<ChatCard> getChatsForUser(int userId, Participant.Category category) throws RemoteException;
 
-    public List<Participant> getChatParticipants(int chat_id)throws RemoteException;
-    public Chat getChatById(int chatId)throws RemoteException;
-
-
-
-
+    public boolean addMessage(Message message) throws RemoteException;
 
 }

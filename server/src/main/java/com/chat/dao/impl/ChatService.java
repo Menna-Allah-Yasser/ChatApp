@@ -18,20 +18,30 @@ public class ChatService implements ChatRepository {
 
     private String query;
 
+    //private Connection connection = DBConnectionManager.getConnection();
 
     @Override
-    public boolean addNewChat(Chat chat) {
+    public int addNewChat(Chat chat) {
+        int chatId=-1;
         query = "INSERT INTO CHAT (NAME) VALUES (?)";
         int rowAffected = 0;
-        try (Connection connection=DBConnectionManager.getConnection();PreparedStatement preparedStatement = connection.prepareStatement(query);){
+        try (Connection connection=DBConnectionManager.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query ,  PreparedStatement.RETURN_GENERATED_KEYS)){
             preparedStatement.setString(1 , chat.getName());
             rowAffected = preparedStatement.executeUpdate();
+            if (rowAffected > 0) {
+                try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        chatId = generatedKeys.getInt(1);
+                    }
+                }
+            }
             connection.commit();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
 
-        return rowAffected > 0;
+        return chatId;
     }
     @Override
     public List<Chat> getChats() {
@@ -121,7 +131,7 @@ public class ChatService implements ChatRepository {
         List<Integer> userIDs = new ArrayList<>();
         query = "select chat_id , particpant_id from particpant where chat_id = ? ";
 
-        try( PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        try(Connection connection = DBConnectionManager.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1 , chat_id);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()){
@@ -140,8 +150,9 @@ public class ChatService implements ChatRepository {
 
         ChatService chatService = new ChatService();
 
+        System.out.println(chatService.addNewChat(new Chat("MEN")));
 
-        System.out.println(chatService.getChatUsersIdByChatId(7));
+        //System.out.println(chatService.getChatUsersIdByChatId(7));
 
        /* List<Integer> ids = new ArrayList<>();
         ids.add(1);
@@ -153,7 +164,7 @@ public class ChatService implements ChatRepository {
 
         //System.out.println(chatService.getChats());
         //System.out.println(chatService.getChatById(1));
-        System.out.println(chatService.getChatById(6));
+       // System.out.println(chatService.getChatById(6));
 
 
 

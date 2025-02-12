@@ -17,6 +17,8 @@ public interface ChatServerRepository {
 
      List<ChatCard> getChatsForUser(int userId);
 
+     List<ChatCard> getChatsForUser(int userId , Participant.Category category);
+
      public List<Participant> getChatParticipants(int chat_id);
      public Chat getChatById(int chatId);
 

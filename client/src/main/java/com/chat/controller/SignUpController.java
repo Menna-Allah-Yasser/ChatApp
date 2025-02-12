@@ -4,14 +4,11 @@ package com.chat.controller;
 import com.chat.ClientStarter;
 import com.chat.entity.User;
 import com.chat.network.ServerConnection;
-import com.chat.network.ServerRepository;
 
-import com.chat.utils.Director;
+import com.chat.network.ServerRepository;
 import com.chat.utils.UserValidation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
@@ -19,7 +16,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.*;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 
 import javax.imageio.ImageIO;
