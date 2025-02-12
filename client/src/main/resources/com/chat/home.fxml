@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -21,7 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../../css/home.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chat.controller.HomeController">
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../../css/home.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chat.controller.HomeController">
     <center>
       <BorderPane fx:id="mainPane">
          <center>
@@ -48,7 +42,8 @@
 
 
 
-                                      <Label fx:id="all" text="All">
+
+                                      <Label fx:id="all" onMouseEntered="#onAllCat" text="All">
 
                                  <styleClass>
                                     <String fx:value="category-label" />
@@ -59,9 +54,9 @@
                                  </font>
                               </Label>
 
-                                      <Label fx:id="familyCat" styleClass="category-label" text="Family" />
-                                      <Label fx:id="workCat" styleClass="category-label" text="Work" />
-                                      <Label fx:id="friendCat" styleClass="category-label" text="Friend" />
+                                      <Label fx:id="familyCat" onMouseEntered="#onFamilyCat" styleClass="category-label" text="Family" />
+                                      <Label fx:id="workCat" onMouseClicked="#onWorkCat" styleClass="category-label" text="Work" />
+                                      <Label fx:id="friendCat" onMouseClicked="#onFriendCat" styleClass="category-label" text="Friend" />
 
 
 
@@ -74,6 +69,9 @@
                               </HBox>
 
                               <ListView id="chatList" fx:id="chatsArea" editable="true" styleClass="message-list" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS" />
+
+
+                        <Label prefHeight="37.0" prefWidth="137.0" styleClass="title" text="Messages" />
 
                         <Label prefHeight="15.0" prefWidth="97.0" styleClass="title" text="Messages" />
                      </children>
@@ -90,7 +88,11 @@
                      <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="327.0" spacing="10.0" style="-fx-background-color: WHITE;" GridPane.hgrow="ALWAYS" GridPane.vgrow="NEVER">
                                   <children>
-                                      <ImageView fx:id="currentImg" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+
+                                      <ImageView fx:id="currentChatImg" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+
+                                    //  <ImageView fx:id="currentImg" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+
                                  <image>
                                     <Image url="@../../images/profileImg.png" />
                                  </image>
@@ -105,7 +107,7 @@
                          <HBox prefHeight="20.0" prefWidth="327.0" spacing="5" style="-fx-background-color: WHITE;" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES">
                             <children>
                                     <TextField fx:id="message" prefHeight="40.0" prefWidth="675.0" promptText="Type your message..." styleClass="message-input" />
-                              <ImageView fitHeight="22.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="fileIcon" fitHeight="22.0" fitWidth="20.0" onMouseClicked="#onFileIconClick" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../images/attach-file.png" />
                                  </image>

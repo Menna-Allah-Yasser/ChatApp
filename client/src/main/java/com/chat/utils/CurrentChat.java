@@ -14,4 +14,3 @@ public class CurrentChat {
     public static List<Participant> participants=new ArrayList<>();
 
 }
-

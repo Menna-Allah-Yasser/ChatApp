@@ -13,10 +13,9 @@ import com.chat.entity.*;
 import com.chat.entity.Chat;
 import com.chat.entity.Message;
 import com.chat.entity.Participant;
-
 import com.chat.service.repository.ChatServerRepository;
-
 import java.rmi.RemoteException;
+import java.sql.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -77,8 +76,37 @@ public class ChatServerImpl implements ChatServerRepository {
     }
     public List<ChatCard> getChatsForUser(int userId) {
         List<ChatCard> chatCards = new ArrayList<>();
-        String query =
-                "SELECT \tdistinct c.name AS chat_name ,\n" +
+        String query = "WITH LatestMessages AS (\n" +
+                "    SELECT \n" +
+                "        c.chat_id,\n" +
+                "        c.name AS chat_name,\n" +
+                "        m.message_id,\n" +
+                "        m.description,\n" +
+                "        m.time,\n" +
+                "        ROW_NUMBER() OVER (PARTITION BY c.chat_id ORDER BY m.time DESC) AS rn\n" +
+                "    FROM \n" +
+                "        particpant p\n" +
+                "    JOIN \n" +
+                "        chat c ON p.chat_id = c.chat_id\n" +
+                "    JOIN \n" +
+                "        message m ON m.chat_id = c.chat_id\n" +
+                "    WHERE \n" +
+                "        p.particpant_id = ?\n" +
+                ")\n" +
+                "\n" +
+                "SELECT \n" +
+                "    chat_name,\n" +
+                "    chat_id,\n" +
+                "    message_id,\n" +
+                "    description,\n" +
+                "    time\n" +
+                "FROM \n" +
+                "    LatestMessages\n" +
+                "WHERE \n" +
+                "    rn = 1\n" +
+                "ORDER BY \n" +
+                "    chat_id DESC;";
+                /*"SELECT \tdistinct c.name AS chat_name ,\n" +
                         "\tc.chat_id ,\n" +
                         "\tm.message_id AS message_id , \n" +
                         "\tm.description ,\n" +
@@ -92,7 +120,7 @@ public class ChatServerImpl implements ChatServerRepository {
                         "             FROM message m2\n" +
                         "             WHERE m2.chat_id = c.chat_id)\n" +
                         "ORDER BY m.time ;\n" +
-                        "\n";
+                        "\n";*/
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
 
             stmt.setInt(1, userId);
@@ -146,7 +174,75 @@ public class ChatServerImpl implements ChatServerRepository {
         return chatCards;
     }
 
-    private byte[] toBoxedBytes(byte[] bytes) {
+    public List<ChatCard> getChatsForUser(int userId, Participant.Category category) {
+        List<ChatCard> chatCards = new ArrayList<>();
+
+        String sql = "WITH LatestMessages AS (\n" +
+                "    SELECT \n" +
+                "        c.chat_id,\n" +
+                "        c.name AS chat_name,\n" +
+                "        m.message_id,\n" +
+                "        m.description,\n" +
+                "        m.time,\n" +
+                "        ROW_NUMBER() OVER (PARTITION BY c.chat_id ORDER BY m.time DESC) AS rn\n" +
+                "    FROM \n" +
+                "        particpant p\n" +
+                "    JOIN \n" +
+                "        chat c ON p.chat_id = c.chat_id\n" +
+                "    JOIN \n" +
+                "        message m ON m.chat_id = c.chat_id\n" +
+                "    WHERE \n" +
+                "        p.particpant_id = ? \n" +
+                "        AND p.category = ?\n" +
+                ")\n" +
+                "SELECT \n" +
+                "    chat_name,\n" +
+                "    chat_id,\n" +
+                "    message_id,\n" +
+                "    description,\n" +
+                "    time\n" +
+                "FROM \n" +
+                "    LatestMessages\n" +
+                "WHERE \n" +
+                "    rn = 1\n" +
+                "ORDER BY \n" +
+                "    chat_id DESC; ";
+
+        try (Connection conn = DBConnectionManager.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, userId);
+            stmt.setString(2, String.valueOf(category));
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int chatId = rs.getInt("chat_id");
+                String chatName = rs.getString("chat_name");
+                int messageId = rs.getInt("message_id");
+                String description = rs.getString("description");
+                Timestamp timestamp = rs.getTimestamp("time");
+
+                // Convert Timestamp to LocalDateTime if needed
+                LocalDateTime messageTime = timestamp.toLocalDateTime();
+
+                // Use dummy values for user_Id, user_name, user_isOnline, and user_picture
+                int user_Id = 0; // Replace with the actual user ID if available
+                String userName = ""; // Replace with the actual user name if available
+                boolean userIsOnline = false; // Set based on your logic
+                byte[] userPicture = null; // Replace with actual user picture byte array if available
+
+                ChatCard chatCard = new ChatCard(chatId, chatName, messageId, description, messageTime, user_Id, userName, userIsOnline, userPicture);
+                chatCards.add(chatCard);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return chatCards;
+    }
+    public byte[] toBoxedBytes(byte[] bytes) {
         byte[] boxed = new byte[bytes.length];
         for (int i = 0; i < bytes.length; i++) {
             boxed[i] = bytes[i];

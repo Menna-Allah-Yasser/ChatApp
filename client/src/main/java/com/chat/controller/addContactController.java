@@ -12,7 +12,6 @@ import javafx.scene.control.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
 import javafx.scene.text.Font;
 
 import java.net.URL;
