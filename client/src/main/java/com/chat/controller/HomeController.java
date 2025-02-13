@@ -70,7 +70,7 @@ public class HomeController {
 
     private ServerRepository server;
 
-    private ServerRepository server = ServerConnection.getServer();
+
 
     public void renderMessages() {
         System.out.println("rendering message");
@@ -118,8 +118,7 @@ public class HomeController {
 
      
 
-        @FXML
-        private TextField search;
+
 
                         CurrentChat.user = server.getUser(CurrentChat.participants.get(1).getParticpantId());
                     } catch (RemoteException e) {
@@ -146,8 +145,6 @@ public class HomeController {
 
 
     }
-
-
 
       
         @FXML
@@ -227,7 +224,7 @@ public class HomeController {
                 }
             }
         });
-    }
+
 
 
         @FXML

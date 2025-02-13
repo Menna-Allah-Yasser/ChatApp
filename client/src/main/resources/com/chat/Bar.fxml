@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Separator?>
@@ -14,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chat.controller.BarController">
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chat.controller.BarController">
    <children>
       <BorderPane fx:id="centerPane" layoutX="4.0" layoutY="104.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       
@@ -73,12 +68,17 @@
                   </ImageView>
                   <ImageView fx:id="Announcement" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#onAnnouncement" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/megaphone.png" />
+                        <Image url="@../../images/marketing.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="addGroup" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#onnewGroupClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/group.jpg" />
+                        <Image url="@../../images/group.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/chatbot.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="exit" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#exitHandler" pickOnBounds="true" preserveRatio="true">
