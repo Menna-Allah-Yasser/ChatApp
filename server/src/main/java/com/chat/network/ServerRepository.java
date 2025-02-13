@@ -80,8 +80,6 @@ public interface ServerRepository  extends Remote {
 
     public ArrayList<Participant> geParticpantByChat(int id) throws RemoteException;
 
-
-    /////////////////////////////////////////CHATS
     public Chat getChat(int chatID) throws RemoteException;
 
     List<ChatCard> getChatsForUser(int userId) throws RemoteException;
@@ -90,8 +88,10 @@ public interface ServerRepository  extends Remote {
 
     void createParticpant(Participant p) throws RemoteException;
 
+
     List<ChatCard> getChatsForUser(int userId, Participant.Category category) throws RemoteException;
 
     public boolean addMessage(Message message) throws RemoteException;
+
 
 }

@@ -93,6 +93,7 @@ public class BarController {
         centerPane.setCenter(node);
     }
 
+
     @FXML
     void onnewGroupClicked() {
 
@@ -112,13 +113,15 @@ public class BarController {
         centerPane.setCenter(node);
     }
 
+
+
     @FXML
-    void onLogoClicked() {
+   public void onLogoClicked() {
         Node node=  Director.loadView("home");
         centerPane.setCenter(node);
     }
 
-    @FXML
+  @FXML
     void exitHandler(MouseEvent event) {
 
         ServerRepository server = ServerConnection.getServer();
@@ -150,6 +153,8 @@ public class BarController {
    public void setCenterPane(Pane pane){
         centerPane.setCenter(pane);
     }
+
+
 
 
 

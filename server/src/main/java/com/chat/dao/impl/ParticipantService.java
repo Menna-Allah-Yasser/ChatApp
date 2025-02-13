@@ -58,17 +58,16 @@ public class ParticipantService implements ParticipantRepository {
              PreparedStatement stmt = conn.prepareStatement("INSERT INTO particpant VALUES (?,?,?,?)");) {
             stmt.setInt(1, p.getChatId());
             stmt.setInt(2, p.getParticpantId());
-            stmt.setString(4, p.getCategory().name());
+
             stmt.setString(3, p.getState().name());
+            stmt.setString(4, p.getCategory().name());
             stmt.executeUpdate();
             System.out.println("added");
+            conn.commit();
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        }}
 
-    }
-
-    @Override
+            @Override
     public void updateParticpant(Participant p) {
         try (Connection conn = DBConnectionManager.getConnection();
              PreparedStatement stmt = conn.prepareStatement(
@@ -80,6 +79,7 @@ public class ParticipantService implements ParticipantRepository {
             stmt.setString(2, p.getCategory().name());
             stmt.executeUpdate();
             System.out.println(stmt);
+            conn.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -94,6 +94,7 @@ public class ParticipantService implements ParticipantRepository {
             stmt.setInt(1, p.getParticpantId());
             stmt.setInt(2, p.getChatId());
             stmt.executeUpdate();
+            conn.commit();
             System.out.println("deleted");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -140,7 +141,9 @@ public class ParticipantService implements ParticipantRepository {
                 stmt.setString(3, part.getState().name());
                 stmt.setString(4, part.getCategory().name());
                 stmt.executeUpdate();
+
             }
+            con.commit();
 
         } catch (Exception e) {
             // TODO: handle exception
@@ -187,6 +190,7 @@ public class ParticipantService implements ParticipantRepository {
                cnt = rs.getInt(1);
            }
 
+           rs.close();
 
         } catch (Exception e) {
             System.out.println("problem in countChatParticpantsByChatId");
@@ -196,7 +200,12 @@ public class ParticipantService implements ParticipantRepository {
     }
 
 
+    public static void main(String[] args) {
+        ParticipantService participantService = new ParticipantService();
 
+   //     participantService.createParticpant(new Participant(10,2,Participant.State.AVAILABLE,Participant.Category.FRIEND));
+        participantService.createParticpant(new Participant(10,3,Participant.State.AVAILABLE,Participant.Category.FRIEND));
+    }
 
 }
 

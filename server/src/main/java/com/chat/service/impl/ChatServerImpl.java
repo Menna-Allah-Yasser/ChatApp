@@ -174,6 +174,7 @@ public class ChatServerImpl implements ChatServerRepository {
         return chatCards;
     }
 
+
     public List<ChatCard> getChatsForUser(int userId, Participant.Category category) {
         List<ChatCard> chatCards = new ArrayList<>();
 
@@ -242,6 +243,7 @@ public class ChatServerImpl implements ChatServerRepository {
 
         return chatCards;
     }
+
     public byte[] toBoxedBytes(byte[] bytes) {
         byte[] boxed = new byte[bytes.length];
         for (int i = 0; i < bytes.length; i++) {

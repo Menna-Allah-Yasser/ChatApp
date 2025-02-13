@@ -21,6 +21,7 @@ public class UserAnnouncementService implements UserAnnouncementRepository {
             pstmt.setInt(2, userAnnouncement.getAnnouncementId());
 
             int numOfRowsAffected = pstmt.executeUpdate();
+            conn.commit();
             return numOfRowsAffected > 0;
         } catch (SQLException e) {
             throw new RuntimeException("Error adding user announcement: " + e.getMessage());
@@ -43,6 +44,8 @@ public class UserAnnouncementService implements UserAnnouncementRepository {
                         rs.getInt("announcement_id")
                 ));
             }
+            conn.commit();
+            rs.close();
             return userAnnouncements;
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving user announcements: " + e.getMessage());
@@ -59,6 +62,7 @@ public class UserAnnouncementService implements UserAnnouncementRepository {
             pstmt.setInt(2, announcementId);
 
             int numOfRowsAffected = pstmt.executeUpdate();
+            conn.commit();
             return numOfRowsAffected > 0;
         } catch (SQLException e) {
             throw new RuntimeException("Error deleting user announcement: " + e.getMessage());

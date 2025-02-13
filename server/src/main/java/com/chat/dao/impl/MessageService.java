@@ -34,6 +34,8 @@ public class MessageService implements MessageRepository {
                         messages.getInt("user_id")
                 );
 
+                messages.close();
+
                 message.setId(messages.getInt("message_id"));
                 messageList.add(message);
             }
@@ -106,6 +108,7 @@ public class MessageService implements MessageRepository {
                 message.setId(set.getInt("message_id"));
                 messages.add(message);
             }
+            set.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -131,6 +134,7 @@ public class MessageService implements MessageRepository {
                 message.setId(set.getInt("message_id"));
                 messages.add(message);
             }
+            set.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

@@ -110,12 +110,11 @@ public class UserServerImpl implements UserServerRepository {
     public static void main(String[] args) {
         UserServerImpl server1 = new UserServerImpl();
 
-        byte[] imageBytes = new byte[0];
-        try {
-            imageBytes = Files.readAllBytes(Path.of("C:\\Users\\HP\\Pictures\\Screenshots\\Screenshot 2025-02-06 143302.png"));
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+        ArrayList<User> users =  server1.getFriendsUser(4);
+
+        for (User user:users)
+        {
+            System.out.println(user);
         }
-        server1.updateUserImage(1 ,imageBytes );
     }
 }

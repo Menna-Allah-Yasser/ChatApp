@@ -4,12 +4,7 @@ import com.chat.entity.Chat;
 import com.chat.dao.repository.ChatRepository;
 import com.chat.db.DBConnectionManager;
 
-import com.chat.db.*;
 
-
-
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,12 +17,14 @@ public class ChatService implements ChatRepository {
 
     @Override
     public int addNewChat(Chat chat) {
+
         int chatId=-1;
         query = "INSERT INTO CHAT (NAME) VALUES (?)";
         int rowAffected = 0;
         try (Connection connection=DBConnectionManager.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query ,  PreparedStatement.RETURN_GENERATED_KEYS)){
             preparedStatement.setString(1 , chat.getName());
+
             rowAffected = preparedStatement.executeUpdate();
             if (rowAffected > 0) {
                 try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
@@ -37,8 +34,15 @@ public class ChatService implements ChatRepository {
                 }
             }
             connection.commit();
+            if (rowAffected > 0) {
+                try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        chatId = generatedKeys.getInt(1);
+                    }
+                }
+            }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
         }
 
         return chatId;
@@ -132,13 +136,15 @@ public class ChatService implements ChatRepository {
         query = "select chat_id , particpant_id from particpant where chat_id = ? ";
 
 
-        try(Connection connection = DBConnectionManager.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        try( Connection connection=DBConnectionManager.getConnection();PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
 
             preparedStatement.setInt(1 , chat_id);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()){
                userIDs.add(rs.getInt(2));
             }
+            rs.close();
             connection.commit();
 
         } catch (SQLException e) {
@@ -146,6 +152,7 @@ public class ChatService implements ChatRepository {
         }
         return userIDs;
     }
+
 
 
 
@@ -185,3 +192,4 @@ public class ChatService implements ChatRepository {
     }
 
 }
+

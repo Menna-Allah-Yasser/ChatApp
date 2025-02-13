@@ -32,6 +32,18 @@ public class ChatCardClient {
         this.userPicture.set(userPicture);
     }
 
+    public ChatCardClient(int chatId, String chatName, int userId, String userName, boolean userIsOnline, byte[] userPictrue) {
+
+        this.chatId.set(chatId);
+        this.chatName.set(chatName);
+
+        this.userId.set(userId);
+        this.userName.set(userName);
+        this.userIsOnline.set(userIsOnline);
+        this.userPicture.set(userPictrue);
+
+    }
+
     public IntegerProperty chatIdProperty() { return chatId; }
     public StringProperty chatNameProperty() { return chatName; }
     public IntegerProperty messageIdProperty() { return messageId; }
@@ -104,6 +116,21 @@ public class ChatCardClient {
 
     public void setUserName(String userName) {
         this.userName.set(userName);
+    }
+
+    @Override
+    public String toString() {
+        return "ChatCardClient{" +
+                "chatId=" + chatId +
+                ", chatName=" + chatName +
+                ", messageId=" + messageId +
+                ", messageDesc=" + messageDesc +
+                ", messageTime=" + messageTime +
+                ", userId=" + userId +
+                ", userName=" + userName +
+                ", userIsOnline=" + userIsOnline +
+                ", userPicture=" + userPicture +
+                '}';
     }
 
     public boolean isUserIsOnline() {

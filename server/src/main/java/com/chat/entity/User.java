@@ -170,7 +170,7 @@ public class User  implements Serializable {
                 "userId=" + userId +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
-                ", picture=" + Arrays.toString(picture) +
+               // ", picture=" + Arrays.toString(picture) +
                 ", gender='" + gender + '\'' +
                 ", country='" + country + '\'' +
                 ", bio='" + bio + '\'' +
