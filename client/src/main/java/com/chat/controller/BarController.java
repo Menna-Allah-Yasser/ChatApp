@@ -1,16 +1,20 @@
 package com.chat.controller;
 
 import com.chat.ClientStarter;
+import com.chat.entity.User;
 import com.chat.network.ServerConnection;
 import com.chat.network.ServerRepository;
 import com.chat.utils.Director;
 import com.chat.utils.SessionManager;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
@@ -28,15 +32,35 @@ public class BarController {
     @FXML
     private  BorderPane centerPane;
 
+    private ServerRepository server;
+
     @FXML
     public void initialize() {
 
+        server = ServerConnection.getServer();
+
        Node node =  Director.loadView("home");
-        System.out.println("___________________________");
-        System.out.println(node);
        centerPane.setCenter(node);
 
 
+       loadUserPic(8);
+
+
+    }
+
+    public void loadUserPic(int userId){
+        User user = null;
+        try {
+            user = server.getUser(userId);
+        } catch (RemoteException e) {
+            System.out.println(e.getMessage());
+        }
+        if (user != null && user.getPicture() != null) {
+            byte[] imageData = user.getPicture();
+            ByteArrayInputStream inputStream = new ByteArrayInputStream(imageData);
+            Image image = new Image(inputStream);
+            profileImg.setImage(image);
+        }
     }
 
     public BorderPane getCenterPane() {
@@ -73,7 +97,7 @@ public class BarController {
     @FXML
     void onnewGroupClicked() {
 
-        Node node=  Director.loadView("group");
+        Node node =  Director.loadView("group");
         centerPane.setCenter(node);
     }
     @FXML
@@ -89,11 +113,7 @@ public class BarController {
         centerPane.setCenter(node);
     }
 
-    @FXML
-    public void gotohome() {
-        Node node=  Director.loadView("home");
-        centerPane.setCenter(node);
-    }
+
 
     @FXML
    public void onLogoClicked() {
@@ -101,10 +121,10 @@ public class BarController {
         centerPane.setCenter(node);
     }
 
-    /*@FXML
+  @FXML
     void exitHandler(MouseEvent event) {
 
-        ServerRepository  server = ServerConnection.getServer();
+        ServerRepository server = ServerConnection.getServer();
 
         int id = SessionManager.getLoggedInUser();
 
@@ -130,9 +150,13 @@ public class BarController {
 
     }
 
+   public void setCenterPane(Pane pane){
+        centerPane.setCenter(pane);
+    }
 
 
-*/
+
+
 
 
 

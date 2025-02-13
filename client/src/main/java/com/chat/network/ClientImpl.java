@@ -5,6 +5,9 @@ import com.chat.entity.*;
 import com.chat.utils.Cordinator;
 
 import com.chat.utils.CurrentChat;
+
+import com.chat.utils.SessionManager;
+
 import javafx.beans.Observable;
 
 import javafx.collections.ObservableList;
@@ -26,11 +29,11 @@ public class ClientImpl extends UnicastRemoteObject implements ClientRepository 
     @Override
 
 
+
     public void getNotification(Notification notification)  throws  RemoteException {
         Platform.runLater(() -> {
             Cordinator.getNotificationList().add(0, notification);
         });
-    }
 
 
 
@@ -81,7 +84,12 @@ public class ClientImpl extends UnicastRemoteObject implements ClientRepository 
 
 
     @Override
-    public void disconnect() throws RemoteException {}
+    public void disconnect() throws RemoteException {
+        ServerConnection.getServer().logout(SessionManager.getLoggedInUser());
+        ServerConnection.disconnect();
+        Platform.exit();
+        System.exit(1);
+    }
 
 
 
@@ -112,7 +120,9 @@ public class ClientImpl extends UnicastRemoteObject implements ClientRepository 
             }
 
         }
+
     }
+
     @Override
     public void receivedMessage(Message message) throws RemoteException {
 
@@ -154,4 +164,9 @@ public class ClientImpl extends UnicastRemoteObject implements ClientRepository 
 
     }
 
+
+
+
+
+}
 

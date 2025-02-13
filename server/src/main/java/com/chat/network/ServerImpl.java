@@ -363,7 +363,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
 
 
     @Override
-    public ArrayList<Participant> geParticpantByChat(int id){
+    public ArrayList<Participant> geParticpantByChat(int id) throws RemoteException{
         ParticipantRepository participantRepository = new ParticipantService();
         return  participantRepository.geParticpantByChat(id);
     }
@@ -377,21 +377,41 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
     }
 
     @Override
-    public List<Integer> getAllChatsById(int user_id){
+    public List<Integer> getAllChatsById(int user_id) throws RemoteException{
        ParticipantRepository participantRepository = new ParticipantService();
        return participantRepository.getAllChatsById(user_id);
     }
 
 
     @Override
-    public List<ChatCard> getChatsForUser(int userId){
+    public List<ChatCard> getChatsForUser(int userId) throws RemoteException{
         ChatServerRepository serverRepository = new ChatServerImpl();
         return serverRepository.getChatsForUser(userId);
     }
 
+    @Override
+    public int addNewChat(Chat chat) throws RemoteException {
+        ChatRepository chatRepository = new ChatService();
+        return chatRepository.addNewChat(chat);
+    }
 
+    @Override
+    public void createParticpant(Participant p) throws RemoteException {
+        ParticipantRepository participantRepository = new ParticipantService();
+        participantRepository.createParticpant(p);
+    }
 
+    @Override
+    public List<ChatCard> getChatsForUser(int userId, Participant.Category category) throws RemoteException {
+        ChatServerRepository serverRepository = new ChatServerImpl();
+        return serverRepository.getChatsForUser(userId , category);
+    }
 
+    @Override
+    public boolean addMessage(Message message) throws RemoteException {
+        MessageRepository messageRepository = new MessageService();
+        return messageRepository.addMessage(message);
+    }
 
     @Override
     public String getBotResponse(String userMessage) throws RemoteException {

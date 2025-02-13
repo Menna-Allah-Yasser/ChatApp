@@ -13,14 +13,14 @@ public class AnnouncementService implements AnnouncementRepository {
 
     @Override
     public boolean addAnnouncement(Announcement announcement) {
-        String query = "INSERT INTO announcement (announcement_id, description, admin_id) VALUES(?, ?, ?)";
+        String query = "INSERT INTO announcement (announcement_id, description, admin_id, time) VALUES(?, ?, ?, ?)";
 
         try (Connection conn = DBConnectionManager.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setInt(1, announcement.getAnnouncementId());
             pstmt.setString(2, announcement.getDescription());
             pstmt.setInt(3, announcement.getAdminId());
-
+            pstmt.setObject(4, announcement.getTime());
             int rowsAffected = pstmt.executeUpdate();
             return rowsAffected > 0;
 

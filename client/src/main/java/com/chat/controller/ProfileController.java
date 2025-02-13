@@ -10,10 +10,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 
+import java.io.*;
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Files;
 import java.rmi.RemoteException;
 
@@ -56,14 +54,27 @@ public class ProfileController {
     @FXML
     public void initialize() {
         showUserData();
+        for (MenuItem item : country.getItems()) {
+            item.setOnAction(
+                    event -> country.setText(item.getText()));
+        }
+
+        for(MenuItem item : gender.getItems()){
+            item.setOnAction(
+                    e-> gender.setText(item.getText()));
+        }
+
+        for(MenuItem item : mode.getItems()){
+            item.setOnAction(
+                    e-> mode.setText(item.getText()));
+        }
     }
     @FXML
     void updateUserProfile() {
 
-
         try {
 
-            user = serverRepository.getUser(1);
+            user = serverRepository.getUser(8);
             System.out.println(user);
             user.setEmail(email.getText());
             user.setBio(bio.getText());
@@ -73,6 +84,10 @@ public class ProfileController {
             user.setCountry(country.getText());
             serverRepository.updateUserInfo(user);
             showUserData();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("PROFILE");
+            alert.setHeaderText("Profile is updated successfully");
+            alert.showAndWait();
         } catch (RemoteException e) {
             System.out.println(e.getMessage());
         }
@@ -132,9 +147,9 @@ public class ProfileController {
 
         try {
 
-            User user = serverRepository.getUser(1);
+            User user = serverRepository.getUser(8);
             name.setText(user.getName());
-            modehead.setText(user.getMode());
+            modehead.setText(user.getBio());
             phone.setText(user.getPhoneNumber());
             bio.setText(user.getBio());
             country.setText(user.getCountry());
@@ -142,10 +157,10 @@ public class ProfileController {
             mode.setText(user.getMode());
             email.setText(user.getEmail());
             DOB.setValue(user.getDob());
-//            byte[] imageData  = user.getPicture();
-//            InputStream inputStream = new ByteArrayInputStream(imageData);
-//            Image newImage = new Image(inputStream);
-//            imgView.setImage(newImage);
+            byte[] imageData  = user.getPicture();
+            InputStream inputStream = new ByteArrayInputStream(imageData);
+            Image newImage = new Image(inputStream);
+            imgView.setImage(newImage);
 
         }catch(RemoteException e) {
             System.out.println(e.getMessage());

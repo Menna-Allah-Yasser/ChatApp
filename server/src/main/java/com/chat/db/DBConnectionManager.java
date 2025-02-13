@@ -1,5 +1,6 @@
 package com.chat.db;
 
+
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import java.io.FileInputStream;
@@ -18,11 +19,23 @@ public class DBConnectionManager {
         try {
 
 
-            fis = new FileInputStream("C:\\Users\\sama\\Desktop\\ITI\\java_courses\\JavaPrpject\\ChatApp\\server\\db.properties");
+
+//             fis = new FileInputStream("C:\\Users\\sama\\Desktop\\ITI\\java_courses\\JavaPrpject\\ChatApp\\server\\db.properties");
 
 
 
             //     fis = new FileInputStream("/home/khaled/chaatproj/project5/ChatApp/server/db.properties");
+
+
+
+
+//             fis = new FileInputStream("E:\\iti\\projects\\ChatApp\\server\\db.properties");
+
+
+            //fis = new FileInputStream("/home/khaled/chaatproj/project5/ChatApp/server/db.properties");
+
+
+            //fis = new FileInputStream("/home/khaled/chaatproj/project5/ChatApp/server/db.properties");
 
 
             props.load(fis);
@@ -31,7 +44,11 @@ public class DBConnectionManager {
             dataSource.setPassword(props.getProperty("MYSQL_DB_PASSWORD"));
             dataSource.setMinIdle(5);
             dataSource.setMaxIdle(10);
+
             dataSource.setMaxTotal(100);
+
+         
+
             dataSource.setMaxWaitMillis(5000);
             dataSource.setTestOnBorrow(true);
         } catch (IOException e) {

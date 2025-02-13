@@ -134,7 +134,9 @@ public class UserService  implements UserRepository {
                 "linkedin_url = ?, " +
                 "facebook_url = ?, " +
                 "twitter_url = ?, " +
+
                 "is_online = ? " +
+
                 "WHERE user_id = ?";
 
         try (Connection connection=DBConnectionManager.getConnection();PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -475,9 +477,33 @@ public class UserService  implements UserRepository {
         List<String> cont = new ArrayList<>();
         String query = "SELECT country AS countries FROM user";
 
-
         try (Connection connection=DBConnectionManager.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+//         User user = service.findUserById(8);
+//         user.setEmail("mennaallah003@gmail.com");
+//         service.updateUser(user);
+        //service.updateOnline(6 , false);
+        /*byte[] imageBytes = new byte[0];
+        try {
+            imageBytes = Files.readAllBytes(Path.of("C:\\Users\\HP\\Pictures\\Screenshots\\Screenshot (1).png"));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        service.updateUserImage(1 , imageBytes);
+
+        System.out.println(service.findUserById(1));*/
+
+
+        //User user = service.findUserById(2);
+
+        //service.updateOnline(user.getUserId(), false);
+
+
+       /* user = service.findUserById(2);
+
+        System.out.println(user);*/
+
              ResultSet resultSet = preparedStatement.executeQuery()) {
             while (resultSet.next()) {
                 cont.add(new String(resultSet.getString("countries")));
@@ -487,6 +513,7 @@ public class UserService  implements UserRepository {
         }
 
         return cont;
+
     }
 
 

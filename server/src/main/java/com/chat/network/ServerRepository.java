@@ -88,7 +88,8 @@ public interface ServerRepository  extends Remote {
 
     void createParticpant(Participant p) throws RemoteException;
 
-    //List<ChatCard> getChatsForUser(int userId, Participant.Category category) throws RemoteException;
+
+    List<ChatCard> getChatsForUser(int userId, Participant.Category category) throws RemoteException;
 
     public boolean addMessage(Message message) throws RemoteException;
 

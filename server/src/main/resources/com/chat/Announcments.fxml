@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
@@ -10,19 +14,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.chat.controllers.AnnouncementsController">
    <children>
       <!-- The BorderPane uses an external stylesheet for purple styling -->
-      <BorderPane stylesheets="@../../styles/annou.css" layoutX="207.0" layoutY="83.0" prefHeight="200.0" prefWidth="200.0"
-                  AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane layoutX="207.0" layoutY="83.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../styles/annou.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
             <!-- Use a VBox with the "purple-vbox" style for the header area -->
-            <VBox alignment="CENTER" prefHeight="75.0" prefWidth="600.0" BorderPane.alignment="CENTER" styleClass="purple-vbox">
+            <VBox alignment="CENTER" prefHeight="75.0" prefWidth="600.0" styleClass="purple-vbox" BorderPane.alignment="CENTER">
                <children>
                   <!-- The HBox containing the header Label; the Label uses the "header-label" style -->
                   <HBox alignment="CENTER">
                      <children>
-                        <Label text="Announcments" styleClass="header-label">
+                        <Label styleClass="header-label" text="Announcments">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -36,17 +39,13 @@
             <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
                   <!-- Main content area with a TextArea -->
-                  <TextArea layoutX="68.0" layoutY="36.0" prefHeight="234.0" prefWidth="520.0"
-                            AnchorPane.bottomAnchor="103.0" AnchorPane.leftAnchor="40.0"
-                            AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="30.0" />
+                  <TextArea fx:id="announcementTextArea" layoutX="68.0" layoutY="36.0" prefHeight="234.0" prefWidth="520.0" AnchorPane.bottomAnchor="103.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="30.0" />
                   <!-- Button area inside an HBox -->
-                  <HBox alignment="CENTER" layoutX="-1.0" layoutY="297.0" prefHeight="70.0" prefWidth="600.0"
-                        AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                  <HBox alignment="CENTER" layoutX="-1.0" layoutY="297.0" prefHeight="70.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <children>
                         <Pane prefHeight="70.0" prefWidth="245.0" HBox.hgrow="ALWAYS" />
                         <!-- The Publish button uses the "purple-button" style -->
-                        <Button fx:id="publish" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Publish"
-                                styleClass="purple-button" />
+                        <Button fx:id="publish" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" styleClass="purple-button" text="Publish" />
                         <Pane prefHeight="50.0" prefWidth="250.0" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
