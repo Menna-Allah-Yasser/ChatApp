@@ -48,6 +48,7 @@ public class InvitationService implements InvitationRepository {
             while (rs.next()) {
                 friends.add(rs.getInt(1));
             }
+            rs.close();
         } catch (SQLException e) {
             throw new RuntimeException("Error while fetching friends", e);
         }
@@ -90,6 +91,7 @@ public class InvitationService implements InvitationRepository {
                 invitation.setStatus(InvStatus.valueOf(rs.getString("status")));
                 invitations.add(invitation);
             }
+            rs.close();
             // sender_id recevier status
             // 1           2       accept
             // 2           3       accept
@@ -143,6 +145,7 @@ public class InvitationService implements InvitationRepository {
                 invitationDTO.setStatus(InvStatus.valueOf(rs.getString("status")));
                 invitations.add(invitationDTO);
             }
+            rs.close();
             return invitations;
         } catch (SQLException e) {
             throw new RuntimeException("Error while fetching invitations", e);
@@ -178,6 +181,8 @@ public class InvitationService implements InvitationRepository {
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         }
+
     }
+
 }
 

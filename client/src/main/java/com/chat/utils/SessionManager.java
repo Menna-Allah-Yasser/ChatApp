@@ -10,13 +10,14 @@ import java.io.IOException;
     public class SessionManager {
         private static final String PROPERTIES_FILE = "user_session.properties";
         private static int  loggedInUser = -1;
-        public static void setLoggedInUser(int  userId, String phoneNumber,String password) {
+        public static void setLoggedInUser(int  userId, String phoneNumber,String password, String isloggedIn) {
             loggedInUser = userId;
             try (FileOutputStream out = new FileOutputStream(PROPERTIES_FILE)) {
                 Properties properties = new Properties();
                 properties.setProperty("loggedInUser", String.valueOf(userId));
                 properties.setProperty("phoneNumber", phoneNumber);
                 properties.setProperty("password", password);
+                properties.setProperty("isloggedIn" ,isloggedIn);
 
                 properties.store(out, "new user");
 
@@ -42,6 +43,7 @@ import java.io.IOException;
             }
             properties.remove("loggedInUser");
             properties.remove("password");
+            properties.remove("isloggedIn");
 
 
             try (FileOutputStream out = new FileOutputStream(PROPERTIES_FILE)) {

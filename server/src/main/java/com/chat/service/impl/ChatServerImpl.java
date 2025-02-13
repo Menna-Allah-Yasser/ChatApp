@@ -146,7 +146,7 @@ public class ChatServerImpl implements ChatServerRepository {
         return chatCards;
     }
 
-    private byte[] toBoxedBytes(byte[] bytes) {
+    public byte[] toBoxedBytes(byte[] bytes) {
         byte[] boxed = new byte[bytes.length];
         for (int i = 0; i < bytes.length; i++) {
             boxed[i] = bytes[i];

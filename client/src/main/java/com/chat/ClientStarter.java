@@ -73,12 +73,11 @@ public class ClientStarter extends Application {
 
     private static Pane loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ClientStarter.class.getResource(fxml + ".fxml"));
-        Pane p= fxmlLoader.load();
-        if(fxml=="Bar")
-        {
-            Cordinator.barController=fxmlLoader.getController();
-        }
-        return p;
+
+        Pane pane = fxmlLoader.load();
+
+        return pane;
+
     }
 
 
@@ -86,4 +85,3 @@ public class ClientStarter extends Application {
         launch();
     }
 }
-

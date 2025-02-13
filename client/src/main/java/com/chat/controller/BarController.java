@@ -69,6 +69,7 @@ public class BarController {
         centerPane.setCenter(node);
     }
 
+
     @FXML
     void onnewGroupClicked() {
 
@@ -89,12 +90,18 @@ public class BarController {
     }
 
     @FXML
-    void onLogoClicked(MouseEvent event) {
+    public void gotohome() {
         Node node=  Director.loadView("home");
         centerPane.setCenter(node);
     }
 
     @FXML
+   public void onLogoClicked() {
+        Node node=  Director.loadView("home");
+        centerPane.setCenter(node);
+    }
+
+    /*@FXML
     void exitHandler(MouseEvent event) {
 
         ServerRepository  server = ServerConnection.getServer();
@@ -124,6 +131,8 @@ public class BarController {
     }
 
 
+
+*/
 
 
 

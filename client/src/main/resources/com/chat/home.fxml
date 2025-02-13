@@ -64,18 +64,16 @@
                                       <Label fx:id="friendCat" styleClass="category-label" text="Friend" />
 
 
-
-
-
                                   </children>
                            <padding>
                               <Insets left="10.0" />
                            </padding>
                               </HBox>
 
-                              <ListView id="chatList" fx:id="chatsArea" editable="true" styleClass="message-list" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS" />
+                         <ListView fx:id="chatsArea" editable="true" styleClass="message-list" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS" />
 
-                        <Label prefHeight="15.0" prefWidth="97.0" styleClass="title" text="Messages" />
+
+                         <Label prefHeight="15.0" prefWidth="97.0" styleClass="title" text="Messages" />
                      </children>
                   </GridPane>
                   <GridPane alignment="TOP_RIGHT" style="-fx-background-color: WHITE;">
@@ -90,7 +88,9 @@
                      <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="327.0" spacing="10.0" style="-fx-background-color: WHITE;" GridPane.hgrow="ALWAYS" GridPane.vgrow="NEVER">
                                   <children>
+
                                       <ImageView fx:id="currentImg" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+
                                  <image>
                                     <Image url="@../../images/profileImg.png" />
                                  </image>

@@ -87,12 +87,12 @@ public class LoginController {
 
            server.login(user.getUserId(),client);
 
-            SessionManager.setLoggedInUser(user.getUserId(),user.getPhoneNumber(), user.getPassword());
+            SessionManager.setLoggedInUser(user.getUserId(),user.getPhoneNumber(), user.getPassword(),"true");
 
 
             System.out.println("hello"+SessionManager.getLoggedInUser());
 
-            ClientStarter.setRoot("Bar");
+         //   ClientStarter.setRoot("Bar");
 
             warningLabel.setVisible(false);
 
@@ -110,15 +110,15 @@ public class LoginController {
     }
 
 
-    @FXML
+   /* @FXML
     void goToSignUpPage(ActionEvent event)  {
 
         try {
-            ClientStarter.setRoot("signUp");
+           ClientStarter.setRoot("signUp");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
 
-    }
+    }*/
 }

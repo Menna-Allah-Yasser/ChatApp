@@ -357,7 +357,7 @@ public class SignUpController {
 
         CreateUserFile(user.getPhoneNumber(), user.getPassword(), user.getUserId());
 
-      ClientStarter.setRoot("login");
+     // ClientStarter.setRoot("login");
 
 
 
@@ -371,7 +371,7 @@ public class SignUpController {
 
   }
 
-  @FXML
+ /* @FXML
   void goToSignin(ActionEvent event) {
 
       try {
@@ -379,7 +379,7 @@ public class SignUpController {
       } catch (IOException e) {
 
       }
-  }
+  }*/
 
   @FXML
   void addPhoto(ActionEvent event) {

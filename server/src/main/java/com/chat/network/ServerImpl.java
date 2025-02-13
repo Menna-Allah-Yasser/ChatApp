@@ -2,8 +2,10 @@ package com.chat.network;
 
 import com.chat.dao.impl.ChatService;
 
+import com.chat.dao.impl.InvitationService;
 import com.chat.dao.impl.ParticipantService;
 import com.chat.dao.repository.ChatRepository;
+import com.chat.dao.repository.MessageRepository;
 import com.chat.dao.repository.ParticipantRepository;
 
 import com.chat.dao.impl.MessageService;
@@ -22,6 +24,7 @@ import java.nio.file.Path;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -200,7 +203,65 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
 
     @Override
     public Boolean updateFriendsRequestStatus(Invitation invitation) throws RemoteException {
-        return InvitationServerImpl.getInvitationServerImp().updateFriendsRequestStatus(invitation);
+        boolean isUpdated = InvitationServerImpl.getInvitationServerImp().updateFriendsRequestStatus(invitation);
+
+        InvitationService invitationService = new InvitationService();
+        if(invitation.getStatus()==InvStatus.REJECT)return invitationService.deleteInvitation(invitation.getSenderId(),invitation.getReceiverId());
+
+            int senderId = invitation.getSenderId();
+            int receiverId = invitation.getReceiverId();
+            {
+              Chat chat = new Chat("");
+              ChatService chatService = new ChatService();
+             int chatId =    chatService.addNewChat(chat);
+                List<Participant> participants = new ArrayList<>();
+
+                participants.add(new Participant(chatId, senderId,Participant.State.AVAILABLE,Participant.Category.FRIEND));
+                participants.add(new Participant(chatId, receiverId,Participant.State.AVAILABLE,Participant.Category.FRIEND));
+
+                ParticipantService participantService = new ParticipantService();
+
+                participantService.addListOfParticipant(participants);
+
+
+                if(clients.containsKey(receiverId)) {
+
+                    userServer= UserServerImpl.getUserService();
+                    User user=userServer.findUserById(receiverId);
+
+                    ChatServerImpl chatSer =  new ChatServerImpl();
+
+                    Message message = new Message("now we are friends ", LocalDateTime.now(),chatId, receiverId );
+
+                    MessageService service = new MessageService();
+
+                    service.addMessage(message);
+
+                    ChatCard chatCard = new ChatCard();
+                    chatCard.setChat_id(chatId);
+                    chatCard.setChat_name(user.getName());
+                    chatCard.setUser_Id(receiverId);
+                    chatCard.setUser_name(user.getName());
+                    chatCard.setUser_isOnline(user.getIsOnline());
+                    chatCard.setUser_pictrue(user.getPicture() != null ? chatSer.toBoxedBytes(user.getPicture()) : null);
+
+
+
+
+
+
+
+
+
+
+                    ClientRepository client = clients.get(receiverId);
+
+                    client.moveaNewCardtoTop(chatCard);
+                }
+            }
+
+
+        return isUpdated;
     }
 
     @Override
@@ -218,6 +279,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
                 ClientRepository clientRepository =clients.get(p1.getParticpantId());
                 clientRepository.getNotification(notification);
                 clientRepository.sendMessage(message);
+               clientRepository.receivedMessage(message);
             }
         }}
 
@@ -226,6 +288,35 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
 
     @Override
     public void createGroup(String Name, List<Integer> id) throws RemoteException {
+
+
+        Chat chat = new Chat(Name);
+        ChatService chatService = new ChatService();
+        int chatId =    chatService.addNewChat(chat);
+        List<Participant> participants = new ArrayList<>();
+
+
+
+
+
+        for(Integer i: id)
+        {
+
+
+
+
+            if(clients.containsKey(i))
+            {
+
+              /*create card
+                 ClientRepository clientRepository =clients.get(i);
+                 clientRepository.y
+                 ();
+
+               */
+
+            }
+        }
 
     }
     //need service in the chat server impl to create chat
@@ -307,6 +398,63 @@ public class ServerImpl extends UnicastRemoteObject implements ServerRepository 
         ChatBotServer chat = ChatBotServer.getInstance();
         return chat.getBotResponse(userMessage);
     }
+    @Override
+    public int addNewChat(Chat chat) throws RemoteException {
+        ChatRepository chatRepository = new ChatService();
+        return chatRepository.addNewChat(chat);
+    }
+
+    @Override
+    public void createParticpant(Participant p) throws RemoteException {
+        ParticipantRepository participantRepository = new ParticipantService();
+        participantRepository.createParticpant(p);
+
+        ChatService chatService = new ChatService();
+
+        UserServerImpl server = UserServerImpl.getUserService();
+
+
+
+        int chatId = p.getChatId();
+        Chat chat = chatService.getChatById(chatId);
+        int userId = p.getParticpantId();
+        User user =  server.findUserById(userId);
+
+
+        if(clients.containsKey(userId)) {
+            ChatServerImpl chatSer =  new ChatServerImpl();
+            ChatCard chatCard = new ChatCard();
+            chatCard.setChat_id(chatId);
+            chatCard.setChat_name(chat.getName());
+            chatCard.setUser_Id(userId);
+            chatCard.setUser_name(user.getName());
+            chatCard.setUser_isOnline(user.getIsOnline());
+            chatCard.setUser_pictrue(user.getPicture() != null ? chatSer.toBoxedBytes(user.getPicture()) : null);
+
+            ClientRepository client = clients.get(userId);
+
+            client.moveaNewCardtoTop(chatCard);
+        }
+
+
+
+
+
+
+    }
+
+  /*  @Override
+    public List<ChatCard> getChatsForUser(int userId, Participant.Category category) throws RemoteException {
+        ChatServerRepository serverRepository = new ChatServerImpl();
+        return serverRepository.getChatsForUser(userId , category);
+    } */
+
+    @Override
+    public boolean addMessage(Message message) throws RemoteException {
+        MessageRepository messageRepository = new MessageService();
+        return messageRepository.addMessage(message);
+    }
+
 
 
 }

@@ -22,4 +22,6 @@ public interface InvitationRepository {
     List<Integer> getFriends(int userId);
 
     boolean updateStatus(Invitation newInv);
+
+
 }

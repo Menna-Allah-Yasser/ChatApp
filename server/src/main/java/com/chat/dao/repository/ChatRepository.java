@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ChatRepository extends Remote {
 
-    boolean addNewChat(Chat chat);
+    int addNewChat(Chat chat);
 
     List<Chat> getChats();
 

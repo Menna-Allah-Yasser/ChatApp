@@ -8,7 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CurrentChat {
-    public static int chatId=8;
+
+    public static int chatId;
+
+
     public static Chat chat=null;
     public static User user=null;
     public static List<Participant> participants=new ArrayList<>();
